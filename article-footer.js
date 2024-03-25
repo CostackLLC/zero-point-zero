@@ -2,87 +2,118 @@
 
 var toggleSearchSlidePanel;
 var inputField;
+
 function initializeSearchPanel() {
-var searchSlidePanel = document.getElementById('article-search-panel');
-var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
-var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
-inputField = document.querySelector('#autocomplete input');
-toggleSearchSlidePanel = function() {
-requestAnimationFrame(function() {
-searchSlidePanel.classList.toggle('show');
-imageWrappers.forEach(function(wrapper) {
-wrapper.classList.toggle('greyscale');
+    var searchSlidePanel = document.getElementById('article-search-panel');
+    var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
+    var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
+    inputField = document.querySelector('#autocomplete input');
+
+    toggleSearchSlidePanel = function () {
+        requestAnimationFrame(function () {
+            searchSlidePanel.classList.toggle('show');
+            imageWrappers.forEach(function (wrapper) {
+                wrapper.classList.toggle('greyscale');
+            });
+            if (!searchSlidePanel.classList.contains('show')) {
+                inputField.blur();
+            }
+        });
+    }
+
+    function handleEscapeKey(event) {
+        if (event.key === 'Escape' || event.keyCode === 27) {
+            if (searchSlidePanel.classList.contains('show')) {
+                if (inputField.value) {
+                    clearButton.click();
+                } else {
+                    toggleSearchSlidePanel();
+                    inputField.blur();
+                }
+            }
+        }
+    }
+
+    searchSlidePanel.addEventListener('transitionend', function () {
+        if (searchSlidePanel.classList.contains('show') && inputField) {
+            inputField.focus();
+        }
+    });
+
+    var searchButton = document.getElementById('article-search-button');
+    searchButton.addEventListener('click', toggleSearchSlidePanel);
+
+    clearButton.addEventListener('click', function () {
+        setTimeout(function () {
+            searchSlidePanel.classList.remove('show');
+            imageWrappers.forEach(function (wrapper) {
+                wrapper.classList.remove('greyscale');
+            });
+            inputField.blur();
+        }, 500);
+    });
+
+    document.addEventListener('keydown', handleEscapeKey);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var clearButton = document.querySelector('.aa-ClearButton');
+    if (clearButton) {
+        clearButton.textContent = 'CLEAR';
+    }
 });
-if (!searchSlidePanel.classList.contains('show')) {
-inputField.blur();
-}
-});
-}
-function handleEscapeKey(event) {
-if (event.key === 'Escape' || event.keyCode === 27) {
-if (searchSlidePanel.classList.contains('show')) {
-if (inputField.value) {
-clearButton.click();
-} else {
-toggleSearchSlidePanel();
-inputField.blur();
-}
-}
-}
-}
-searchSlidePanel.addEventListener('transitionend', function() {
-if (searchSlidePanel.classList.contains('show') && inputField) {
-inputField.focus();
-}
-});
-var searchButton = document.getElementById('article-search-button');
-searchButton.addEventListener('click', toggleSearchSlidePanel);
-clearButton.addEventListener('click', function() {
-setTimeout(function() {
-searchSlidePanel.classList.remove('show');
-imageWrappers.forEach(function(wrapper) {
-wrapper.classList.remove('greyscale');
-});
-inputField.blur();
-}, 500);
-});
-document.addEventListener('keydown', handleEscapeKey);
-}
-document.addEventListener('DOMContentLoaded', function() {
-var clearButton = document.querySelector('.aa-ClearButton');
-if (clearButton) {
-clearButton.textContent = 'CLEAR';
-}
-});
+
+// Create the close button container and button
 var closeButtonContainer = document.createElement('div');
 closeButtonContainer.setAttribute('class', 'close-button-container');
 var closeButton = document.createElement('button');
 closeButton.setAttribute('class', 'close-button');
 closeButtonContainer.appendChild(closeButton);
 document.querySelector('.aa-Form').appendChild(closeButtonContainer);
-document.addEventListener('DOMContentLoaded', function() {
-var clearButton = document.querySelector('.aa-ClearButton');
-var closeButtonContainer = document.querySelector('.close-button-container');
-if (clearButton) {
-var observer = new MutationObserver(function() {
-if (clearButton.hasAttribute('hidden')) {
-closeButtonContainer.style.display = 'block';
-} else {
-closeButtonContainer.style.display = 'none';
-}
+
+// SVG data
+var svgData = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c-0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-0.391 1.024 0 1.414z"/></svg>';
+
+// Encode your SVG in base64
+var svgNormal = 'data:image/svg+xml;base64,' + btoa(svgData.replace('currentColor', 'rgba(255, 255, 255, 0.45)'));
+var svgHover = 'data:image/svg+xml;base64,' + btoa(svgData.replace('currentColor', 'var(--white)'));
+
+// Set the initial SVG background
+closeButton.style.backgroundImage = 'url("' + svgNormal + '")';
+
+closeButton.addEventListener('mouseover', function () {
+    closeButton.style.backgroundImage = 'url("' + svgHover + '")';
 });
-observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
-}
+
+closeButton.addEventListener('mouseout', function () {
+    closeButton.style.backgroundImage = 'url("' + svgNormal + '")';
 });
-document.addEventListener('DOMContentLoaded', function() {
-var closeButton = document.querySelector('.close-button');
-if (closeButton) {
-closeButton.addEventListener('click', function() {
-toggleSearchSlidePanel();
-inputField.blur();
+
+document.addEventListener('DOMContentLoaded', function () {
+    var clearButton = document.querySelector('.aa-ClearButton');
+    var closeButtonContainer = document.querySelector('.close-button-container');
+    if (clearButton) {
+        var observer = new MutationObserver(function () {
+            if (clearButton.hasAttribute('hidden')) {
+                closeButtonContainer.style.display = 'block';
+            } else {
+                closeButtonContainer.style.display = 'none';
+            }
+        });
+        observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
+    }
 });
-}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var closeButton = document.querySelector('.close-button');
+    if (closeButton) {
+        closeButton.addEventListener('click', function () {
+            toggleSearchSlidePanel();
+            inputField.blur();
+        });
+    }
 });
+
 initializeSearchPanel();
 
 // scroll position management (search autocomplete + page reload) & section banner swap
