@@ -59,14 +59,27 @@
     padding: 0 12px;
 }
 
-.close-button .icon {
-    fill: rgba(255, 255, 255, 0.45);
-    transition: fill 0.2s;
+.close-button::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"/></svg>');
+    background-size: cover;
 }
 
-.close-button:hover .icon {
-    fill: #ffffff;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .autocomplete-record-container {
     display: flex;
