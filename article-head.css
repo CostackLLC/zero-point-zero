@@ -51,15 +51,13 @@
 .close-button-container {
     position: relative;
     order: 5;
-}
-
-.close-button {
+    }
+    .close-button {
     background-color: transparent;
     cursor: pointer;
     padding: 0 12px;
-}
-
-.close-button::before {
+    }
+    .close-button::before {
     content: '';
     display: block;
     width: 20px;
