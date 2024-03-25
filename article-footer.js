@@ -1,5 +1,4 @@
-// article search bar pannel
-
+// article search bar panel
 var toggleSearchSlidePanel;
 var inputField;
 
@@ -72,11 +71,8 @@ closeButtonContainer.appendChild(closeButton);
 document.querySelector('.aa-Form').appendChild(closeButtonContainer);
 
 // SVG data
-var svgData = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c-0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-0.391 1.024 0 1.414z"/></svg>';
-
-// Encode your SVG in base64
-var svgNormal = 'data:image/svg+xml;base64,' + btoa(svgData.replace('currentColor', 'rgba(255, 255, 255, 0.45)'));
-var svgHover = 'data:image/svg+xml;base64,' + btoa(svgData.replace('currentColor', 'var(--white)'));
+var svgNormal = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255, 255, 255, 0.45)"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c-0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-0.391 1.024 0 1.414z"/></svg>';
+var svgHover = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c-0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-0.391 1.024 0 1.414z"/></svg>';
 
 // Set the initial SVG background
 closeButton.style.backgroundImage = 'url("' + svgNormal + '")';
