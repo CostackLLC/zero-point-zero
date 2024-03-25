@@ -58,6 +58,8 @@
     cursor: pointer;
     padding: 0 12px;
     transition: background-image 0.15s;
+    width: 24px;
+    height: 24px;
 }
 
 
