@@ -1,120 +1,105 @@
 // article search bar panel
-
 var toggleSearchSlidePanel;
 var inputField;
 
 function initializeSearchPanel() {
-    var searchSlidePanel = document.getElementById('article-search-panel');
-    var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
-    var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
-    inputField = document.querySelector('#autocomplete input');
+  var searchSlidePanel = document.getElementById('article-search-panel');
+  var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
+  var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
+  inputField = document.querySelector('#autocomplete input');
 
-    toggleSearchSlidePanel = function () {
-        requestAnimationFrame(function () {
-            if (searchSlidePanel.classList.contains('show')) {
-                if (inputField.value) {
-                    clearButton.click();
-                    setTimeout(function () {
-                        searchSlidePanel.classList.remove('show');
-                        imageWrappers.forEach(function (wrapper) {
-                            wrapper.classList.remove('greyscale');
-                        });
-                        inputField.blur();
-                    }, 500);
-                } else {
-                    searchSlidePanel.classList.remove('show');
-                    imageWrappers.forEach(function (wrapper) {
-                        wrapper.classList.remove('greyscale');
-                    });
-                    inputField.blur();
-                }
-            } else {
-                searchSlidePanel.classList.add('show');
-                imageWrappers.forEach(function (wrapper) {
-                    wrapper.classList.add('greyscale');
-                });
-            }
-        });
-    }
-
-    function handleEscapeKey(event) {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-            if (searchSlidePanel.classList.contains('show')) {
-                if (inputField.value) {
-                    clearButton.click();
-                } else {
-                    toggleSearchSlidePanel();
-                    inputField.blur();
-                }
-            }
-        }
-    }
-
-    searchSlidePanel.addEventListener('transitionend', function () {
-        if (searchSlidePanel.classList.contains('show') && inputField) {
-            inputField.focus();
-        }
-    });
-
-    var searchButton = document.getElementById('article-search-button');
-    searchButton.addEventListener('click', toggleSearchSlidePanel);
-    clearButton.addEventListener('click', function () {
-        setTimeout(function () {
+  toggleSearchSlidePanel = function () {
+    requestAnimationFrame(function () {
+      if (searchSlidePanel.classList.contains('show')) {
+        if (inputField.value) {
+          clearButton.click();
+          setTimeout(function () {
             searchSlidePanel.classList.remove('show');
             imageWrappers.forEach(function (wrapper) {
-                wrapper.classList.remove('greyscale');
+              wrapper.classList.remove('greyscale');
             });
             inputField.blur();
-        }, 500);
+          }, 500);
+        } else {
+          searchSlidePanel.classList.remove('show');
+          imageWrappers.forEach(function (wrapper) {
+            wrapper.classList.remove('greyscale');
+          });
+          inputField.blur();
+        }
+      } else {
+        searchSlidePanel.classList.add('show');
+        imageWrappers.forEach(function (wrapper) {
+          wrapper.classList.add('greyscale');
+        });
+      }
     });
+  }
 
-    document.addEventListener('keydown', handleEscapeKey);
+  function handleEscapeKey(event) {
+    if (event.key === 'Escape' || event.keyCode === 27) {
+      if (searchSlidePanel.classList.contains('show')) {
+        if (inputField.value) {
+          clearButton.click();
+        } else {
+          toggleSearchSlidePanel();
+          inputField.blur();
+        }
+      }
+    }
+  }
+
+  searchSlidePanel.addEventListener('transitionend', function () {
+    if (searchSlidePanel.classList.contains('show') && inputField) {
+      inputField.focus();
+    }
+  });
+
+  var searchButton = document.getElementById('article-search-button');
+  searchButton.addEventListener('click', toggleSearchSlidePanel);
+  clearButton.addEventListener('click', function () {
+    setTimeout(function () {
+      searchSlidePanel.classList.remove('show');
+      imageWrappers.forEach(function (wrapper) {
+        wrapper.classList.remove('greyscale');
+      });
+      inputField.blur();
+    }, 500);
+  });
+
+  document.addEventListener('keydown', handleEscapeKey);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    if (clearButton) {
-        clearButton.textContent = 'CLEAR';
-    }
+  var clearButton = document.querySelector('.aa-ClearButton');
+  if (clearButton) {
+    clearButton.textContent = 'CLEAR';
+  }
 });
 
-var closeButtonContainer = document.createElement('div');
-closeButtonContainer.setAttribute('class', 'close-button-container');
-var closeButton = document.createElement('button');
-closeButton.setAttribute('class', 'close-button');
-var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("viewBox", "0 0 24 24");
-svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
-var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
-svg.appendChild(path);
-closeButton.appendChild(svg);
-closeButtonContainer.appendChild(closeButton);
-document.querySelector('.aa-Form').appendChild(closeButtonContainer);
+// New feature: Close and clear behavior when clicking outside .aa-Form and .aa-Panel
+document.addEventListener('click', function(event) {
+  var isClickInsideForm = document.querySelector('.aa-Form').contains(event.target);
+  var isClickInsidePanel = document.querySelector('.aa-Panel').contains(event.target);
+  var isSearchButton = event.target.id === 'article-search-button';
 
-document.addEventListener('DOMContentLoaded', function () {
-    var closeButton = document.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', function () {
-            toggleSearchSlidePanel();
-            inputField.blur();
-        });
+  if (!isClickInsideForm && !isClickInsidePanel && !isSearchButton) {
+    if (searchSlidePanel.classList.contains('show')) {
+      if (inputField.value) {
+        clearButton.click();
+        setTimeout(function () {
+          searchSlidePanel.classList.remove('show');
+          imageWrappers.forEach(function (wrapper) {
+            wrapper.classList.remove('greyscale');
+          });
+          inputField.blur();
+        }, 500);
+      } else {
+        toggleSearchSlidePanel();
+        inputField.blur();
+      }
     }
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    var closeButtonContainer = document.querySelector('.close-button-container');
-    if (clearButton) {
-        var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                if (mutation.attributeName === 'hidden') {
-                    closeButtonContainer.style.display = clearButton.hasAttribute('hidden') ? 'block' : 'none';
-                }
-            });
-        });
-        observer.observe(clearButton, { attributes: true });
-    }
+  }
 });
 
 initializeSearchPanel();
@@ -122,24 +107,15 @@ initializeSearchPanel();
 // submit button
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Select the button by its class
     const button = document.querySelector('.aa-SubmitButton');
-    
-    // Check if the button exists
     if (button) {
-      // Change the button to a div
-      const div = document.createElement('div');
-      // Copy the classes from the button to the div
-      div.className = button.className;
-      // Copy innerHTML from the button to the div if needed
-      div.innerHTML = button.innerHTML;
-      // Insert the div before the button
-      button.parentNode.insertBefore(div, button);
-      // Remove the button
-      button.parentNode.removeChild(button);
+        const div = document.createElement('div');
+        div.className = button.className;
+        div.innerHTML = button.innerHTML;
+        button.parentNode.insertBefore(div, button);
+        button.parentNode.removeChild(button);
     }
-  });
-  
+});
 
 // scroll position management (search autocomplete + page reload) & section banner swap
 
