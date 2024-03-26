@@ -1,4 +1,5 @@
 // article search bar panel
+
 var toggleSearchSlidePanel;
 var inputField;
 
@@ -7,6 +8,7 @@ function initializeSearchPanel() {
     var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
     var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
     inputField = document.querySelector('#autocomplete input');
+
     toggleSearchSlidePanel = function () {
         requestAnimationFrame(function () {
             if (searchSlidePanel.classList.contains('show')) {
@@ -40,13 +42,6 @@ function initializeSearchPanel() {
             if (searchSlidePanel.classList.contains('show')) {
                 if (inputField.value) {
                     clearButton.click();
-                    setTimeout(function () {
-                        searchSlidePanel.classList.remove('show');
-                        imageWrappers.forEach(function (wrapper) {
-                            wrapper.classList.remove('greyscale');
-                        });
-                        inputField.blur();
-                    }, 500);
                 } else {
                     toggleSearchSlidePanel();
                     inputField.blur();
@@ -76,33 +71,13 @@ function initializeSearchPanel() {
     document.addEventListener('keydown', handleEscapeKey);
 }
 
-document.addEventListener('DOMContentLoaded', initializeSearchPanel);
-
-// New feature to close the panel when clicking outside
-document.addEventListener('click', function(event) {
-    var isClickInsideForm = document.querySelector('.aa-Form').contains(event.target);
-    var isClickInsidePanel = document.querySelector('.aa-Panel').contains(event.target);
-    var isClickOnSearchButton = document.getElementById('article-search-button').contains(event.target);
-
-    if (!isClickInsideForm && !isClickInsidePanel && !isClickOnSearchButton) {
-        if (searchSlidePanel.classList.contains('show')) {
-            if (inputField.value) {
-                clearButton.click();
-                setTimeout(function() {
-                    searchSlidePanel.classList.remove('show');
-                    imageWrappers.forEach(function (wrapper) {
-                        wrapper.classList.remove('greyscale');
-                    });
-                    inputField.blur();
-                }, 500);
-            } else {
-                toggleSearchSlidePanel(); // Simulate a click on the close button immediately
-            }
-        }
+document.addEventListener('DOMContentLoaded', function () {
+    var clearButton = document.querySelector('.aa-ClearButton');
+    if (clearButton) {
+        clearButton.textContent = 'CLEAR';
     }
 });
 
-// Additional code for close button and mutation observer
 var closeButtonContainer = document.createElement('div');
 closeButtonContainer.setAttribute('class', 'close-button-container');
 var closeButton = document.createElement('button');
@@ -141,6 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(clearButton, { attributes: true });
     }
 });
+
+initializeSearchPanel();
 
 // submit button
 
