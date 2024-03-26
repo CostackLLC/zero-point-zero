@@ -7,7 +7,6 @@ function initializeSearchPanel() {
     var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
     var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
     inputField = document.querySelector('#autocomplete input');
-
     toggleSearchSlidePanel = function () {
         requestAnimationFrame(function () {
             if (searchSlidePanel.classList.contains('show')) {
@@ -41,6 +40,13 @@ function initializeSearchPanel() {
             if (searchSlidePanel.classList.contains('show')) {
                 if (inputField.value) {
                     clearButton.click();
+                    setTimeout(function () {
+                        searchSlidePanel.classList.remove('show');
+                        imageWrappers.forEach(function (wrapper) {
+                            wrapper.classList.remove('greyscale');
+                        });
+                        inputField.blur();
+                    }, 500);
                 } else {
                     toggleSearchSlidePanel();
                     inputField.blur();
@@ -70,22 +76,19 @@ function initializeSearchPanel() {
     document.addEventListener('keydown', handleEscapeKey);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    if (clearButton) {
-        clearButton.textContent = 'CLEAR';
-    }
-});
+document.addEventListener('DOMContentLoaded', initializeSearchPanel);
 
-document.addEventListener('click', function (event) {
-    var formElement = document.querySelector('.aa-Form');
-    var panelElement = document.querySelector('.aa-Panel');
+// New feature to close the panel when clicking outside
+document.addEventListener('click', function(event) {
+    var isClickInsideForm = document.querySelector('.aa-Form').contains(event.target);
+    var isClickInsidePanel = document.querySelector('.aa-Panel').contains(event.target);
+    var isClickOnSearchButton = document.getElementById('article-search-button').contains(event.target);
 
-    if (formElement && panelElement && !formElement.contains(event.target) && !panelElement.contains(event.target) && event.target.id !== 'article-search-button') {
+    if (!isClickInsideForm && !isClickInsidePanel && !isClickOnSearchButton) {
         if (searchSlidePanel.classList.contains('show')) {
             if (inputField.value) {
                 clearButton.click();
-                setTimeout(function () {
+                setTimeout(function() {
                     searchSlidePanel.classList.remove('show');
                     imageWrappers.forEach(function (wrapper) {
                         wrapper.classList.remove('greyscale');
@@ -93,16 +96,51 @@ document.addEventListener('click', function (event) {
                     inputField.blur();
                 }, 500);
             } else {
-                toggleSearchSlidePanel();
-                inputField.blur();
+                toggleSearchSlidePanel(); // Simulate a click on the close button immediately
             }
         }
     }
 });
 
+// Additional code for close button and mutation observer
+var closeButtonContainer = document.createElement('div');
+closeButtonContainer.setAttribute('class', 'close-button-container');
+var closeButton = document.createElement('button');
+closeButton.setAttribute('class', 'close-button');
+var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svg.setAttribute("viewBox", "0 0 24 24");
+svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
+var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
+svg.appendChild(path);
+closeButton.appendChild(svg);
+closeButtonContainer.appendChild(closeButton);
+document.querySelector('.aa-Form').appendChild(closeButtonContainer);
 
-initializeSearchPanel();
+document.addEventListener('DOMContentLoaded', function () {
+    var closeButton = document.querySelector('.close-button');
+    if (closeButton) {
+        closeButton.addEventListener('click', function () {
+            toggleSearchSlidePanel();
+            inputField.blur();
+        });
+    }
+});
 
+document.addEventListener('DOMContentLoaded', function () {
+    var clearButton = document.querySelector('.aa-ClearButton');
+    var closeButtonContainer = document.querySelector('.close-button-container');
+    if (clearButton) {
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.attributeName === 'hidden') {
+                    closeButtonContainer.style.display = clearButton.hasAttribute('hidden') ? 'block' : 'none';
+                }
+            });
+        });
+        observer.observe(clearButton, { attributes: true });
+    }
+});
 
 // submit button
 
