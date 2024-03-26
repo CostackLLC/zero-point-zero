@@ -238,20 +238,17 @@
     flex-wrap: wrap;
 }
 
-.aa-SubmitIcon {}
-
 .aa-LoadingIndicator {
     position: relative;
     bottom: 2px;
+    right: 1px;
 }
-
-.aa-LoadingIcon {}
 
 .aa-Input {
     color: var(--white);
     position: relative;
-    bottom: 1px;
-    padding-left: 16px;
+    bottom: 2px;
+    padding-left: 3px;
 }
 
 .aa-Input::placeholder {
