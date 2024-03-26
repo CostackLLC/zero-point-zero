@@ -3,103 +3,101 @@ var toggleSearchSlidePanel;
 var inputField;
 
 function initializeSearchPanel() {
-  var searchSlidePanel = document.getElementById('article-search-panel');
-  var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
-  var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
-  inputField = document.querySelector('#autocomplete input');
+    var searchSlidePanel = document.getElementById('article-search-panel');
+    var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
+    var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
+    inputField = document.querySelector('#autocomplete input');
 
-  toggleSearchSlidePanel = function () {
-    requestAnimationFrame(function () {
-      if (searchSlidePanel.classList.contains('show')) {
-        if (inputField.value) {
-          clearButton.click();
-          setTimeout(function () {
+    toggleSearchSlidePanel = function () {
+        requestAnimationFrame(function () {
+            if (searchSlidePanel.classList.contains('show')) {
+                if (inputField.value) {
+                    clearButton.click();
+                    setTimeout(function () {
+                        searchSlidePanel.classList.remove('show');
+                        imageWrappers.forEach(function (wrapper) {
+                            wrapper.classList.remove('greyscale');
+                        });
+                        inputField.blur();
+                    }, 500);
+                } else {
+                    searchSlidePanel.classList.remove('show');
+                    imageWrappers.forEach(function (wrapper) {
+                        wrapper.classList.remove('greyscale');
+                    });
+                    inputField.blur();
+                }
+            } else {
+                searchSlidePanel.classList.add('show');
+                imageWrappers.forEach(function (wrapper) {
+                    wrapper.classList.add('greyscale');
+                });
+            }
+        });
+    }
+
+    function handleEscapeKey(event) {
+        if (event.key === 'Escape' || event.keyCode === 27) {
+            if (searchSlidePanel.classList.contains('show')) {
+                if (inputField.value) {
+                    clearButton.click();
+                } else {
+                    toggleSearchSlidePanel();
+                    inputField.blur();
+                }
+            }
+        }
+    }
+
+    searchSlidePanel.addEventListener('transitionend', function () {
+        if (searchSlidePanel.classList.contains('show') && inputField) {
+            inputField.focus();
+        }
+    });
+
+    var searchButton = document.getElementById('article-search-button');
+    searchButton.addEventListener('click', toggleSearchSlidePanel);
+    clearButton.addEventListener('click', function () {
+        setTimeout(function () {
             searchSlidePanel.classList.remove('show');
             imageWrappers.forEach(function (wrapper) {
-              wrapper.classList.remove('greyscale');
+                wrapper.classList.remove('greyscale');
             });
             inputField.blur();
-          }, 500);
-        } else {
-          searchSlidePanel.classList.remove('show');
-          imageWrappers.forEach(function (wrapper) {
-            wrapper.classList.remove('greyscale');
-          });
-          inputField.blur();
-        }
-      } else {
-        searchSlidePanel.classList.add('show');
-        imageWrappers.forEach(function (wrapper) {
-          wrapper.classList.add('greyscale');
-        });
-      }
+        }, 500);
     });
-  }
 
-  function handleEscapeKey(event) {
-    if (event.key === 'Escape' || event.keyCode === 27) {
-      if (searchSlidePanel.classList.contains('show')) {
-        if (inputField.value) {
-          clearButton.click();
-        } else {
-          toggleSearchSlidePanel();
-          inputField.blur();
-        }
-      }
-    }
-  }
-
-  searchSlidePanel.addEventListener('transitionend', function () {
-    if (searchSlidePanel.classList.contains('show') && inputField) {
-      inputField.focus();
-    }
-  });
-
-  var searchButton = document.getElementById('article-search-button');
-  searchButton.addEventListener('click', toggleSearchSlidePanel);
-  clearButton.addEventListener('click', function () {
-    setTimeout(function () {
-      searchSlidePanel.classList.remove('show');
-      imageWrappers.forEach(function (wrapper) {
-        wrapper.classList.remove('greyscale');
-      });
-      inputField.blur();
-    }, 500);
-  });
-
-  document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener('keydown', handleEscapeKey);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  var clearButton = document.querySelector('.aa-ClearButton');
-  if (clearButton) {
-    clearButton.textContent = 'CLEAR';
-  }
+    var clearButton = document.querySelector('.aa-ClearButton');
+    if (clearButton) {
+        clearButton.textContent = 'CLEAR';
+    }
 });
 
-// New feature: Close and clear behavior when clicking outside .aa-Form and .aa-Panel
-document.addEventListener('click', function(event) {
-  var isClickInsideForm = document.querySelector('.aa-Form').contains(event.target);
-  var isClickInsidePanel = document.querySelector('.aa-Panel').contains(event.target);
-  var isSearchButton = event.target.id === 'article-search-button';
+document.addEventListener('click', function (event) {
+    var formElement = document.querySelector('.aa-Form');
+    var panelElement = document.querySelector('.aa-Panel');
 
-  if (!isClickInsideForm && !isClickInsidePanel && !isSearchButton) {
-    if (searchSlidePanel.classList.contains('show')) {
-      if (inputField.value) {
-        clearButton.click();
-        setTimeout(function () {
-          searchSlidePanel.classList.remove('show');
-          imageWrappers.forEach(function (wrapper) {
-            wrapper.classList.remove('greyscale');
-          });
-          inputField.blur();
-        }, 500);
-      } else {
-        toggleSearchSlidePanel();
-        inputField.blur();
-      }
+    if (formElement && panelElement && !formElement.contains(event.target) && !panelElement.contains(event.target) && event.target.id !== 'article-search-button') {
+        if (searchSlidePanel.classList.contains('show')) {
+            if (inputField.value) {
+                clearButton.click();
+                setTimeout(function () {
+                    searchSlidePanel.classList.remove('show');
+                    imageWrappers.forEach(function (wrapper) {
+                        wrapper.classList.remove('greyscale');
+                    });
+                    inputField.blur();
+                }, 500);
+            } else {
+                toggleSearchSlidePanel();
+                inputField.blur();
+            }
+        }
     }
-  }
 });
 
 initializeSearchPanel();
