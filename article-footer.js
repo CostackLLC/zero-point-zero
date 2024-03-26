@@ -3,63 +3,63 @@ var toggleSearchSlidePanel;
 var inputField;
 
 function initializeSearchPanel() {
-    var searchSlidePanel = document.getElementById('article-search-panel');
-    var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
-    var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
-    inputField = document.querySelector('#autocomplete input');
+var searchSlidePanel = document.getElementById('article-search-panel');
+var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
+var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
+inputField = document.querySelector('#autocomplete input');
 
-    toggleSearchSlidePanel = function () {
-        requestAnimationFrame(function () {
-            searchSlidePanel.classList.toggle('show');
-            imageWrappers.forEach(function (wrapper) {
-                wrapper.classList.toggle('greyscale');
-            });
-            if (!searchSlidePanel.classList.contains('show')) {
-                inputField.blur();
-            }
-        });
-    }
+toggleSearchSlidePanel = function () {
+requestAnimationFrame(function () {
+searchSlidePanel.classList.toggle('show');
+imageWrappers.forEach(function (wrapper) {
+wrapper.classList.toggle('greyscale');
+});
+if (!searchSlidePanel.classList.contains('show')) {
+inputField.blur();
+}
+});
+}
 
-    function handleEscapeKey(event) {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-            if (searchSlidePanel.classList.contains('show')) {
-                if (inputField.value) {
-                    clearButton.click();
-                } else {
-                    toggleSearchSlidePanel();
-                    inputField.blur();
-                }
-            }
-        }
-    }
+function handleEscapeKey(event) {
+if (event.key === 'Escape' || event.keyCode === 27) {
+if (searchSlidePanel.classList.contains('show')) {
+if (inputField.value) {
+clearButton.click();
+} else {
+toggleSearchSlidePanel();
+inputField.blur();
+}
+}
+}
+}
 
-    searchSlidePanel.addEventListener('transitionend', function () {
-        if (searchSlidePanel.classList.contains('show') && inputField) {
-            inputField.focus();
-        }
-    });
+searchSlidePanel.addEventListener('transitionend', function () {
+if (searchSlidePanel.classList.contains('show') && inputField) {
+inputField.focus();
+}
+});
 
-    var searchButton = document.getElementById('article-search-button');
-    searchButton.addEventListener('click', toggleSearchSlidePanel);
+var searchButton = document.getElementById('article-search-button');
+searchButton.addEventListener('click', toggleSearchSlidePanel);
 
-    clearButton.addEventListener('click', function () {
-        setTimeout(function () {
-            searchSlidePanel.classList.remove('show');
-            imageWrappers.forEach(function (wrapper) {
-                wrapper.classList.remove('greyscale');
-            });
-            inputField.blur();
-        }, 500);
-    });
+clearButton.addEventListener('click', function () {
+setTimeout(function () {
+searchSlidePanel.classList.remove('show');
+imageWrappers.forEach(function (wrapper) {
+wrapper.classList.remove('greyscale');
+});
+inputField.blur();
+}, 500);
+});
 
-    document.addEventListener('keydown', handleEscapeKey);
+document.addEventListener('keydown', handleEscapeKey);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    if (clearButton) {
-        clearButton.textContent = 'CLEAR';
-    }
+var clearButton = document.querySelector('.aa-ClearButton');
+if (clearButton) {
+clearButton.textContent = 'CLEAR';
+}
 });
 
 var closeButtonContainer = document.createElement('div');
@@ -85,49 +85,31 @@ closeButtonContainer.appendChild(closeButton);
 document.querySelector('.aa-Form').appendChild(closeButtonContainer);
 
 document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    var closeButtonContainer = document.querySelector('.close-button-container');
-    if (clearButton) {
-        var observer = new MutationObserver(function () {
-            if (clearButton.hasAttribute('hidden')) {
-                closeButtonContainer.style.display = 'block';
-            } else {
-                closeButtonContainer.style.display = 'none';
-            }
-        });
-        observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
-    }
+var clearButton = document.querySelector('.aa-ClearButton');
+var closeButtonContainer = document.querySelector('.close-button-container');
+if (clearButton) {
+var observer = new MutationObserver(function () {
+if (clearButton.hasAttribute('hidden')) {
+closeButtonContainer.style.display = 'block';
+} else {
+closeButtonContainer.style.display = 'none';
+}
+});
+observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
+}
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    var closeButton = document.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', function () {
-            toggleSearchSlidePanel();
-            inputField.blur();
-        });
-    }
+var closeButton = document.querySelector('.close-button');
+if (closeButton) {
+closeButton.addEventListener('click', function () {
+toggleSearchSlidePanel();
+inputField.blur();
+});
+}
 });
 
 initializeSearchPanel();
-
-document.addEventListener('click', function (event) {
-    var searchSlidePanel = document.getElementById('article-search-panel');
-    var isClickInsideAutocomplete = document.querySelector('.aa-Autocomplete').contains(event.target);
-    var isClickInsidePanel = document.querySelector('.aa-Panel').contains(event.target);
-
-    if (searchSlidePanel.classList.contains('show') && !isClickInsideAutocomplete && !isClickInsidePanel) {
-        if (inputField.value) {
-            // If the input field has a value, simulate a click on the clear button
-            var clearButton = document.querySelector('.aa-ClearButton');
-            clearButton.click();
-        } else {
-            // If the input field is empty, simulate a click on the close button
-            var closeButton = document.querySelector('.close-button');
-            closeButton.click();
-        }
-    }
-});
 
 // scroll position management (search autocomplete + page reload) & section banner swap
 
