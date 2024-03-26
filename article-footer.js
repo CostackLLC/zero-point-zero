@@ -100,7 +100,9 @@ document.addEventListener('click', function (event) {
     }
 });
 
+
 initializeSearchPanel();
+
 
 // submit button
 
