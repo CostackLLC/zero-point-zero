@@ -57,10 +57,18 @@
     background-color: transparent;
     cursor: pointer;
     padding: 0 12px;
-    transition: background-image 0.15s;
     width: 24px;
     height: 24px;
 }
+
+.close-button svg {
+    transition: fill 0.15s;
+}
+
+.close-button:hover svg {
+    fill: white;
+}
+
 
 
 
