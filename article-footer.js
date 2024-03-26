@@ -23,7 +23,7 @@ function initializeSearchPanel() {
 
         document.querySelector('.article-topbar-navigation-container').addEventListener('click', function (event) {
             var clickedElement = event.target;
-            if (clickedElement.closest('.article-topbar-navigation-container')) {
+            if (clickedElement.closest('.article-topbar-navigation-container') && !clickedElement.closest('#article-search-button')) {
                 simulateButtonClick(inputField, clearButton, closeButton);
                 event.preventDefault();
                 event.stopPropagation();
@@ -41,7 +41,7 @@ function initializeSearchPanel() {
 
         document.querySelector('.article-wrapper').addEventListener('click', function (event) {
             var clickedElement = event.target;
-            if (clickedElement.closest('.article-wrapper') && !clickedElement.closest('#article-search-button')) {
+            if (clickedElement.closest('.article-wrapper')) {
                 simulateButtonClick(inputField, clearButton, closeButton);
                 event.preventDefault();
                 event.stopPropagation();
