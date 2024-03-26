@@ -67,23 +67,31 @@ var closeButtonContainer = document.createElement('div');
 closeButtonContainer.setAttribute('class', 'close-button-container');
 var closeButton = document.createElement('button');
 closeButton.setAttribute('class', 'close-button');
+
+// Create the SVG element
+var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+// Set the attributes of the SVG
+svg.setAttribute("viewBox", "0 0 24 24");
+svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
+
+// Create the path element
+var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+// Set the attributes of the path
+path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c-0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-0.391 1.024 0 1.414z");
+
+// Append the path to the SVG
+svg.appendChild(path);
+
+// Append the SVG to the close button
+closeButton.appendChild(svg);
+
+// Append the close button to the container
 closeButtonContainer.appendChild(closeButton);
+
+// Append the close button container to the form
 document.querySelector('.aa-Form').appendChild(closeButtonContainer);
-
-// SVG data
-var svgNormal = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255, 255, 255, 0.45)"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c-0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-0.391 1.024 0 1.414z"/></svg>';
-var svgHover = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c-0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-0.391 1.024 0 1.414z"/></svg>';
-
-// Set the initial SVG background
-closeButton.style.backgroundImage = 'url("' + svgNormal + '")';
-
-closeButton.addEventListener('mouseover', function () {
-    closeButton.style.backgroundImage = 'url("' + svgHover + '")';
-});
-
-closeButton.addEventListener('mouseout', function () {
-    closeButton.style.backgroundImage = 'url("' + svgNormal + '")';
-});
 
 document.addEventListener('DOMContentLoaded', function () {
     var clearButton = document.querySelector('.aa-ClearButton');
@@ -111,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 initializeSearchPanel();
+
 
 // scroll position management (search autocomplete + page reload) & section banner swap
 
