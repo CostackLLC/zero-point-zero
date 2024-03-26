@@ -17,7 +17,7 @@
     flex-direction: column;
     justify-content: flex-start;
     background: var(--white);
-    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.42);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.28);
     z-index: 9999999;
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     transform: translateY(-120%);
