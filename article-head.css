@@ -51,18 +51,19 @@
 .close-button-container {
     position: relative;
     order: 5;
+    padding: 0 11px;
 }
 
 .close-button {
     background-color: transparent;
     cursor: pointer;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     padding: 0;
 }
 
 .close-button svg {
-    transition: fill 0.15s;
+    transition: fill 0.075s;
 }
 
 .close-button:hover svg {
