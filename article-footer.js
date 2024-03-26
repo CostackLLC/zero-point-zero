@@ -3,140 +3,143 @@ var toggleSearchSlidePanel;
 var inputField;
 
 function initializeSearchPanel() {
-    var searchSlidePanel = document.getElementById('article-search-panel');
-    var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
-    var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
-    inputField = document.querySelector('#autocomplete input');
+  var searchSlidePanel = document.getElementById('article-search-panel');
+  var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
+  var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
+  inputField = document.querySelector('#autocomplete input');
 
-    toggleSearchSlidePanel = function () {
-        requestAnimationFrame(function () {
-            searchSlidePanel.classList.toggle('show');
-            imageWrappers.forEach(function (wrapper) {
-                wrapper.classList.toggle('greyscale');
-            });
-            if (!searchSlidePanel.classList.contains('show')) {
-                inputField.blur();
-            }
-        });
+  // Function to simulate button clicks based on input field value
+  function simulateButtonClick(inputField, clearButton, closeButton) {
+    // Check if the clear and close buttons exist in the DOM
+    if (clearButton && closeButton) {
+      if (inputField.value) {
+        clearButton.click();
+      } else {
+        closeButton.click();
+      }
     }
+  }
 
-    function handleEscapeKey(event) {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-            if (searchSlidePanel.classList.contains('show')) {
-                if (inputField.value) {
-                    clearButton.click();
-                } else {
-                    toggleSearchSlidePanel();
-                    inputField.blur();
-                }
-            }
-        }
-    }
+  // Function to initialize event listeners
+  function initializeEventListeners() {
+    var closeButton = document.querySelector('.close-button');
 
-    searchSlidePanel.addEventListener('transitionend', function () {
-        if (searchSlidePanel.classList.contains('show') && inputField) {
-            inputField.focus();
-        }
+    // Event listener for the .article-topbar-navigation-container
+    document.querySelector('.article-topbar-navigation-container').addEventListener('click', function(event) {
+      var clickedElement = event.target;
+      // Check if the clicked element is inside the container
+      if (clickedElement.closest('.article-topbar-navigation-container')) {
+        simulateButtonClick(inputField, clearButton, closeButton);
+      }
     });
 
-    var searchButton = document.getElementById('article-search-button');
-    searchButton.addEventListener('click', toggleSearchSlidePanel);
-
-    clearButton.addEventListener('click', function () {
-        setTimeout(function () {
-            searchSlidePanel.classList.remove('show');
-            imageWrappers.forEach(function (wrapper) {
-                wrapper.classList.remove('greyscale');
-            });
-            inputField.blur();
-        }, 500);
+    // Event listener for the .article-left-view-container
+    document.querySelector('.article-left-view-container').addEventListener('click', function(event) {
+      var clickedElement = event.target;
+      // Check if the clicked element is inside the container
+      if (clickedElement.closest('.article-left-view-container')) {
+        simulateButtonClick(inputField, clearButton, closeButton);
+      }
     });
+  }
 
-    document.addEventListener('keydown', handleEscapeKey);
+  // Call the initializeEventListeners function after the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', initializeEventListeners);
+
+  toggleSearchSlidePanel = function () {
+    requestAnimationFrame(function () {
+      searchSlidePanel.classList.toggle('show');
+      imageWrappers.forEach(function (wrapper) {
+        wrapper.classList.toggle('greyscale');
+      });
+      if (!searchSlidePanel.classList.contains('show')) {
+        inputField.blur();
+      }
+    });
+  }
+
+  function handleEscapeKey(event) {
+    if (event.key === 'Escape' || event.keyCode === 27) {
+      if (searchSlidePanel.classList.contains('show')) {
+        if (inputField.value) {
+          clearButton.click();
+        } else {
+          toggleSearchSlidePanel();
+          inputField.blur();
+        }
+      }
+    }
+  }
+
+  searchSlidePanel.addEventListener('transitionend', function () {
+    if (searchSlidePanel.classList.contains('show') && inputField) {
+      inputField.focus();
+    }
+  });
+
+  var searchButton = document.getElementById('article-search-button');
+  searchButton.addEventListener('click', toggleSearchSlidePanel);
+  clearButton.addEventListener('click', function () {
+    setTimeout(function () {
+      searchSlidePanel.classList.remove('show');
+      imageWrappers.forEach(function (wrapper) {
+        wrapper.classList.remove('greyscale');
+      });
+      inputField.blur();
+    }, 500);
+  });
+
+  document.addEventListener('keydown', handleEscapeKey);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    if (clearButton) {
-        clearButton.textContent = 'CLEAR';
-    }
+  var clearButton = document.querySelector('.aa-ClearButton');
+  if (clearButton) {
+    clearButton.textContent = 'CLEAR';
+  }
 });
 
 var closeButtonContainer = document.createElement('div');
 closeButtonContainer.setAttribute('class', 'close-button-container');
 var closeButton = document.createElement('button');
 closeButton.setAttribute('class', 'close-button');
-
 var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
 svg.setAttribute("viewBox", "0 0 24 24");
 svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
-
 var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-
 path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
-
 svg.appendChild(path);
-
 closeButton.appendChild(svg);
-
 closeButtonContainer.appendChild(closeButton);
-
 document.querySelector('.aa-Form').appendChild(closeButtonContainer);
 
 document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    var closeButtonContainer = document.querySelector('.close-button-container');
-    if (clearButton) {
-        var observer = new MutationObserver(function () {
-            if (clearButton.hasAttribute('hidden')) {
-                closeButtonContainer.style.display = 'block';
-            } else {
-                closeButtonContainer.style.display = 'none';
-            }
-        });
-        observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
-    }
+  var clearButton = document.querySelector('.aa-ClearButton');
+  var closeButtonContainer = document.querySelector('.close-button-container');
+  if (clearButton) {
+    var observer = new MutationObserver(function () {
+      if (clearButton.hasAttribute('hidden')) {
+        closeButtonContainer.style.display = 'block';
+      } else {
+        closeButtonContainer.style.display = 'none';
+      }
+    });
+    observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    var closeButton = document.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', function () {
-            toggleSearchSlidePanel();
-            inputField.blur();
-        });
-    }
+  var closeButton = document.querySelector('.close-button');
+  if (closeButton) {
+    closeButton.addEventListener('click', function () {
+      toggleSearchSlidePanel();
+      inputField.blur();
+    });
+  }
 });
 
 initializeSearchPanel();
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('click', function(event) {
-      var searchSlidePanel = document.getElementById('article-search-panel');
-      var autocompleteElement = document.querySelector('.aa-Autocomplete');
-      var panelElement = document.querySelector('.aa-Panel');
-  
-      if (!autocompleteElement || !panelElement) {
-        return;
-      }
-  
-      var isClickInsideAutocomplete = autocompleteElement.contains(event.target);
-      var isClickInsidePanel = panelElement.contains(event.target);
-  
-      if (searchSlidePanel.classList.contains('show') && !isClickInsideAutocomplete && !isClickInsidePanel) {
-        if (inputField.value) {
-          // If the input field has a value, simulate a click on the clear button
-          var clearButton = document.querySelector('.aa-ClearButton');
-          clearButton.click();
-        } else {
-          // If the input field is empty, simulate a click on the close button
-          var closeButton = document.querySelector('.close-button');
-          closeButton.click();
-        }
-      }
-    });
-  });
 
 // scroll position management (search autocomplete + page reload) & section banner swap
 
