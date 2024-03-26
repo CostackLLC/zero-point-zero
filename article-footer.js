@@ -30,6 +30,7 @@ function initializeSearchPanel() {
       // Check if the clicked element is inside the container
       if (clickedElement.closest('.article-topbar-navigation-container')) {
         simulateButtonClick(inputField, clearButton, closeButton);
+        event.stopPropagation(); // Prevents triggering parent event listeners
       }
     });
 
@@ -39,6 +40,7 @@ function initializeSearchPanel() {
       // Check if the clicked element is inside the container
       if (clickedElement.closest('.article-left-view-container')) {
         simulateButtonClick(inputField, clearButton, closeButton);
+        event.stopPropagation(); // Prevents triggering parent event listeners
       }
     });
   }
@@ -139,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 initializeSearchPanel();
+
 
 
 // scroll position management (search autocomplete + page reload) & section banner swap
