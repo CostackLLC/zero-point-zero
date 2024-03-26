@@ -56,9 +56,9 @@
 .close-button {
     background-color: transparent;
     cursor: pointer;
-    padding: 0 12px;
     width: 24px;
     height: 24px;
+    padding: 0;
 }
 
 .close-button svg {
@@ -68,10 +68,6 @@
 .close-button:hover svg {
     fill: white;
 }
-
-
-
-
 
 
 
