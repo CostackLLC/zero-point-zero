@@ -222,8 +222,6 @@
     box-shadow: none;
 }
 
-.aa-InputWrapperPrefix {}
-
 .aa-Label svg,
 .aa-LoadingIndicator svg {
     color: rgba(255, 255, 255, 0.45);
