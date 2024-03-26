@@ -57,8 +57,8 @@
 .close-button {
     background-color: transparent;
     cursor: pointer;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     padding: 0;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .close-button:hover svg {
-    fill: white;
+    fill: var(--white);
 }
 
 
@@ -242,8 +242,9 @@
 }
 
 .aa-ClearButton {
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.45);
     padding: 0 16px;
+    transition: color 0.075s;
 }
 
 .aa-ClearButton:hover {
@@ -328,7 +329,6 @@
     animation-play-state: running;
     will-change: box-shadow;
 }
-
 
 /* article topbar navigation buttons */
 
