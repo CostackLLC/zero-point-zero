@@ -111,23 +111,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 initializeSearchPanel();
 
-document.addEventListener('click', function (event) {
-    var searchSlidePanel = document.getElementById('article-search-panel');
-    var isClickInsideAutocomplete = document.querySelector('.aa-Autocomplete').contains(event.target);
-    var isClickInsidePanel = document.querySelector('.aa-Panel').contains(event.target);
-
-    if (searchSlidePanel.classList.contains('show') && !isClickInsideAutocomplete && !isClickInsidePanel) {
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('click', function(event) {
+      var searchSlidePanel = document.getElementById('article-search-panel');
+      var autocompleteElement = document.querySelector('.aa-Autocomplete');
+      var panelElement = document.querySelector('.aa-Panel');
+  
+      if (!autocompleteElement || !panelElement) {
+        return;
+      }
+  
+      var isClickInsideAutocomplete = autocompleteElement.contains(event.target);
+      var isClickInsidePanel = panelElement.contains(event.target);
+  
+      if (searchSlidePanel.classList.contains('show') && !isClickInsideAutocomplete && !isClickInsidePanel) {
         if (inputField.value) {
-            // If the input field has a value, simulate a click on the clear button
-            var clearButton = document.querySelector('.aa-ClearButton');
-            clearButton.click();
+          // If the input field has a value, simulate a click on the clear button
+          var clearButton = document.querySelector('.aa-ClearButton');
+          clearButton.click();
         } else {
-            // If the input field is empty, simulate a click on the close button
-            var closeButton = document.querySelector('.close-button');
-            closeButton.click();
+          // If the input field is empty, simulate a click on the close button
+          var closeButton = document.querySelector('.close-button');
+          closeButton.click();
         }
-    }
-});
+      }
+    });
+  });
 
 // scroll position management (search autocomplete + page reload) & section banner swap
 
