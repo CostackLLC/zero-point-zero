@@ -226,7 +226,7 @@
 
 .aa-Label svg,
 .aa-LoadingIndicator svg {
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.45);
 }
 
 .aa-SubmitButton {
