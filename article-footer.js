@@ -119,6 +119,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 initializeSearchPanel();
 
+// submit button
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Select the button by its class
+    const button = document.querySelector('.aa-SubmitButton');
+    
+    // Check if the button exists
+    if (button) {
+      // Change the button to a div
+      const div = document.createElement('div');
+      // Copy the classes from the button to the div
+      div.className = button.className;
+      // Copy innerHTML from the button to the div if needed
+      div.innerHTML = button.innerHTML;
+      // Insert the div before the button
+      button.parentNode.insertBefore(div, button);
+      // Remove the button
+      button.parentNode.removeChild(button);
+    }
+  });
+  
+
 // scroll position management (search autocomplete + page reload) & section banner swap
 
 let body = document.querySelector('body');
