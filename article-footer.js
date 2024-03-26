@@ -53,6 +53,16 @@ function initializeSearchPanel() {
     });
 
     document.addEventListener('keydown', handleEscapeKey);
+
+    document.addEventListener('click', function(event) {
+        var autocomplete = document.querySelector('.aa-Autocomplete');
+        var panel = document.querySelector('.aa-Panel');
+
+        if (!autocomplete.contains(event.target) && !panel.contains(event.target)) {
+            toggleSearchSlidePanel();
+            inputField.blur();
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -110,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 initializeSearchPanel();
+
 
 // scroll position management (search autocomplete + page reload) & section banner swap
 
