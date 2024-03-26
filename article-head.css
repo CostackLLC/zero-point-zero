@@ -229,11 +229,17 @@
     color: var(--white);
 }
 
-.aa-SubmitButton {}
+.aa-SubmitButton {
+    position: relative;
+    bottom: -2px;
+}
 
 .aa-SubmitIcon {}
 
-.aa-LoadingIndicator {}
+.aa-LoadingIndicator {
+    position: relative;
+    bottom: 2px;
+}
 
 .aa-LoadingIcon {}
 
