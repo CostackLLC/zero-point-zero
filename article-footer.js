@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('click', function (event) {
     var formElement = document.querySelector('.aa-Form');
-    var panelElement = document.querySelector('.aa-Item');
+    var panelElement = document.querySelector('.aa-Panel');
     var isClickInsideForm = formElement ? formElement.contains(event.target) : false;
     var isClickInsidePanel = panelElement ? panelElement.contains(event.target) : false;
 
@@ -176,7 +176,7 @@ let algoliaPopup = null;
 let observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
         if (mutation.type === 'childList') {
-            algoliaPopup = document.querySelector('.aa-Item');
+            algoliaPopup = document.querySelector('.aa-Panel');
             if (algoliaPopup) {
                 scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
                 localStorage.setItem('scrollPosition', scrollPosition);
