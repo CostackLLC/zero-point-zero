@@ -10,18 +10,24 @@ function initializeSearchPanel() {
 
   toggleSearchSlidePanel = function () {
     requestAnimationFrame(function () {
-      // Check if the panel is currently shown and the input field has a value
-      if (searchSlidePanel.classList.contains('show') && inputField.value) {
-        // Clear the input field
-        inputField.value = '';
-      }
-      // Toggle the 'show' class to open/close the panel
-      searchSlidePanel.classList.toggle('show');
-      imageWrappers.forEach(function (wrapper) {
-        wrapper.classList.toggle('greyscale');
-      });
-      if (!searchSlidePanel.classList.contains('show')) {
+      // Check if the panel is currently shown
+      if (searchSlidePanel.classList.contains('show')) {
+        // If the input field has a value, simulate a click on the clear button
+        if (inputField.value) {
+          clearButton.click();
+        }
+        // Close the panel after clearing the input or if the input was already empty
+        searchSlidePanel.classList.remove('show');
+        imageWrappers.forEach(function (wrapper) {
+          wrapper.classList.remove('greyscale');
+        });
         inputField.blur();
+      } else {
+        // Open the panel if it's not already shown
+        searchSlidePanel.classList.add('show');
+        imageWrappers.forEach(function (wrapper) {
+          wrapper.classList.add('greyscale');
+        });
       }
     });
   }
@@ -67,51 +73,44 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Close button and MutationObserver logic
 var closeButtonContainer = document.createElement('div');
 closeButtonContainer.setAttribute('class', 'close-button-container');
 var closeButton = document.createElement('button');
 closeButton.setAttribute('class', 'close-button');
-
 var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
 svg.setAttribute("viewBox", "0 0 24 24");
 svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
-
 var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-
 path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
-
 svg.appendChild(path);
-
 closeButton.appendChild(svg);
-
 closeButtonContainer.appendChild(closeButton);
-
 document.querySelector('.aa-Form').appendChild(closeButtonContainer);
 
 document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    var closeButtonContainer = document.querySelector('.close-button-container');
-    if (clearButton) {
-        var observer = new MutationObserver(function () {
-            if (clearButton.hasAttribute('hidden')) {
-                closeButtonContainer.style.display = 'block';
-            } else {
-                closeButtonContainer.style.display = 'none';
-            }
-        });
-        observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
-    }
+  var closeButton = document.querySelector('.close-button');
+  if (closeButton) {
+    closeButton.addEventListener('click', function () {
+      toggleSearchSlidePanel();
+      inputField.blur();
+    });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    var closeButton = document.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', function () {
-            toggleSearchSlidePanel();
-            inputField.blur();
-        });
-    }
+  var clearButton = document.querySelector('.aa-ClearButton');
+  var closeButtonContainer = document.querySelector('.close-button-container');
+  if (clearButton) {
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.attributeName === 'hidden') {
+          closeButtonContainer.style.display = clearButton.hasAttribute('hidden') ? 'block' : 'none';
+        }
+      });
+    });
+    observer.observe(clearButton, { attributes: true });
+  }
 });
 
 initializeSearchPanel();
