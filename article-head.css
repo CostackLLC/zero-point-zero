@@ -154,9 +154,7 @@
     border-radius: 8px;
 }
 
-.autocomplete-rocord-no-results {
-
-}
+.autocomplete-rocord-no-results {}
 
 
 
@@ -224,9 +222,20 @@
     box-shadow: none;
 }
 
-.aa-InputWrapperPrefix {
+.aa-InputWrapperPrefix {}
 
+.aa-Label svg,
+.aa-LoadingIndicator svg {
+    color: var(--white);
 }
+
+.aa-SubmitButton {}
+
+.aa-SubmitIcon {}
+
+.aa-LoadingIndicator {}
+
+.aa-LoadingIcon {}
 
 .aa-Input {
     color: var(--white);
