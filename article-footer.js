@@ -1,4 +1,5 @@
 // article search bar panel
+
 var toggleSearchSlidePanel;
 var inputField;
 
@@ -10,20 +11,24 @@ function initializeSearchPanel() {
 
   toggleSearchSlidePanel = function () {
     requestAnimationFrame(function () {
-      // Check if the panel is currently shown
       if (searchSlidePanel.classList.contains('show')) {
-        // If the input field has a value, simulate a click on the clear button
         if (inputField.value) {
           clearButton.click();
+          setTimeout(function () {
+            searchSlidePanel.classList.remove('show');
+            imageWrappers.forEach(function (wrapper) {
+              wrapper.classList.remove('greyscale');
+            });
+            inputField.blur();
+          }, 500);
+        } else {
+          searchSlidePanel.classList.remove('show');
+          imageWrappers.forEach(function (wrapper) {
+            wrapper.classList.remove('greyscale');
+          });
+          inputField.blur();
         }
-        // Close the panel after clearing the input or if the input was already empty
-        searchSlidePanel.classList.remove('show');
-        imageWrappers.forEach(function (wrapper) {
-          wrapper.classList.remove('greyscale');
-        });
-        inputField.blur();
       } else {
-        // Open the panel if it's not already shown
         searchSlidePanel.classList.add('show');
         imageWrappers.forEach(function (wrapper) {
           wrapper.classList.add('greyscale');
@@ -73,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// Close button and MutationObserver logic
 var closeButtonContainer = document.createElement('div');
 closeButtonContainer.setAttribute('class', 'close-button-container');
 var closeButton = document.createElement('button');
