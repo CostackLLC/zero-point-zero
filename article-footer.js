@@ -5,7 +5,6 @@ var inputField;
 function initializeSearchPanel() {
     var searchSlidePanel = document.getElementById('article-search-panel');
     var imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
-    var clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
     inputField = document.querySelector('#autocomplete input');
 
     toggleSearchSlidePanel = function () {
@@ -24,7 +23,7 @@ function initializeSearchPanel() {
         if (event.key === 'Escape' || event.keyCode === 27) {
             if (searchSlidePanel.classList.contains('show')) {
                 if (inputField.value) {
-                    clearButton.click();
+                    // clearButton.click(); // Removed this line to prevent closing the search panel
                 } else {
                     toggleSearchSlidePanel();
                     inputField.blur();
@@ -41,16 +40,6 @@ function initializeSearchPanel() {
 
     var searchButton = document.getElementById('article-search-button');
     searchButton.addEventListener('click', toggleSearchSlidePanel);
-
-    clearButton.addEventListener('click', function () {
-        setTimeout(function () {
-            searchSlidePanel.classList.remove('show');
-            imageWrappers.forEach(function (wrapper) {
-                wrapper.classList.remove('greyscale');
-            });
-            inputField.blur();
-        }, 500);
-    });
 
     document.addEventListener('keydown', handleEscapeKey);
 }
@@ -83,21 +72,6 @@ closeButton.appendChild(svg);
 closeButtonContainer.appendChild(closeButton);
 
 document.querySelector('.aa-Form').appendChild(closeButtonContainer);
-
-document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    var closeButtonContainer = document.querySelector('.close-button-container');
-    if (clearButton) {
-        var observer = new MutationObserver(function () {
-            if (clearButton.hasAttribute('hidden')) {
-                closeButtonContainer.style.display = 'block';
-            } else {
-                closeButtonContainer.style.display = 'none';
-            }
-        });
-        observer.observe(clearButton, { attributes: true, attributeFilter: ['hidden'] });
-    }
-});
 
 document.addEventListener('DOMContentLoaded', function () {
     var closeButton = document.querySelector('.close-button');
