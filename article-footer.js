@@ -119,16 +119,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 initializeSearchPanel();
 
-// search input prefix
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    var svgIcon = document.querySelector('.aa-SubmitIcon use');
-    var newSvgLink = 'https://uploads-ssl.webflow.com/65a65d78528ae0b98e38a942/660308daad45ec7ca66e4e10_explore_FILL0_wght400_GRAD0_opsz20.svg';
-    if (svgIcon) {
-        svgIcon.setAttribute('href', newSvgLink);
-    }
-});
-
 // scroll position management (search autocomplete + page reload) & section banner swap
 
 let body = document.querySelector('body');
