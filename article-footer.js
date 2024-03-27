@@ -155,16 +155,38 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSearchPanel();
 });
 
-// article search overlay
+// article search result overlay and style changes
 
-let searchAutocompleteObserver = new MutationObserver((mutations) => {
-    let aaPanelExists = document.querySelector('.aa-Panel') !== null;
-    let overlay = document.querySelector('#article-search-overlay');
+var targetNode = document.querySelector('body');
 
-    overlay.style.display = aaPanelExists ? 'block' : 'none';
-});
+var config = { attributes: false, childList: true, subtree: true };
 
-searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
+var callback = function(mutationsList, observer) {
+    for(let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            let panel = document.querySelector('.aa-Panel');
+            let articleSearchPanel = document.querySelector('#article-search-panel');
+            let overlay = document.querySelector('#article-search-overlay');
+
+            if(panel) {
+                articleSearchPanel.style.boxShadow = 'none';
+                overlay.style.display = 'block';
+                observer.disconnect();
+            } else {
+                articleSearchPanel.style.boxShadow = '0 0 5px 1px rgba(0,0,0,0.28)';
+                overlay.style.display = 'none';
+                observer.observe(targetNode, config);
+            }
+        }
+    }
+};
+
+var observer = new MutationObserver(callback);
+
+observer.observe(targetNode, config);
+
+
+
 
 // form submit button
 
