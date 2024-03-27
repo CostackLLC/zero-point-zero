@@ -166,6 +166,60 @@ let searchAutocompleteObserver = new MutationObserver((mutations) => {
 
 searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
 
+// custom caret
+
+var inputField = document.querySelector('.aa-Input');
+var wrapperDiv = document.querySelector('.aa-InputWrapper');
+var newDiv = document.createElement('div');
+newDiv.contentEditable = 'true';
+newDiv.className = 'editableDiv';
+newDiv.style.position = 'absolute';
+newDiv.style.width = '100%';
+newDiv.style.display = 'flex';
+newDiv.style.pointerEvents = 'none';
+newDiv.style.overflow = 'hidden';
+wrapperDiv.appendChild(newDiv);
+
+function updateContent() {
+    newDiv.innerHTML = '';
+    if (inputField.value !== '') {
+        let letters = Array.from(inputField.value);
+        letters[letters.length - 1] = `<div class="${letters[letters.length - 1] === ' ' ? 'space caret' : 'letter caret'}">${letters[letters.length - 1] === ' ' ? ' ' : letters[letters.length - 1]}</div>`;
+        newDiv.innerHTML = letters.map(letter => `<div class="${letter === ' ' ? 'space' : 'letter'}">${letter === ' ' ? ' ' : letter}</div>`).join('');
+    } else {
+        newDiv.innerHTML = '<div class="letter caret"> </div>';
+    }
+    newDiv.scrollLeft = newDiv.scrollWidth;
+}
+
+updateContent();
+
+inputField.addEventListener('input', updateContent);
+
+inputField.addEventListener('focus', function () {
+    setTimeout(updateContent, 0);
+});
+
+var clearButton = document.querySelector('.aa-ClearButton');
+
+clearButton.addEventListener('click', function () {
+    newDiv.innerHTML = '';
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // form submit button
 
 document.addEventListener('DOMContentLoaded', (event) => {
