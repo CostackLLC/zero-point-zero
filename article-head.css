@@ -10,7 +10,7 @@
 
 /* article search bar pannel */
 
-.aa-Autocomplete{
+.aa-Autocomplete {
     display: flex;
     justify-content: center;
 }
@@ -241,11 +241,10 @@
 }
 
 .aa-Input {
-    color: var(--white);
     position: relative;
-    bottom: 2px;
-    padding-left: 3px;
+    bottom: 1px;
     caret-color: rgba(255, 255, 255, 0.45);
+    font-family: monospace, sans-serif;
 }
 
 .aa-Input::placeholder {
@@ -270,6 +269,81 @@
     color: var(--white);
     outline: none;
 }
+
+/* custom caret */
+
+.aa-InputWrapper {
+    order: 3;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.letter {
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    min-height: 23px;
+    background-color: transparent;
+    align-content: center;
+    flex-wrap: wrap;
+    font-family: monospace, sans-serif;
+}
+
+.space {
+    background-color: transparent;
+    min-width: 8px;
+}
+
+.caret {
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    min-height: 23px;
+    background-color: rgba(255, 255, 255, 0.45);
+    align-content: center;
+    flex-wrap: wrap;
+    animation: blink 1s linear infinite;
+    animation-timing-function: steps(1, end);
+    will-change: background-color;
+}
+
+@keyframes blink {
+    0% {
+        background-color: rgba(255, 255, 255, 0.45);
+    }
+
+    50% {
+        background-color: transparent;
+    }
+
+    100% {
+        background-color: rgba(255, 255, 255, 0.45);
+    }
+}
+
+.aa-Input {
+    color: transparent;
+    caret-color: transparent;
+}
+
+.aa-Input::selection {
+    background: grey;
+    color: grey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 :root {
     --aa-scrollbar-track-background-color-rgb: 255, 255, 255;
