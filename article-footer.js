@@ -155,25 +155,20 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSearchPanel();
 });
 
-
-
-// article search result overlay and style changes
+// article search result overlay
 
 let searchAutocompleteObserver = new MutationObserver((mutations) => {
     let aaPanelExists = document.querySelector('.aa-Panel') !== null;
     let overlay = document.querySelector('#article-search-overlay');
-    let articleSearchPanel = document.querySelector('#article-search-panel');
-
     overlay.style.display = aaPanelExists ? 'block' : 'none';
-    articleSearchPanel.style.boxShadow = aaPanelExists ? 'none' : '0 0 5px 1px rgba(0,0,0,0.28)';
+    if (!aaPanelExists) {
+        searchAutocompleteObserver.disconnect();
+    }
 });
 
-searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
-
-
-
-
-
+document.querySelector('#article-search-button').addEventListener('click', () => {
+    searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
+});
 
 // form submit button
 
