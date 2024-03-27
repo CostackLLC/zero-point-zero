@@ -155,42 +155,20 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSearchPanel();
 });
 
+
+
 // article search result overlay and style changes
 
-// Select the node that will be observed for mutations
-var targetNode = document.querySelector('body');
+let searchAutocompleteObserver = new MutationObserver((mutations) => {
+    let aaPanelExists = document.querySelector('.aa-Panel') !== null;
+    let overlay = document.querySelector('#article-search-overlay');
+    let articleSearchPanel = document.querySelector('#article-search-panel');
 
-// Options for the observer (which mutations to observe)
-var config = { attributes: false, childList: true, subtree: true };
+    overlay.style.display = aaPanelExists ? 'block' : 'none';
+    articleSearchPanel.style.boxShadow = aaPanelExists ? 'none' : '0 0 5px 1px rgba(0,0,0,0.28)';
+});
 
-// Callback function to execute when mutations are observed
-var callback = function(mutationsList, searchResultsObserver) {
-    for(let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            let panel = document.querySelector('.aa-Panel');
-            let articleSearchPanel = document.querySelector('#article-search-panel');
-            let overlay = document.querySelector('#article-search-overlay');
-
-            if(panel && panel.isConnected) {
-                articleSearchPanel.style.boxShadow = 'none';
-                overlay.style.display = 'block';
-                // Disconnect the observer when .aa-Panel is in the DOM
-                searchResultsObserver.disconnect();
-            } else if(!panel || !panel.isConnected) {
-                articleSearchPanel.style.boxShadow = '0 0 5px 1px rgba(0,0,0,0.28)';
-                overlay.style.display = 'none';
-                // Reconnect the observer when .aa-Panel is not in the DOM
-                searchResultsObserver.observe(targetNode, config);
-            }
-        }
-    }
-};
-
-// Create an observer instance linked to the callback function
-var searchResultsObserver = new MutationObserver(callback);
-
-// Start observing the target node for configured mutations
-searchResultsObserver.observe(targetNode, config);
+searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
 
 
 
