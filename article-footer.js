@@ -157,11 +157,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // article search result overlay and style changes
 
+// Select the node that will be observed for mutations
 var targetNode = document.querySelector('body');
 
+// Options for the observer (which mutations to observe)
 var config = { attributes: false, childList: true, subtree: true };
 
-var callback = function(mutationsList, observer) {
+// Callback function to execute when mutations are observed
+var callback = function(mutationsList, searchResultsObserver) {
     for(let mutation of mutationsList) {
         if (mutation.type === 'childList') {
             let panel = document.querySelector('.aa-Panel');
@@ -171,19 +174,24 @@ var callback = function(mutationsList, observer) {
             if(panel) {
                 articleSearchPanel.style.boxShadow = 'none';
                 overlay.style.display = 'block';
-                observer.disconnect();
+                // Disconnect the observer when .aa-Panel is in the DOM
+                searchResultsObserver.disconnect();
             } else {
                 articleSearchPanel.style.boxShadow = '0 0 5px 1px rgba(0,0,0,0.28)';
                 overlay.style.display = 'none';
-                observer.observe(targetNode, config);
+                // Reconnect the observer when .aa-Panel is not in the DOM
+                searchResultsObserver.observe(targetNode, config);
             }
         }
     }
 };
 
-var observer = new MutationObserver(callback);
+// Create an observer instance linked to the callback function
+var searchResultsObserver = new MutationObserver(callback);
 
-observer.observe(targetNode, config);
+// Start observing the target node for configured mutations
+searchResultsObserver.observe(targetNode, config);
+
 
 
 
