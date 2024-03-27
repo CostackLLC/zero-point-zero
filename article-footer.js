@@ -171,12 +171,12 @@ var callback = function(mutationsList, searchResultsObserver) {
             let articleSearchPanel = document.querySelector('#article-search-panel');
             let overlay = document.querySelector('#article-search-overlay');
 
-            if(panel) {
+            if(panel && panel.isConnected) {
                 articleSearchPanel.style.boxShadow = 'none';
                 overlay.style.display = 'block';
                 // Disconnect the observer when .aa-Panel is in the DOM
                 searchResultsObserver.disconnect();
-            } else {
+            } else if(!panel || !panel.isConnected) {
                 articleSearchPanel.style.boxShadow = '0 0 5px 1px rgba(0,0,0,0.28)';
                 overlay.style.display = 'none';
                 // Reconnect the observer when .aa-Panel is not in the DOM
@@ -191,6 +191,7 @@ var searchResultsObserver = new MutationObserver(callback);
 
 // Start observing the target node for configured mutations
 searchResultsObserver.observe(targetNode, config);
+
 
 
 
