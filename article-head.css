@@ -1,4 +1,5 @@
 /* common */
+
 .common-article-contetnt-width {
     width: 60%;
 }
@@ -8,6 +9,12 @@
 }
 
 /* article search bar pannel */
+
+.aa-Autocomplete{
+    display: flex;
+    justify-content: center;
+}
+
 #article-search-panel {
     position: fixed;
     height: auto;
@@ -15,7 +22,7 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.28);
     z-index: 9999999;
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -205,7 +212,8 @@
 .aa-Form {
     background-color: var(--black);
     border: none;
-    border-radius: 0px;
+    border-radius: 100px;
+    max-width: 700px;
 }
 
 .aa-Form:hover {
