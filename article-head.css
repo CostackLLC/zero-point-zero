@@ -23,7 +23,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.28);
     z-index: 9999999;
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     transform: translateY(-120%);
@@ -75,16 +74,6 @@
 .close-button:hover svg {
     fill: var(--white);
 }
-
-
-
-
-
-
-
-
-
-
 
 .autocomplete-record-container {
     display: flex;
@@ -213,7 +202,8 @@
     background-color: var(--black);
     border: none;
     border-radius: 100px;
-    max-width: 700px;
+    max-width: 600px;
+    margin: 0 28px;
 }
 
 .aa-Form:hover {
@@ -307,6 +297,9 @@
         background-color: var(--black);
     }
 }
+
+
+
 
 
 
