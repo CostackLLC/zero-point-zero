@@ -160,15 +160,11 @@ document.addEventListener('DOMContentLoaded', function () {
 let searchAutocompleteObserver = new MutationObserver((mutations) => {
     let aaPanelExists = document.querySelector('.aa-Panel') !== null;
     let overlay = document.querySelector('#article-search-overlay');
+
     overlay.style.display = aaPanelExists ? 'block' : 'none';
-    if (!aaPanelExists) {
-        searchAutocompleteObserver.disconnect();
-    }
 });
 
-document.querySelector('#article-search-button').addEventListener('click', () => {
-    searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
-});
+searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
 
 // form submit button
 
