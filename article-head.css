@@ -54,12 +54,6 @@
     display: none;
 }
 
-.close-button-container {
-    position: relative;
-    order: 5;
-    padding: 0 11px;
-}
-
 .close-button {
     background-color: transparent;
     cursor: pointer;
@@ -199,6 +193,53 @@
     will-change: background-color;
 }
 
+.aa-InputWrapperPrefix {
+    order: 2;
+}
+
+.aa-SubmitButton {
+    position: relative;
+    width: auto;
+    padding: 0;
+    bottom: -1px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.aa-Label svg {
+    color: var(--black);
+}
+
+.aa-LoadingIndicator {
+    position: relative;
+    bottom: 2px;
+    right: 1px;
+}
+
+.aa-LoadingIndicator svg {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.aa-InputWrapper {
+    order: 1;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.aa-InputWrapperSuffix {
+    order: 3;
+}
+
+.close-button-container {
+    position: relative;
+    order: 3;
+    padding: 0x;
+}
+
 .aa-Form {
     background-color: var(--black);
     border: none;
@@ -218,29 +259,6 @@
 .aa-Form:focus-within {
     border: none;
     box-shadow: none;
-}
-
-.aa-Label svg {
-    color: var(--black);
-}
-
-.aa-LoadingIndicator svg {
-    color: rgba(255, 255, 255, 0.45);
-}
-
-.aa-SubmitButton {
-    position: relative;
-    bottom: -1px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.aa-LoadingIndicator {
-    position: relative;
-    bottom: 2px;
-    right: 1px;
 }
 
 .aa-Input {
@@ -274,14 +292,6 @@
 }
 
 /* custom caret */
-
-.aa-InputWrapper {
-    order: 3;
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
 
 .letter {
     color: var(--white);
