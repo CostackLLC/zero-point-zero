@@ -220,6 +220,10 @@
     box-shadow: none;
 }
 
+.aa-Label {
+    display: none;
+}
+
 .aa-Label svg,
 .aa-LoadingIndicator svg {
     color: rgba(255, 255, 255, 0.45);
@@ -257,7 +261,7 @@
 
 .aa-ClearButton {
     color: rgba(255, 255, 255, 0.45);
-    padding: 0 16px;
+    padding: 0;
     transition: color 0.075s;
 }
 
@@ -333,25 +337,6 @@
     color: grey;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-:root {
-    --aa-scrollbar-track-background-color-rgb: 255, 255, 255;
-    --aa-scrollbar-thumb-background-color-rgb: 255, 255, 255;
-    --black: #333333;
-    --white: #ffffff;
-}
-
 /* mobile */
 @media only screen and (max-width: 680px) {
     .aa-DetachedSearchButton {
@@ -387,6 +372,18 @@
 
 
 
+
+
+
+
+
+
+:root {
+    --aa-scrollbar-track-background-color-rgb: 255, 255, 255;
+    --aa-scrollbar-thumb-background-color-rgb: 255, 255, 255;
+    --black: #333333;
+    --white: #ffffff;
+}
 
 /* topbar on scroll */
 
