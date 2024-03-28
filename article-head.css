@@ -220,11 +220,10 @@
     box-shadow: none;
 }
 
-.aa-Label {
-    display: none;
+.aa-Label svg {
+    color: var(--black);
 }
 
-.aa-Label svg,
 .aa-LoadingIndicator svg {
     color: rgba(255, 255, 255, 0.45);
 }
