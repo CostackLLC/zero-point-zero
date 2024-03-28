@@ -194,6 +194,8 @@
 }
 
 .aa-InputWrapperPrefix {
+    position: relative;
+    right: 28px;
     order: 2;
 }
 
@@ -223,21 +225,26 @@
 }
 
 .aa-InputWrapper {
-    order: 1;
     position: relative;
+    margin-right: 58px;
+    left: 30px;
     width: 100%;
     display: flex;
     align-items: center;
+    order: 1;
 }
 
 .aa-InputWrapperSuffix {
+    position: relative;
+    right: 28px;
     order: 3;
 }
 
 .close-button-container {
     position: relative;
+    padding: 0px;
+    right: 28px;
     order: 3;
-    padding: 0x;
 }
 
 .aa-Form {
