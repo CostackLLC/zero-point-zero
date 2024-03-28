@@ -1,3 +1,27 @@
+// scroll position management (search autocomplete + page reload) & section banner swap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // article search bar panel
 
 var toggleSearchSlidePanel;
@@ -206,20 +230,6 @@ clearButton.addEventListener('click', function () {
     newDiv.innerHTML = '';
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // form submit button
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -231,86 +241,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         button.parentNode.insertBefore(div, button);
         button.parentNode.removeChild(button);
     }
-});
-
-// scroll position management (search autocomplete + page reload) & section banner swap
-
-let body = document.querySelector('body');
-let scrollPosition = 0;
-let algoliaPopup = null;
-let observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-        if (mutation.type === 'childList') {
-            algoliaPopup = document.querySelector('.aa-Panel');
-            if (algoliaPopup) {
-                scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-                localStorage.setItem('scrollPosition', scrollPosition);
-                requestAnimationFrame(function () {
-                    body.style.overflowY = 'scroll';
-                    body.style.position = 'fixed';
-                    body.style.top = -scrollPosition + 'px';
-                });
-            } else {
-                requestAnimationFrame(function () {
-                    body.style.overflowY = '';
-                    body.style.position = '';
-                    scrollPosition = localStorage.getItem('scrollPosition') || 0;
-                    window.scrollTo(0, scrollPosition);
-                });
-            }
-        }
-    });
-});
-observer.observe(body, { childList: true, subtree: true });
-window.addEventListener('beforeunload', function () {
-    localStorage.setItem('scrollPosition', window.pageYOffset || document.documentElement.scrollTop);
-});
-document.addEventListener('DOMContentLoaded', function () {
-    if (localStorage.getItem('scrollPosition')) {
-        window.scrollTo(0, localStorage.getItem('scrollPosition'));
-    }
-    var imageContainer = document.querySelector('.article-left-view-image-container');
-    var sections = document.querySelectorAll('.article-section');
-    var offset = 64;
-    function getVisibleSection() {
-        var scrollPosition = window.scrollY || window.pageYOffset;
-        var pastFirstSection = false;
-        for (var i = 0; i < sections.length; i++) {
-            var section = sections[i];
-            var sectionPosition = section.getBoundingClientRect();
-            if (i === 0 && sectionPosition.bottom < offset) {
-                pastFirstSection = true;
-            }
-            if (sectionPosition.top - offset <= window.innerHeight && sectionPosition.bottom - offset >= 0) {
-                return { section: section, index: i, pastFirstSection: pastFirstSection };
-            }
-        }
-        return { pastFirstSection: pastFirstSection };
-    }
-    function debounce(func, wait) {
-        var timeout;
-        return function () {
-            var context = this, args = arguments;
-            clearTimeout(timeout);
-            timeout = setTimeout(function () {
-                func.apply(context, args);
-            }, wait);
-        };
-    }
-    function updateImageContainerPosition() {
-        var visibleSectionInfo = getVisibleSection();
-        var translateYValue = -100 * visibleSectionInfo.index;
-        var currentTranslateY = parseFloat(getComputedStyle(imageContainer).transform.split(',')[5]) || 0;
-        var distanceToTravel = Math.abs(currentTranslateY - translateYValue);
-        var animationDuration = Math.min(0.2 + (distanceToTravel / 100), 1.0);
-        requestAnimationFrame(() => {
-            imageContainer.style.transition = `transform ${animationDuration}s ease-in-out`;
-            imageContainer.style.transform = `translateY(${translateYValue}vh)`;
-        });
-    }
-    var debouncedUpdateImageContainerPosition = debounce(updateImageContainerPosition, 10);
-    updateImageContainerPosition();
-    window.addEventListener('scroll', debouncedUpdateImageContainerPosition);
 });
 
 // topbar on scroll
