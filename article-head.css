@@ -451,12 +451,13 @@
 /* svg icons */
 .description-icon-svg {
     position: relative;
+    width: 26px;
+    height: 26px;
 }
 
 .folder-open {
-    margin-right: 6px;
-    bottom: -1px;
-    left: 1px;
+    margin-right: 7px;
+    bottom: 1px;
 }
 
 
