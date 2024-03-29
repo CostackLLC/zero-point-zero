@@ -411,6 +411,11 @@
     line-height: 1.6;
 }
 
+.breadcrumbs-divider {
+    position: relative;
+    left: -1px;
+}
+
 /* article description */
 
 .article-description-wrapper {
@@ -448,7 +453,7 @@
 }
 
 .folder-open {
-    margin-right: 5px;
+    margin-right: 6px;
     bottom: -1px;
     left: 1px;
 }
