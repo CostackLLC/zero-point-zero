@@ -389,6 +389,62 @@
 
 
 
+/* article breadcrumbs */
+
+.ol-breadcrumbs {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-breadcrumbs {
+    display: inline;
+}
+
+.breadcrumbs-link {
+    color: var(--alt-text);
+    text-align: left;
+    letter-spacing: .2px;
+    font-family: DM Sans, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* article description */
+
+.article-description-wrapper {
+    display: flex;
+}
+
+.article-description-label-icon-container {
+    flex-shrink: 0;
+}
+
+.description-label-text {
+    font-family: DM Sans, sans-serif;
+    color: var(--black);
+    margin-right: 4px;
+    text-align: left;
+    letter-spacing: .3px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+/* svg icons */
+.description-icon-svg {
+    position: relative;
+}
+
+.folder-open {}
+
+
+
+
+
+
+
 
 
 
@@ -506,7 +562,7 @@
 
 .article-topbar-navigation-container,
 .article-left-view-container,
-div.description-icon {
+.description-icon-svg {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
