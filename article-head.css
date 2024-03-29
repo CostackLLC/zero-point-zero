@@ -413,7 +413,8 @@
 
 .breadcrumbs-divider {
     position: relative;
-    left: -1px;
+    height: 17px;
+    width: 17px;
 }
 
 /* article description */
