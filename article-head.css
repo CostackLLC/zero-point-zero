@@ -432,14 +432,26 @@
     line-height: 1.6;
 }
 
+.description-text {
+    font-family: DM Sans, sans-serif;
+    color: var(--alt-text);
+    text-align: left;
+    letter-spacing: .2px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
 /* svg icons */
 .description-icon-svg {
     position: relative;
 }
 
-.folder-open {}
-
-
+.folder-open {
+    margin-right: 5px;
+    bottom: -1px;
+    left: 1px;
+}
 
 
 
