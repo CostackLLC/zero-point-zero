@@ -144,17 +144,21 @@
     border-radius: 8px;
 }
 
-.autocomplete-rocord-no-results {}
+.aa-SourceNoResults {
+    padding: 0;
+}
 
+.no-results-record-container {
+    color: var(--white);
+    padding: 15px;
+    border-radius: 12px;
+    transition: background-color .1s;
+}
 
-
-
-
-
-
-
-
-
+.no-results-record-container:hover {
+    background-color: var(--container-hover);
+    will-change: background-color;
+}
 
 .aa-Panel {
     position: fixed;
