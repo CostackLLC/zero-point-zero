@@ -456,12 +456,12 @@
 /* svg icons */
 .description-icon-svg {
     position: relative;
-    width: 26px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
 }
 
 .folder-open {
-    margin-right: 7px;
+    margin-right: 5px;
     bottom: 1px;
 }
 
