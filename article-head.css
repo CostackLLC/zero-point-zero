@@ -401,21 +401,16 @@
     display: inline;
 }
 
-.breadcrumbs-link {
-    color: var(--alt-text);
-    text-align: left;
-    letter-spacing: .2px;
-    font-family: DM Sans, sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
-}
-
 .breadcrumbs-divider {
     position: relative;
     height: 17px;
     width: 17px;
 }
+
+.current-breadcrumbs-link {
+    letter-spacing: .3px;
+    font-weight: 600;
+  }
 
 /* article description */
 
@@ -435,6 +430,16 @@
     letter-spacing: .3px;
     font-size: 15px;
     font-weight: 600;
+    line-height: 1.6;
+}
+
+.description-link {
+    color: var(--alt-text);
+    text-align: left;
+    letter-spacing: .2px;
+    font-family: DM Sans, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
     line-height: 1.6;
 }
 
