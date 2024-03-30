@@ -391,7 +391,7 @@
 
 /* article breadcrumbs */
 
-.ol-breadcrumbs {
+.ol-breadcrumbs, .ul-description {
     display: inline;
     padding: 0;
     margin: 0;
@@ -469,7 +469,11 @@
     margin-right: 6px;
 }
 
-
+.inventory {
+    width: 19px;
+    height: 19px;
+    margin-right: 6px;
+}
 
 
 
