@@ -424,12 +424,14 @@
 .description-label-text {
     font-family: DM Sans, sans-serif;
     color: var(--black);
-    margin-right: 4px;
     text-align: left;
     letter-spacing: .3px;
     font-size: 15px;
     font-weight: 600;
     line-height: 1.6;
+}
+.description-label-text-colon {
+    margin-right: 4px;
 }
 
 .description-link {
