@@ -408,8 +408,9 @@
 }
 
 .current-breadcrumbs-link {
-    letter-spacing: .3px;
+    color: var(--black);
     font-weight: 600;
+    letter-spacing: .3px;
   }
 
 /* article description */
