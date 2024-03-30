@@ -461,6 +461,18 @@
     position: relative;
 }
 
+.add {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px 0 4px;
+}
+
+.arrow_forward {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px 0 4px;
+}
+
 .folder-open {
     width: 21px;
     height: 21px;
@@ -473,15 +485,16 @@
     margin: 0 7px 0 7px;
 }
 
-.add {
-    width: 19px;
-    height: 19px;
-    margin: 0 7px 0 7px;
-}
 
-.arrow_forward {
-    
-}
+
+
+
+
+
+
+
+
+
 
 
 
