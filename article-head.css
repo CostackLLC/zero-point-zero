@@ -475,6 +475,12 @@
     margin: 0 4px 1px 4px;
 }
 
+.code {
+    height: 11px;
+    width: 15px;
+    margin: 0 4px 1px 4px;
+}
+
 .folder-open {
     width: 21px;
     height: 21px;
