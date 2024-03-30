@@ -408,9 +408,14 @@
 }
 
 .current-breadcrumbs-link {
+    font-family: DM Sans, sans-serif;
     color: var(--black);
-    font-weight: 600;
+    margin-right: 4px;
+    text-align: left;
     letter-spacing: .3px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
   }
 
 /* article description */
