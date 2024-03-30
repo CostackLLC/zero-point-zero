@@ -484,7 +484,7 @@
 .folder-open {
     width: 21px;
     height: 21px;
-    margin: 0 6px 0 0px;
+    margin: 0 6px 0 0;
 }
 
 .inventory {
@@ -496,21 +496,26 @@
 .attribution {
     width: 21px;
     height: 21px;
-    margin: 0 6px 0 0px;
+    margin: 0 6px 0 0;
 }
 
 .update {
     width: 21px;
     height: 21px;
-    margin: 0 6px 0 0px;
+    margin: 0 6px 0 0;
 }
 
 .newsmode {
     width: 21px;
     height: 21px;
-    margin: 0 6px 0 0px;
+    margin: 0 6px 0 0;
 }
 
+.filter-focus-center {
+    width: 21px;
+    height: 21px;
+    margin: 0 6px 0 0;
+}
 
 
 
