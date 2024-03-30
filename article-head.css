@@ -478,16 +478,20 @@
 .folder-open {
     width: 21px;
     height: 21px;
-    margin: 0 6px 0 6px;
+    margin: 0 6px 0 0px;
 }
 
 .inventory {
     width: 19px;
     height: 19px;
-    margin: 0 7px 0 7px;
+    margin: 0 7px 0 1px;
 }
 
-
+.attribution {
+    width: 19px;
+    height: 19px;
+    margin: 0 7px 0 1px;
+}
 
 
 
