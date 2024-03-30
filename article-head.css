@@ -457,7 +457,7 @@
     position: relative;
 }
 
-.breadcrumbs-divider {
+.breadcrumbs-divider, .description-link-divider {
     position: relative;
     height: 9px;
     width: 16px;
@@ -467,16 +467,20 @@
 .folder-open {
     width: 21px;
     height: 21px;
-    margin-right: 6px;
+    margin: 0 6px 0 6px;
 }
 
 .inventory {
     width: 19px;
     height: 19px;
-    margin-right: 6px;
+    margin: 0 7px 0 7px;
 }
 
-
+.add {
+    width: 19px;
+    height: 19px;
+    margin: 0 7px 0 7px;
+}
 
 
 
