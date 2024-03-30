@@ -401,16 +401,9 @@
     display: inline;
 }
 
-.breadcrumbs-divider {
-    position: relative;
-    height: 17px;
-    width: 17px;
-}
-
 .current-breadcrumbs-link {
     font-family: DM Sans, sans-serif;
     color: var(--black);
-    margin-right: 4px;
     text-align: left;
     letter-spacing: .3px;
     font-size: 15px;
@@ -459,16 +452,21 @@
     line-height: 1.6;
 }
 
-/* svg icons */
+/* description svg icons */
 .description-icon-svg {
     position: relative;
-    width: 25px;
-    height: 25px;
+}
+
+.breadcrumbs-divider {
+    position: relative;
+    height: 9px;
+    width: 16px;
 }
 
 .folder-open {
-    margin-right: 5px;
-    bottom: 1px;
+    width: 23px;
+    height: 23px;
+    margin-right: 6px;
 }
 
 
