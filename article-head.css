@@ -415,9 +415,6 @@
 
 /* article description */
 
-figure, figcaption {
-    margin: 0;
-}
 
 .article-description-wrapper {
     display: flex;
