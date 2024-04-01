@@ -506,7 +506,7 @@ figcaption {
 .attribution {
     width: 21px;
     height: 21px;
-    margin: 1px 6px 0 0;
+    margin: 2px 6px 0 0;
 }
 
 .update {
@@ -522,9 +522,9 @@ figcaption {
 }
 
 .filter-focus-center {
-    width: 20px;
-    height: 21px;
-    margin: 0 6px 0 1px;
+    width: 19px;
+    height: 19px;
+    margin: 2px 7px 0 1px;
 }
 
 
