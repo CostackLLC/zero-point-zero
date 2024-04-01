@@ -415,6 +415,13 @@
 
 /* article description */
 
+figure {
+    margin: 0;
+}
+
+figcaption {
+    margin: 0;
+}
 
 .article-description-wrapper {
     display: flex;
@@ -481,7 +488,7 @@
 .code {
     height: 11px;
     width: 15px;
-    margin: 0 4px 1px 4px;
+    margin: 0 4px 3px 4px;
 }
 
 .folder-open {
