@@ -422,6 +422,7 @@
 }
 
 .description-label-text {
+    display: inline;
     font-family: "DM Sans", sans-serif;
     color: var(--black);
     text-align: left;
@@ -498,7 +499,7 @@
 .attribution {
     width: 21px;
     height: 21px;
-    margin: 0 6px 0 0;
+    margin: 1px 6px 0 0;
 }
 
 .update {
