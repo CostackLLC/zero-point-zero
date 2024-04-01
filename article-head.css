@@ -92,7 +92,7 @@
 }
 
 .autocomplete-item-subtitle {
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     color: var(--alt-text);
     font-size: 15px;
     font-weight: 400;
@@ -105,7 +105,7 @@
 .autocomplete-item-topic {
     display: inline-block;
     position: relative;
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     color: var(--black);
     text-align: left;
     letter-spacing: .3px;
@@ -391,38 +391,38 @@
 
 /* article breadcrumbs */
 
-.ol-breadcrumbs, .ul-description {
+.ol-breadcrumbs,
+.ul-description {
     display: inline;
     padding: 0;
     margin: 0;
 }
 
-.description-list-container, .nav-breadcrumbs {
+.description-list-container,
+.nav-breadcrumbs {
     display: inline;
 }
 
 .current-breadcrumbs-link {
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     color: var(--black);
     text-align: left;
     letter-spacing: .3px;
     font-size: 15px;
     font-weight: 600;
     line-height: 1.6;
-  }
+}
 
 /* article description */
 
+
 .article-description-wrapper {
     display: flex;
-}
-
-.article-description-label-icon-container {
-    flex-shrink: 0;
+    text-align: left;
 }
 
 .description-label-text {
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     color: var(--black);
     text-align: left;
     letter-spacing: .3px;
@@ -430,6 +430,7 @@
     font-weight: 600;
     line-height: 1.6;
 }
+
 .description-label-text-colon {
     margin-right: 4px;
 }
@@ -438,14 +439,14 @@
     color: var(--alt-text);
     text-align: left;
     letter-spacing: .2px;
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.6;
 }
 
 .description-text {
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     color: var(--alt-text);
     text-align: left;
     letter-spacing: .2px;
@@ -459,7 +460,8 @@
     position: relative;
 }
 
-.breadcrumbs-divider, .description-link-divider {
+.breadcrumbs-divider,
+.description-link-divider {
     position: relative;
 }
 
@@ -651,7 +653,7 @@
 /* drop cap */
 
 .paragraph.drop-cap::first-letter {
-    font-family: Costack Globe Grid, DM Serif Display, sans-serif;
+    font-family: "Costack Globe Grid", "DM Serif Display", sans-serif;
     color: #cccccc;
     font-size: 130px;
     font-weight: 400;
@@ -665,7 +667,7 @@
 /* blockquote */
 
 blockquote p {
-    font-family: DM Sans, sans-serif !important;
+    font-family: "DM Sans", sans-serif !important;
     color: var(--black);
     font-size: 22px;
     line-height: 1.4;
@@ -675,7 +677,7 @@ blockquote p {
 }
 
 .quote-author {
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     color: var(--black);
     text-align: left;
     letter-spacing: .3px;
@@ -688,7 +690,7 @@ blockquote p {
     color: var(--alt-text);
     text-align: left;
     letter-spacing: .2px;
-    font-family: DM Sans, sans-serif;
+    font-family: "DM Sans", sans-serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.6;
