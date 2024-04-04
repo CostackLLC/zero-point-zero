@@ -346,23 +346,34 @@ window.addEventListener('load', (event) => {
 function checkScroll() {
     window.requestAnimationFrame(updateProgress);
 }
+
 window.removeEventListener('scroll', updateProgress);
 window.addEventListener('scroll', checkScroll);
 checkScroll();
+
 const circles = Array.from(document.querySelectorAll('.scroll-progress-indicator-circle')).slice(0, 22);
 const target = document.querySelector('#last-article-content');
+
 circles.forEach((circle, index) => {
     const angle = ((index / circles.length) * 2 * Math.PI) - Math.PI / 2;
     const radius = 22;
     circle.style.transform = `translate(${radius * Math.cos(angle)}px, ${radius * Math.sin(angle)}px)`;
     circle.dataset.order = Math.round((index / circles.length) * 22);
 });
+
 function updateProgress() {
     const windowHeight = window.innerHeight;
     const targetRect = target.getBoundingClientRect();
     const targetBottomPosition = targetRect.bottom + window.scrollY;
     const progress = window.scrollY / (targetBottomPosition - windowHeight);
     const activeCircles = Math.round(progress * 22);
+
+    // Update ARIA attributes for accessibility
+    const scrollIndicator = document.getElementById('scroll-progress-indicator');
+    const progressPercentage = Math.min(Math.round(progress * 100), 100); // Ensure it doesn't go over 100%
+    scrollIndicator.setAttribute('aria-valuenow', progressPercentage);
+    scrollIndicator.setAttribute('aria-valuetext', `Scroll progress: ${progressPercentage}%`);
+
     circles.forEach((circle) => {
         if (circle.dataset.order < activeCircles) {
             circle.classList.add('active');
@@ -370,6 +381,7 @@ function updateProgress() {
             circle.classList.remove('active');
         }
     });
+
     const closeIcon = document.querySelector('.article-topbar-navigation-icon.close-article');
     const finishedReadingIcon = document.querySelector('.article-topbar-navigation-icon.finished-reading');
     if (progress >= 1) {
@@ -382,6 +394,7 @@ function updateProgress() {
         circles[circles.length - 1].classList.remove('active');
     }
 }
+
 $(document).ready(function () {
     $('.article-topbar-navigation-close-button').hover(
         function () { $('.scroll-progress-indicator-wrapper').css('transform', 'scale(0)'); },
@@ -394,6 +407,7 @@ $(document).ready(function () {
         $('.scroll-progress-indicator-wrapper').css('transform', 'scale(1)');
     });
 });
+
 
 // blockquote
 
