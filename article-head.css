@@ -527,16 +527,39 @@ figcaption {
     margin: 2px 7px 0 1px;
 }
 
+/* topbar svg icons */
 
+.person {
 
+}
 
+.search {
 
+}
 
+.book {
 
+}
 
+.comment {
 
+}
 
+.dark-mode {
 
+}
+
+.contrast {
+
+}
+
+.event_busy {
+
+}
+
+.verified {
+
+}
 
 :root {
     --aa-scrollbar-track-background-color-rgb: 255, 255, 255;
@@ -571,6 +594,14 @@ figcaption {
     animation: animateTopbarShadowReverse 0.15s forwards;
     animation-play-state: running;
     will-change: box-shadow;
+    z-index: 99999999;
+    background-color: var(--white);
+    width: 100%;
+    height: 64px;
+    display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 
 .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
@@ -579,13 +610,87 @@ figcaption {
     will-change: box-shadow;
 }
 
+.article-topbar-navigation-wrapper {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+}
+
+.article-topbar-navigation-button-container-lft {
+    justify-content: center;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: auto;
+    display: flex;
+    position: relative;
+    grid-column-gap: 9px;
+    grid-row-gap: 9px;
+}
+
+.article-topbar-navigation-button-container-cnt {
+    position: absolute;
+}
+
 /* article topbar navigation buttons */
 
-.article-topbar-navigation-button-inner-hover-circle,
-.article-topbar-navigation-button-inner-tap-and-click-circle {
+.article-topbar-navigation-button {
+    background-color: transparent;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    transition: background-color .15s;
+    display: flex;
+    position: relative;
+}
+
+.article-topbar-navigation-button:focus {
+    background-color: var(--article-topbar-button-hover);
+    outline: none;
+}
+
+.article-topbar-navigation-button-inner-hover-circle {
+    background-color: var(--article-topbar-button-hover);
+    border-radius: 6px;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
     will-change: transform;
     transform: scale(0);
     transition: transform 0.15s;
+}
+
+.article-topbar-navigation-button-inner-tap-and-click-circle {
+    background-color: var(--article-topbar-button-tap-and-click);
+    border-radius: 6px;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    will-change: transform;
+    transform: scale(0);
+    transition: transform 0.15s;
+}
+
+.article-topbar-navigation-close-button {
+    z-index: 500;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    margin-left: auto;
+    text-decoration: none;
+    transition: background-color .15s;
+    display: flex;
+    position: absolute;
 }
 
 .article-topbar-navigation-button:hover .article-topbar-navigation-button-inner-hover-circle,
@@ -600,7 +705,25 @@ figcaption {
 
 /* article topbar navigation: close button */
 
+.scroll-progress-indicator-container {
+    cursor: pointer;
+    width: 47px;
+    height: 47px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+
 .scroll-progress-indicator-wrapper {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
     will-change: transform;
     transform: scale(1);
     transition: transform 0.15s;
