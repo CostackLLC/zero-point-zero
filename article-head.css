@@ -39,7 +39,6 @@
 
 .article-left-view-image-wrapper {
     transition: filter 0.3s;
-    will-change: filter;
 }
 
 .article-left-view-image-wrapper.greyscale {
@@ -160,7 +159,6 @@
 
 .no-results-record-container:hover {
     background-color: var(--container-hover);
-    will-change: background-color;
 }
 
 
@@ -192,12 +190,10 @@
 
 .aa-Item[aria-selected="true"] {
     background-color: var(--container-hover);
-    will-change: background-color;
 }
 
 .aa-Item:active {
     background-color: var(--article-topbar-button-tap-and-click);
-    will-change: background-color;
 }
 
 .aa-InputWrapperPrefix {
@@ -330,7 +326,6 @@
     flex-wrap: wrap;
     animation: blink 1s linear infinite;
     animation-timing-function: steps(1, end);
-    will-change: background-color;
 }
 
 @keyframes blink {
@@ -581,13 +576,11 @@ figcaption {
 .article-topbar-navigation-container {
     animation: animateTopbarShadowReverse 0.15s forwards;
     animation-play-state: running;
-    will-change: box-shadow;
 }
 
 .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
     animation: animateTopbarShadow 0.25s forwards;
     animation-play-state: running;
-    will-change: box-shadow;
 }
 
 /* article topbar navigation buttons */
@@ -642,7 +635,6 @@ figcaption {
 
 .article-topbar-navigation-icon.close-article,
 .article-topbar-navigation-icon.finished-reading {
-    will-change: transform;
     transition: transform 0.15s;
 }
 
@@ -792,7 +784,7 @@ blockquote.paragraph {
 .article-left-view-image-container {
     flex-flow: column nowrap;
     transform: translate3d(0, 0, 0);
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.4s ease-in-out;
     will-change: transform;
 }
 
