@@ -1,0 +1,228 @@
+/* theme */
+
+:root {
+    --white: #ffffff;
+    --black: #333333;
+    --globe-grid-circles-grey-light-mode: #e0e0e0;
+    --globe-grid-circles-grey-dark-mode: #535353;
+    --search-bar-dark-mode: #636363;
+    --button-background-hover-light-mode: #efefef;
+    --button-background-active-light-mode: #dfdfdf;
+    --button-background-hover-dark-mode: #454545;
+    --button-background-active-dark-mode: #515151;
+    --container-background-light-mode: var(--white);
+    --container-background-hover-light-mode: #f5f5f5;
+    --container-background-active-light-mode: #e7e7e7;
+    --container-background-dark-mode: var(--black);
+    --container-background-hover-dark-mode: #3d3d3d;
+    --container-background-active-dark-mode: #474747;
+
+}
+
+/* theme toggle elements */
+
+body {
+    background-color: var(--white);
+}
+body.dark-mode {
+    background-color: var(--black);
+}
+.blockquote-circle {
+    background-color: var(--globe-grid-circles-grey-light-mode);
+}
+.dark-mode .blockquote-circle {
+    background-color: var(--globe-grid-circles-grey-dark-mode);
+}
+.globe-grid-quote-attribution-circle {
+    background-color: var(--globe-grid-circles-grey-light-mode);
+}
+.dark-mode .globe-grid-quote-attribution-circle {
+    background-color: var(--globe-grid-circles-grey-dark-mode);
+}
+.moon-grid-link-circle {
+    background-color: var(--globe-grid-circles-grey-light-mode);
+}
+.dark-mode .moon-grid-link-circle {
+    background-color: var(--globe-grid-circles-grey-dark-mode);
+}
+.globe-grid-link-circle {
+    background-color: var(--globe-grid-circles-grey-light-mode);
+}
+.dark-mode .globe-grid-link-circle {
+    background-color: var(--globe-grid-circles-grey-dark-mode);
+}
+.globe-grid-section-separator-grey-circle {
+    background-color: var(--globe-grid-circles-grey-light-mode);
+}
+.dark-mode .globe-grid-section-separator-grey-circle {
+    background-color: var(--globe-grid-circles-grey-dark-mode);
+}
+.article-topbar-navigation-container {
+    background-color: var(--white);
+}
+.dark-mode .article-topbar-navigation-container {
+    background-color: var(--black);
+}
+.article-topbar-navigation-button-inner-hover-circle {
+    background-color: var(--button-background-hover-light-mode);
+}
+.article-topbar-navigation-button-inner-tap-and-click-circle {
+    background-color: var(--button-background-active-light-mode);
+}
+.dark-mode .article-topbar-navigation-button-inner-hover-circle {
+    background-color: var(--button-background-hover-dark-mode);
+}
+.dark-mode .article-topbar-navigation-button-inner-tap-and-click-circle {
+    background-color: var(--button-background-active-dark-mode);
+}
+
+
+
+/* search */
+:root {
+    --aa-scrollbar-track-background-color-rgb: 255, 255, 255;
+    --aa-scrollbar-thumb-background-color-rgb: 255, 255, 255;
+    --aa-form-symbol-light-mode: #939393;
+    --aa-form-symbol-light-mode-hover: #e0e0e0;
+    --aa-form-symbol-light-mode-active: var(--white);
+    --aa-form-symbol-dark-mode: var(--black);
+    --aa-form-symbol-dark-mode-hover: #222222;
+    --aa-form-symbol-dark-mode-active: #0e0e0e;
+}
+
+.dark-mode {
+    --aa-scrollbar-track-background-color-rgb: 51, 51, 51;
+    --aa-scrollbar-thumb-background-color-rgb: 51, 51, 51;
+}
+#article-search-panel {
+    background-color: var(--black);
+}
+.dark-mode #article-search-panel {
+    background-color: var(--search-bar-dark-mode);
+}
+.aa-Form {
+    background-color: var(--black);
+}
+.dark-mode .aa-Form {
+    background-color: var(--search-bar-dark-mode);
+}
+
+.aa-ClearButton {
+    color: var(--aa-form-symbol-light-mode);
+    font-weight: 500;
+}
+.aa-ClearButton:hover {
+    color: var(--aa-form-symbol-light-mode-hover);
+}
+.aa-ClearButton:active {
+    color: var(--aa-form-symbol-light-mode-active);
+}
+.aa-ClearButton:focus-visible {
+    color: var(--aa-form-symbol-light-mode-active);
+}
+.dark-mode .aa-ClearButton {
+    color: var(--aa-form-symbol-dark-mode);
+    font-weight: 500;
+}
+.dark-mode .aa-ClearButton:hover {
+    color: var(--aa-form-symbol-dark-mode-hover);
+}
+.dark-mode .aa-ClearButton:active {
+    color: var(--aa-form-symbol-dark-mode-active);
+}
+.dark-mode .aa-ClearButton:focus-visible {
+    color: var(--aa-form-symbol-dark-mode-active);
+}
+
+
+
+
+
+
+
+.close-button svg {
+    fill: var(--aa-form-symbol-light-mode);
+}
+.close-button:hover svg {
+    fill: var(--aa-form-symbol-light-mode-hover);
+}
+.close-button:active svg {
+    fill: var(--aa-form-symbol-light-mode-active);
+}
+.close-button:focus-visible svg {
+    fill: var(--aa-form-symbol-light-mode-active);
+}
+
+
+.dark-mode .close-button svg {
+    fill: var(--aa-form-symbol-dark-mode);
+}
+.dark-mode .close-button:hover svg {
+    fill: var(--aa-form-symbol-dark-mode-hover);
+}
+.dark-mode .close-button:active svg {
+    fill: var(--aa-form-symbol-dark-mode-active);
+}
+.dark-mode .close-button:focus-visible svg {
+    fill: var(--aa-form-symbol-dark-mode-active);
+}
+
+
+
+
+
+
+
+
+
+.article-autocomplete-search-overlay {
+    background-color: var(--white);
+}
+.dark-mode .article-autocomplete-search-overlay {
+    background-color: var(--black);
+}
+
+.aa-PanelLayout,
+.aa-Panel--scrollable {
+    background-color: var(--white);
+}
+.dark-mode .aa-PanelLayout,
+.dark-mode .aa-Panel--scrollable {
+    background-color: var(--black);
+}
+.no-results-record-container {
+    background-color: var(--container-background-light-mode);
+}
+.no-results-record-container:hover {
+    background-color: var(--container-background-hover-light-mode);
+}
+.no-results-record-container:active {
+    background-color: var(--container-background-active-light-mode);
+}
+.dark-mode .no-results-record-container {
+    background-color: var(--container-background-dark-mode);
+}
+.dark-mode .no-results-record-container:hover {
+    background-color: var(--container-background-hover-dark-mode);
+}
+.dark-mode .no-results-record-container:active {
+    background-color: var(--container-background-active-dark-mode);
+}
+.aa-Item {
+    background-color: var(--container-background-light-mode);
+}
+.aa-Item[aria-selected="true"] {
+    background-color: var(--container-background-hover-light-mode);
+}
+.aa-Item:active {
+    background-color: var(--container-background-active-light-mode);
+}
+.dark-mode .aa-Item {
+    background-color: var(--container-background-dark-mode);
+}
+.dark-mode .aa-Item[aria-selected="true"] {
+    background-color: var(--container-background-hover-dark-mode);
+}
+.dark-mode .aa-Item:active {
+    background-color: var(--container-background-active-dark-mode);
+}
