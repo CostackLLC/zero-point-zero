@@ -166,6 +166,26 @@ body.dark-mode {
 .dark-mode .close-button:focus-visible svg {
     fill: var(--aa-form-symbol-dark-mode-active);
 }
+.aa-SubmitButton {
+    display: none;
+}
+
+
+
+.aa-LoadingIndicator svg {
+    color: var(--aa-form-symbol-light-mode);
+}
+.dark-mode .aa-LoadingIndicator svg {
+    color: var(--aa-form-symbol-dark-mode);
+}
+
+
+
+
+
+
+
+
 
 
 
