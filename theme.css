@@ -80,14 +80,16 @@ body.dark-mode {
 :root {
     --aa-scrollbar-track-background-color-rgb: 255, 255, 255;
     --aa-scrollbar-thumb-background-color-rgb: 255, 255, 255;
-    --aa-form-symbol-light-mode: #939393;
-    --aa-form-symbol-light-mode-hover: #e0e0e0;
+
+    --aa-form-symbol-light-mode: var(--white);
+    --aa-form-symbol-light-mode-hover: #c7c7c7;
     --aa-form-symbol-light-mode-active: var(--white);
-    --aa-form-symbol-dark-mode: var(--black);
-    --aa-form-symbol-dark-mode-hover: #222222;
-    --aa-form-symbol-dark-mode-active: #0e0e0e;
-    --aa-form-custom-input-contenteditable-letter-color-light-mode: var(--white);
-    --aa-form-custom-input-contenteditable-letter-color-dark-mode: #f5f5f5;
+
+    --aa-form-symbol-dark-mode: #f5f5f5;
+    --aa-form-symbol-dark-mode-hover: #c7c7c7;
+    --aa-form-symbol-dark-mode-active: #f5f5f5;
+
+    --aa-custom-caret-background-color: var(--white);
 }
 
 .dark-mode {
@@ -111,7 +113,6 @@ body.dark-mode {
 
 .aa-ClearButton {
     color: var(--aa-form-symbol-light-mode);
-    font-weight: 500;
 }
 .aa-ClearButton:hover {
     color: var(--aa-form-symbol-light-mode-hover);
@@ -126,7 +127,6 @@ body.dark-mode {
 
 .dark-mode .aa-ClearButton {
     color: var(--aa-form-symbol-dark-mode);
-    font-weight: 500;
 }
 .dark-mode .aa-ClearButton:hover {
     color: var(--aa-form-symbol-dark-mode-hover);
@@ -231,31 +231,34 @@ body.dark-mode {
 
 /* custom search input caret */
 
+.dark-mode {
+    --aa-custom-caret-background-color: var(--aa-form-symbol-dark-mode);
+}
+
 .letter {
-    color: var(--aa-form-custom-input-contenteditable-letter-color-light-mode);
+    color: var(--aa-form-symbol-light-mode);
     background-color: transparent;
 }
 
 .dark-mode .letter {
-    color: var(--aa-form-custom-input-contenteditable-letter-color-dark-mode);
+    color: var(--aa-form-symbol-dark-mode);
     background-color: transparent;
 }
 
+
 .caret {
-    color: var(--aa-form-custom-input-contenteditable-letter-color-light-mode);
+    color: var(--black);
+    animation: blink 1s linear infinite;
+    animation-timing-function: steps(1, end);
 }
 
 .dark-mode .caret {
-    color: var(--aa-form-custom-input-contenteditable-letter-color-dark-mode);
-}
-
-.caret {
-    background-color: var(--aa-form-symbol-light-mode);
+    color: var(--black);
 }
 
 @keyframes blink {
     0% {
-        background-color: var(--aa-form-symbol-light-mode);
+        background-color: var(--aa-custom-caret-background-color);
     }
 
     50% {
@@ -263,9 +266,15 @@ body.dark-mode {
     }
 
     100% {
-        background-color: var(--aa-form-symbol-light-mode);
+        background-color: var(--aa-custom-caret-background-color);
     }
 }
+
+
+
+
+
+
 
 .aa-Input {
     color: transparent;
