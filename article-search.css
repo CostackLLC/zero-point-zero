@@ -255,7 +255,6 @@
 }
 
 .caret {
-    font-weight: 600;
     display: flex;
     justify-content: center;
     min-height: 23px;
