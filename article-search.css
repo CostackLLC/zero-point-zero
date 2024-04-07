@@ -38,8 +38,8 @@
 .close-button {
     background-color: transparent;
     cursor: pointer;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     padding: 0;
 }
 
@@ -228,7 +228,13 @@
     display: none;
 }
 
+
+
+
+
+
 .aa-ClearButton {
+    font-family: "DM Sans", sans-serif;
     position: relative;
     font-size: 14px;
     font-weight: 300;
@@ -238,6 +244,20 @@
     bottom: 1px;
     transition: color 0.075s;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .aa-ClearButton:focus-visible {
     outline: none;
