@@ -110,8 +110,6 @@ body.dark-mode {
     background-color: var(--search-bar-dark-mode);
 }
 
-
-
 .aa-ClearButton {
     color: var(--aa-form-symbol-light-mode);
 }
@@ -138,9 +136,6 @@ body.dark-mode {
 .dark-mode .aa-ClearButton:focus-visible {
     color: var(--aa-form-symbol-dark-mode-active);
 }
-
-
-
 
 .close-button svg {
     fill: var(--aa-form-symbol-light-mode);
@@ -177,7 +172,6 @@ body.dark-mode {
 .dark-mode .aa-LoadingIndicator svg {
     color: var(--aa-form-symbol-dark-mode);
 }
-
 .article-autocomplete-search-overlay {
     background-color: var(--white);
 }
@@ -229,25 +223,19 @@ body.dark-mode {
 .dark-mode .aa-Item:active {
     background-color: var(--container-background-active-dark-mode);
 }
-
 /* custom search input caret */
-
 .letter {
     color: var(--aa-form-symbol-light-mode);
     background-color: transparent;
 }
-
 .dark-mode .letter {
     color: var(--aa-form-symbol-dark-mode);
     background-color: transparent;
 }
-
-
 .caret {
     animation: blink 1s linear infinite;
     animation-timing-function: steps(1, end);
 }
-
 @keyframes blink {
     0%, 100% {
         text-shadow: 0px 0px 0.5px currentColor;
@@ -261,25 +249,15 @@ body.dark-mode {
         background-color: var(--aa-custom-caret-font-color);
     }
 }
-
 .dark-mode {
-    --aa-custom-caret-font-color: var(--aa-form-symbol-dark-mode);
-    --aa-custom-caret-background-color: var(--black);
+    --aa-custom-caret-font-color: var(--search-bar-dark-mode);
+    --aa-custom-caret-background-color: var(--aa-form-symbol-dark-mode);
 }
-
-
-
-
-
-
-
 /* hiding native search input caret */
-
 .aa-Input {
     color: transparent;
     caret-color: transparent;
 }
-
 .aa-Input::selection {
     background: grey;
     color: grey;
