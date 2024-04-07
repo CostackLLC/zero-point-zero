@@ -221,7 +221,6 @@
 .aa-Input {
     position: relative;
     bottom: 1px;
-    caret-color: rgba(255, 255, 255, 0.45);
     font-family: monospace, sans-serif;
 }
 
@@ -231,7 +230,11 @@
 
 .aa-ClearButton {
     position: relative;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.7px;
     padding: 0;
+    max-height: 20px;
     bottom: 1px;
     transition: color 0.075s;
 }
@@ -241,6 +244,7 @@
 }
 
 /* custom search input caret */
+
 .letter {
     display: flex;
     justify-content: center;
@@ -250,18 +254,13 @@
     font-family: monospace, sans-serif;
 }
 
-.space {
-    min-width: 8px;
-}
-
 .caret {
+    font-weight: 600;
     display: flex;
     justify-content: center;
     min-height: 23px;
     align-content: center;
     flex-wrap: wrap;
-    animation: blink 1s linear infinite;
-    animation-timing-function: steps(1, end);
 }
 
 /* mobile */
