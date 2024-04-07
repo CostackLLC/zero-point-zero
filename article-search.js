@@ -1,248 +1,305 @@
-// article search bar panel
+/* article search bar pannel */
 
-var toggleSearchSlidePanel;
-var inputField;
-var searchSlidePanel;
-var imageWrappers;
-var clearButton;
-
-function initializeSearchPanel() {
-    searchSlidePanel = document.getElementById('article-search-panel');
-    imageWrappers = document.querySelectorAll('.article-left-view-image-wrapper');
-    clearButton = document.querySelector('.aa-Autocomplete .aa-ClearButton');
-    inputField = document.querySelector('#autocomplete input');
-
-    if (!searchSlidePanel || !clearButton || !inputField) {
-        console.error('One or more elements could not be found in the DOM.');
-        return;
-    }
-
-    toggleSearchSlidePanel = function () {
-        requestAnimationFrame(function () {
-            if (searchSlidePanel.classList.contains('show')) {
-                if (inputField.value) {
-                    clearButton.click();
-                }
-                setTimeout(function () {
-                    searchSlidePanel.classList.remove('show');
-                    imageWrappers.forEach(function (wrapper) {
-                        wrapper.classList.remove('greyscale');
-                    });
-                    inputField.blur();
-                }, 500);
-            } else {
-                searchSlidePanel.classList.add('show');
-                imageWrappers.forEach(function (wrapper) {
-                    wrapper.classList.add('greyscale');
-                });
-            }
-        });
-    }
-
-    function handleEscapeKey(event) {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-            if (searchSlidePanel.classList.contains('show')) {
-                if (inputField.value) {
-                    clearButton.click();
-                }
-                setTimeout(function () {
-                    searchSlidePanel.classList.remove('show');
-                    imageWrappers.forEach(function (wrapper) {
-                        wrapper.classList.remove('greyscale');
-                    });
-                    inputField.blur();
-                }, 500);
-            }
-        }
-    }
-
-    searchSlidePanel.addEventListener('transitionend', function () {
-        if (searchSlidePanel.classList.contains('show') && inputField) {
-            inputField.focus();
-        }
-    });
-
-    var searchButton = document.getElementById('article-search-button');
-    searchButton.addEventListener('click', toggleSearchSlidePanel);
-
-    clearButton.addEventListener('click', function () {
-        setTimeout(function () {
-            searchSlidePanel.classList.remove('show');
-            imageWrappers.forEach(function (wrapper) {
-                wrapper.classList.remove('greyscale');
-            });
-            inputField.blur();
-        }, 500);
-    });
-
-    document.addEventListener('keydown', handleEscapeKey);
+.aa-Autocomplete {
+    display: flex;
+    justify-content: center;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    if (clearButton) {
-        clearButton.textContent = 'CLEAR';
-    }
-});
+#article-search-panel {
+    position: fixed;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 64px;
+    right: 0;
+    z-index: 9999999;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(-120%);
+    will-change: transform;
+}
 
-var closeButtonContainer = document.createElement('div');
-closeButtonContainer.setAttribute('class', 'close-button-container');
+#article-search-panel.show {
+    transform: translateY(0);
+}
 
-var closeButton = document.createElement('button');
-closeButton.setAttribute('class', 'close-button');
+.article-left-view-image-wrapper {
+    transition: filter 0.3s;
+}
 
-var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("viewBox", "0 0 24 24");
-svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
+.article-left-view-image-wrapper.greyscale {
+    filter: grayscale(100%);
+}
 
-var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
+.aa-ClearIcon {
+    display: none;
+}
 
-svg.appendChild(path);
-closeButton.appendChild(svg);
-closeButtonContainer.appendChild(closeButton);
+.close-button {
+    background-color: transparent;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
 
-document.querySelector('.aa-Form').appendChild(closeButtonContainer);
+.close-button svg {
+    transition: fill 0.075s;
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    var closeButton = document.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', function () {
-            toggleSearchSlidePanel();
-            inputField.blur();
-        });
-    }
-});
+.autocomplete-record-container {
+    display: flex;
+    text-decoration: none;
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    var clearButton = document.querySelector('.aa-ClearButton');
-    var closeButtonContainer = document.querySelector('.close-button-container');
-    if (clearButton) {
-        var observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                if (mutation.attributeName === 'hidden') {
-                    closeButtonContainer.style.display = clearButton.hasAttribute('hidden') ? 'block' : 'none';
-                }
-            });
-        });
-        observer.observe(clearButton, { attributes: true });
-    }
-});
+.autocomplete-record-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: -4px 20px 0 0;
+}
 
-document.addEventListener('click', function (event) {
-    var formElement = document.querySelector('.aa-Form');
-    var panelElement = document.querySelector('.aa-Panel');
-    var isClickInsideForm = formElement ? formElement.contains(event.target) : false;
-    var isClickInsidePanel = panelElement ? panelElement.contains(event.target) : false;
+.autocomplete-item-title {
+    font-family: 'DM Serif Display Regular';
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+}
 
-    if (!isClickInsideForm && !isClickInsidePanel) {
-        if (searchSlidePanel.classList.contains('show')) {
-            if (inputField.value) {
-                clearButton.click();
-            }
-            setTimeout(function () {
-                searchSlidePanel.classList.remove('show');
-                imageWrappers.forEach(function (wrapper) {
-                    wrapper.classList.remove('greyscale');
-                });
-                inputField.blur();
-            }, 500);
-        }
-    }
-});
+.autocomplete-item-subtitle {
+    font-family: "DM Sans", sans-serif;
+    color: var(--alt-text);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: .2px;
+    text-align: left;
+    margin-bottom: 3px;
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    initializeSearchPanel();
-});
+.autocomplete-item-topic {
+    display: inline-block;
+    position: relative;
+    font-family: "DM Sans", sans-serif;
+    color: var(--black);
+    text-align: left;
+    letter-spacing: .3px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    left: -1px;
+}
 
-// article search result overlay
+.autocomplete-item-topic::before {
+    content: "chevron_right";
+    font-family: "Material Symbols Rounded (Google)", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: .2px;
+    color: var(--black);
+    position: relative;
+    top: 3px;
+    left: -3px;
+}
 
-let searchAutocompleteObserver = new MutationObserver((mutations) => {
-    let aaPanelExists = document.querySelector('.aa-Panel') !== null;
-    let overlay = document.querySelector('#article-search-overlay');
+.autocomplete-item-thumbnail-container {
+    width: 100px;
+    height: 130px;
+    min-width: 100px;
+    min-height: 130px;
+    margin-left: auto;
+}
 
-    overlay.style.display = aaPanelExists ? 'block' : 'none';
-});
+.autocomplete-item-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
-searchAutocompleteObserver.observe(document, { childList: true, subtree: true });
+.aa-SourceNoResults {
+    padding: 0;
+}
 
-// custom caret
-
-var inputField = document.querySelector('.aa-Input');
-var wrapperDiv = document.querySelector('.aa-InputWrapper');
-var newDiv = document.createElement('div');
-newDiv.contentEditable = 'true';
-newDiv.className = 'editableDiv';
-newDiv.style.position = 'absolute';
-newDiv.style.width = '100%';
-newDiv.style.display = 'flex';
-newDiv.style.pointerEvents = 'none';
-newDiv.style.overflow = 'hidden';
-wrapperDiv.appendChild(newDiv);
-
-function updateContent() {
-    var caretPosition = inputField.selectionStart;
-    var inputValue = inputField.value;
-    var contentHtml = '';
-    
-    for (var i = 0; i < inputValue.length; i++) {
-        var char = inputValue[i];
-        char = char === ' ' ? ' ' : char;
-        var isCaretPosition = i === caretPosition - 1;
-        
-        contentHtml += `<span class="${isCaretPosition ? 'letter caret' : 'letter'}">${char}</span>`;
-    }
-    
-    if (caretPosition === 0 && inputValue) {
-        contentHtml = contentHtml.replace('<span class="letter">', '<span class="letter caret">');
-    } else if (caretPosition === 0 && !inputValue) {
-        contentHtml = `<span class="letter caret"> </span>`;
-    }
-    
-    newDiv.innerHTML = contentHtml;
-    newDiv.scrollLeft = newDiv.scrollWidth;
+.no-results-record-container {
+    padding: 15px;
+    border-radius: 12px;
+    transition: background-color .1s;
 }
 
 
-inputField.addEventListener('input', updateContent);
-inputField.addEventListener('keydown', function(event) {
-    if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
-        setTimeout(updateContent, 0);
+.aa-Panel {
+    position: fixed;
+    top: 108px !important;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 9999999;
+}
+
+.aa-PanelLayout,
+.aa-Panel--scrollable {
+    padding: 15px 2px 15px 15px;
+    max-width: 600px;
+    height: calc(100vh - 108px) !important;
+    max-height: none;
+}
+
+.aa-Item {
+    padding: 15px;
+    border-radius: 12px;
+    transition: background-color .1s;
+}
+
+.aa-InputWrapperPrefix {
+    position: relative;
+    right: 28px;
+    order: 2;
+}
+
+.aa-SubmitButton {
+    display: none;
+}
+
+.aa-Label svg {
+    color: var(--black);
+}
+
+.aa-LoadingIndicator {
+    position: relative;
+    right: 1px;
+}
+
+.aa-InputWrapper {
+    position: relative;
+    margin-right: 58px;
+    left: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    order: 1;
+}
+
+.aa-InputWrapperSuffix {
+    position: relative;
+    right: 28px;
+    order: 3;
+}
+
+.close-button-container {
+    position: relative;
+    padding: 0px;
+    right: 28px;
+    order: 3;
+}
+
+.aa-Form {
+    border: none;
+    max-width: 600px;
+    margin: 0 28px;
+}
+
+.aa-Form:hover {
+    border: none;
+}
+
+.aa-Form:focus-visible {
+    border: none;
+}
+
+.aa-Form:focus-within {
+    border: none;
+    box-shadow: none;
+}
+
+.aa-Input {
+    position: relative;
+    bottom: 1px;
+    font-family: monospace, sans-serif;
+}
+
+.aa-GradientBottom {
+    display: none;
+}
+
+
+
+
+
+
+.aa-ClearButton {
+    font-family: "DM Sans", sans-serif;
+    position: relative;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+    padding: 0;
+    max-height: 20px;
+    bottom: 1px;
+    transition: color 0.075s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.aa-ClearButton:focus-visible {
+    outline: none;
+}
+
+/* custom search input caret */
+
+.letter {
+    display: flex;
+    justify-content: center;
+    min-height: 23px;
+    align-content: center;
+    flex-wrap: wrap;
+    font-family: monospace, sans-serif;
+}
+
+.caret {
+    display: flex;
+    justify-content: center;
+    min-height: 23px;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+/* mobile */
+@media only screen and (max-width: 680px) {
+    .aa-DetachedSearchButton {
+        background-color: var(--black);
+        border-color: rgb(255 255 255 / 60%);
+        border-width: 2px;
     }
-    
-    if (event.key === 'ArrowRight' && inputField.selectionStart === 0) {
-        inputField.selectionStart = inputField.selectionEnd = 1;
+
+    .aa-SubmitIcon,
+    .aa-DetachedCancelButton {
+        color: var(--white);
     }
-    
-});
-inputField.addEventListener('click', updateContent);
-inputField.addEventListener('focus', updateContent);
 
-
-var clearButton = document.querySelector('.aa-ClearButton');
-clearButton.addEventListener('click', function () {
-    newDiv.innerHTML = '<span class="letter caret"> </span>';
-    inputField.value = '';
-});
-
-document.addEventListener('DOMContentLoaded', updateContent);
-
-inputField.addEventListener('focus', function () {
-    if (!inputField.value) {
-        newDiv.innerHTML = '<span class="letter caret"> </span>';
+    .aa-DetachedSearchButtonPlaceholder {
+        color: rgba(255, 255, 255, 0.45);
     }
-});
 
-
-// form submit button
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    const button = document.querySelector('.aa-SubmitButton');
-    if (button) {
-        const div = document.createElement('div');
-        div.className = button.className;
-        div.innerHTML = button.innerHTML;
-        button.parentNode.insertBefore(div, button);
-        button.parentNode.removeChild(button);
+    .aa-DetachedContainer {
+        background-color: var(--black);
     }
-});
+}
