@@ -15,22 +15,22 @@
     right: 0;
     z-index: 99999999;
     transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-    transform: translateY(120%);
+    transform: translateX(120%);
     will-change: transform;
 }
 
 #article-search-panel.show {
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 #article-search-overlay {
     transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-    transform: translateY(120%);
+    transform: translateX(120%);
     will-change: transform;
 }
 
 #article-search-overlay.show {
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 
