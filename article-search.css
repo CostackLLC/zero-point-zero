@@ -13,9 +13,9 @@
     justify-content: center;
     top: 64px;
     right: 0;
-    z-index: 9999999;
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    transform: translateY(-120%);
+    z-index: 99999999;
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(120%);
     will-change: transform;
 }
 
@@ -23,8 +23,19 @@
     transform: translateY(0);
 }
 
+#article-search-overlay {
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(120%);
+    will-change: transform;
+}
+
+#article-search-overlay.show {
+    transform: translateY(0);
+}
+
+
 .article-left-view-image-wrapper {
-    transition: filter 0.3s;
+    transition: filter 0.45s;
 }
 
 .article-left-view-image-wrapper.greyscale {
