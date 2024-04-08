@@ -17,38 +17,6 @@
     will-change: transform;
 }
 
-/* topbar on scroll */
-
-@keyframes animateTopbarShadow {
-    0% {
-        box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0.28);
-    }
-
-    100% {
-        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.28);
-    }
-}
-
-@keyframes animateTopbarShadowReverse {
-    0% {
-        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.28);
-    }
-
-    100% {
-        box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0.28);
-    }
-}
-
-.article-topbar-navigation-container {
-    animation: animateTopbarShadowReverse 0.15s forwards;
-    animation-play-state: running;
-}
-
-.article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
-    animation: animateTopbarShadow 0.25s forwards;
-    animation-play-state: running;
-}
-
 /* article topbar navigation buttons */
 
 .article-topbar-navigation-button-inner-hover-circle,
