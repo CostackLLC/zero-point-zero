@@ -106,28 +106,6 @@ body.dark-mode {
 
 
 
-/* search (shadow class added via js) */
-
-#autocomplete {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-light-mode);
-    transition: box-shadow 0.15s linear;
-}
-
-#autocomplete.search-bar-shadow-on-scroll {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
-    transition: box-shadow 0.15s linear;
-}
-
-.dark-mode #autocomplete {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-dark-mode);
-    transition: box-shadow 0.15s linear;
-}
-
-.dark-mode #autocomplete.search-bar-shadow-on-scroll {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
-    transition: box-shadow 0.15s linear;
-}
-
 
 
 
