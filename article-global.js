@@ -1,20 +1,26 @@
-// topbar on scroll
+// topbar and searchbar on scroll
 
 window.addEventListener('load', (event) => {
     var navbar = document.querySelector('.article-topbar-navigation-container');
+    var autocomplete = document.querySelector('#autocomplete');
     var topbarSeparator = document.querySelector('#topbar-separator');
     var circles = topbarSeparator.querySelectorAll('.globe-grid-section-separator-grey-circle');
     var last_known_scroll_position = 0;
     var ticking = false;
+
     function doSomething(scroll_pos) {
+        // Topbar shadow
         if (scroll_pos > 0) {
             navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
+            autocomplete.classList.add("search-bar-shadow-on-scroll");
             circles.forEach(circle => circle.style.transform = 'scale(0)');
         } else {
             navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
+            autocomplete.classList.remove("search-bar-shadow-on-scroll");
             circles.forEach(circle => circle.style.transform = 'scale(1)');
         }
     }
+
     window.addEventListener('scroll', function (e) {
         last_known_scroll_position = window.scrollY;
         if (!ticking) {
@@ -25,13 +31,16 @@ window.addEventListener('load', (event) => {
             ticking = true;
         }
     });
+
     window.addEventListener('resize', function () {
         createCircles('.globe-grid-section-separator-grey-container', 'globe-grid-section-separator-grey-circle');
         circles = topbarSeparator.querySelectorAll('.globe-grid-section-separator-grey-circle');
         doSomething(window.pageYOffset);
     });
+
     doSomething(window.pageYOffset);
 });
+
 
 // article topbar navigation: close button
 
