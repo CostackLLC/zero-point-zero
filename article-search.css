@@ -1,3 +1,7 @@
+:root {
+    --side-panel-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 /* article search bar pannel */
 
 .aa-Autocomplete {
@@ -14,25 +18,30 @@
     top: 64px;
     right: 0;
     z-index: 99999999;
-    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-    transform: translateX(120%);
-    will-change: transform;
+    right: -100%;
+    transition: right var(--side-panel-transition);
+    will-change: right;
 }
 
 #article-search-panel.show {
-    transform: translateX(0);
+    right: 0;
+    transition: right var(--side-panel-transition);
 }
 
 #article-search-overlay {
-    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-    transform: translateX(120%);
-    will-change: transform;
+    position: fixed;
+    width: 60%;
+    height: calc(100% - 108px);
+    top: 108px;
+    right: -100%;
+    transition: right var(--side-panel-transition);
+    will-change: right;
 }
 
 #article-search-overlay.show {
-    transform: translateX(0);
+    right: 0;
+    transition: right 0.7s var(--side-panel-transition);
 }
-
 
 .article-left-view-image-wrapper {
     transition: filter 0.45s;
