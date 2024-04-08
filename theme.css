@@ -171,9 +171,6 @@ body.dark-mode {
 .aa-ClearButton:hover {
     color: var(--aa-form-symbol-light-mode-hover);
 }
-.aa-ClearButton:active {
-    color: var(--aa-form-symbol-light-mode-active);
-}
 .aa-ClearButton:focus-visible {
     color: var(--aa-form-symbol-light-mode-active);
 }
@@ -184,9 +181,6 @@ body.dark-mode {
 }
 .dark-mode .aa-ClearButton:hover {
     color: var(--aa-form-symbol-dark-mode-hover);
-}
-.dark-mode .aa-ClearButton:active {
-    color: var(--aa-form-symbol-dark-mode-active);
 }
 .dark-mode .aa-ClearButton:focus-visible {
     color: var(--aa-form-symbol-dark-mode-active);
