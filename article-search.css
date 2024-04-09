@@ -1,5 +1,6 @@
 :root {
-    --side-panel-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    --side-panel-transition-in: 0.35s ease-out;
+    --side-panel-transition-out: 0.35s ease-in;
 }
 
 /* article search bar pannel */
@@ -18,14 +19,14 @@
     top: 64px;
     right: 0;
     z-index: 99999999;
-    right: -100%;
-    transition: right var(--side-panel-transition);
+    right: -60%;
+    transition: right var(--side-panel-transition-out);
     will-change: right;
 }
 
 #article-search-panel.show {
     right: 0;
-    transition: right var(--side-panel-transition);
+    transition: right var(--side-panel-transition-in);
 }
 
 #article-search-overlay {
@@ -33,14 +34,14 @@
     width: 60%;
     height: calc(100% - 108px);
     top: 108px;
-    right: -100%;
-    transition: right var(--side-panel-transition);
+    right: -60%;
+    transition: right var(--side-panel-transition-out);
     will-change: right;
 }
 
 #article-search-overlay.show {
     right: 0;
-    transition: right 0.7s var(--side-panel-transition);
+    transition: right var(--side-panel-transition-in);
 }
 
 .article-left-view-image-wrapper {
