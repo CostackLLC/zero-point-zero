@@ -1,6 +1,6 @@
 :root {
     --side-panel-transition-in: 0.35s ease-out;
-    --side-panel-transition-out: 0.35s ease-in;
+    --side-panel-transition-out: 0.28s ease-in;
 }
 
 /* article search bar pannel */
@@ -152,7 +152,6 @@
     transition: background-color .1s;
 }
 
-
 .aa-Panel {
     position: fixed;
     top: 108px !important;
@@ -164,23 +163,12 @@
     z-index: 9999999;
 }
 
-.aa-PanelLayout,
-.aa-Panel--scrollable {
-    padding: 15px 2px 15px 15px;
-    max-width: 600px;
-    height: calc(100vh - 108px) !important;
-    max-height: none;
-}
-
 .aa-Item {
-    padding: 15px;
-    border-radius: 12px;
     transition: background-color .1s;
 }
 
 .aa-InputWrapperPrefix {
     position: relative;
-    right: 28px;
     order: 2;
 }
 
@@ -199,9 +187,6 @@
 
 .aa-InputWrapper {
     position: relative;
-    margin-right: 58px;
-    left: 30px;
-    width: 100%;
     display: flex;
     align-items: center;
     order: 1;
@@ -209,21 +194,16 @@
 
 .aa-InputWrapperSuffix {
     position: relative;
-    right: 28px;
     order: 3;
 }
 
 .close-button-container {
     position: relative;
-    padding: 0px;
-    right: 28px;
     order: 3;
 }
 
 .aa-Form {
     border: none;
-    max-width: 600px;
-    margin: 0 28px;
 }
 
 .aa-Form:hover {
