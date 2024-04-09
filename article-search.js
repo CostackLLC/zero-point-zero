@@ -3,139 +3,138 @@
 var toggleSearchSlidePanel, inputField, searchSlidePanel, searchOverlay, imageWrappers, clearButton;
 
 function initializeSearchPanel() {
-  searchSlidePanel = document.getElementById("article-search-panel");
-  searchOverlay = document.getElementById("article-search-overlay"); // Get the overlay element
-  imageWrappers = document.querySelectorAll(".article-left-view-image-wrapper");
-  clearButton = document.querySelector(".aa-Autocomplete .aa-ClearButton");
-  inputField = document.querySelector("#autocomplete input");
+    searchSlidePanel = document.getElementById("article-search-panel");
+    searchOverlay = document.getElementById("article-search-overlay");
+    imageWrappers = document.querySelectorAll(".article-left-view-image-wrapper");
+    clearButton = document.querySelector(".aa-Autocomplete .aa-ClearButton");
+    inputField = document.querySelector("#autocomplete input");
 
-  if (searchSlidePanel && searchOverlay && clearButton && inputField) { // Check if overlay element is found
-    toggleSearchSlidePanel = function() {
-      requestAnimationFrame(function() {
-        if (searchSlidePanel.classList.contains("show")) {
-          if (inputField.value) clearButton.click();
-          setTimeout(function() {
-            searchSlidePanel.classList.remove("show");
-            searchOverlay.classList.remove("show"); // Remove show from overlay
-            imageWrappers.forEach(function(e) {
-              e.classList.remove("greyscale");
+    if (searchSlidePanel && searchOverlay && clearButton && inputField) {
+        toggleSearchSlidePanel = function() {
+            requestAnimationFrame(function() {
+                if (searchSlidePanel.classList.contains("show")) {
+                    if (inputField.value) {
+                        clearButton.click();
+                    }
+                    setTimeout(function() {
+                        searchSlidePanel.classList.remove("show");
+                        searchOverlay.classList.remove("show");
+                        imageWrappers.forEach(function(e) {
+                            e.classList.remove("greyscale");
+                        });
+                        inputField.blur();
+                    }, 500);
+                } else {
+                    searchSlidePanel.classList.add("show");
+                    searchOverlay.classList.add("show");
+                    imageWrappers.forEach(function(e) {
+                        e.classList.add("greyscale");
+                    });
+                }
             });
-            inputField.blur();
-          }, 500);
-        } else {
-          searchSlidePanel.classList.add("show");
-          searchOverlay.classList.add("show"); // Add show to overlay
-          imageWrappers.forEach(function(e) {
-            e.classList.add("greyscale");
-          });
-        }
-      });
-    };
+        };
 
-    searchSlidePanel.addEventListener("transitionend", function() {
-      if (searchSlidePanel.classList.contains("show")) {
-        inputField.focus();
-      }
-    });
-
-    document.getElementById("article-search-button").addEventListener("click", toggleSearchSlidePanel);
-    clearButton.addEventListener("click", function() {
-      setTimeout(function() {
-        searchSlidePanel.classList.remove("show");
-        searchOverlay.classList.remove("show"); // Remove show from overlay
-        imageWrappers.forEach(function(e) {
-          e.classList.remove("greyscale");
+        searchSlidePanel.addEventListener("transitionend", function() {
+            if (searchSlidePanel.classList.contains("show")) {
+                inputField.focus();
+            }
         });
-        inputField.blur();
-      }, 500);
-    });
 
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape" || e.keyCode === 27) {
-        if (searchSlidePanel.classList.contains("show")) {
-          if (inputField.value) clearButton.click();
-          setTimeout(function() {
-            searchSlidePanel.classList.remove("show");
-            searchOverlay.classList.remove("show"); // Remove show from overlay
-            imageWrappers.forEach(function(e) {
-              e.classList.remove("greyscale");
-            });
-            inputField.blur();
-          }, 500);
-        }
-      }
-    });
-  } else {
-    console.error("One or more elements could not be found in the DOM.");
-  }
+        document.getElementById("article-search-button").addEventListener("click", toggleSearchSlidePanel);
+
+        clearButton.addEventListener("click", function() {
+            setTimeout(function() {
+                searchSlidePanel.classList.remove("show");
+                searchOverlay.classList.remove("show");
+                imageWrappers.forEach(function(e) {
+                    e.classList.remove("greyscale");
+                });
+                inputField.blur();
+            }, 500);
+        });
+
+        document.addEventListener("keydown", function(e) {
+            if ((e.key === "Escape" || e.keyCode === 27) && searchSlidePanel.classList.contains("show")) {
+                if (inputField.value) {
+                    clearButton.click();
+                }
+                setTimeout(function() {
+                    searchSlidePanel.classList.remove("show");
+                    searchOverlay.classList.remove("show");
+                    imageWrappers.forEach(function(e) {
+                        e.classList.remove("greyscale");
+                    });
+                    inputField.blur();
+                }, 500);
+            }
+        });
+    } else {
+        console.error("One or more elements could not be found in the DOM.");
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  var clearButton = document.querySelector(".aa-ClearButton");
-  if (clearButton) {
-    clearButton.textContent = "CLEAR";
-  }
-});
+    var closeButtonContainer = document.createElement("div");
+    closeButtonContainer.setAttribute("class", "close-button-container");
+    var closeButton = document.createElement("button");
+    closeButton.setAttribute("class", "close-button");
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
+    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"); // Complete this path with the actual SVG path data
+    svg.appendChild(path);
+    closeButton.appendChild(svg);
+    closeButtonContainer.appendChild(closeButton);
+    document.querySelector(".aa-Form").appendChild(closeButtonContainer);
 
-var closeButtonContainer = document.createElement("div");
-closeButtonContainer.setAttribute("class", "close-button-container");
-var closeButton = document.createElement("button");
-closeButton.setAttribute("class", "close-button");
-var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("viewBox", "0 0 24 24");
-svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
-var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
-svg.appendChild(path);
-closeButton.appendChild(svg);
-closeButtonContainer.appendChild(closeButton);
-document.querySelector(".aa-Form").appendChild(closeButtonContainer);
+    var clearButton = document.querySelector(".aa-ClearButton");
+    if (clearButton) {
+        clearButton.textContent = "CLEAR";
+    }
 
-document.addEventListener("DOMContentLoaded", function() {
-  var closeButton = document.querySelector(".close-button");
-  if (closeButton) {
-    closeButton.addEventListener("click", function() {
-      toggleSearchSlidePanel();
-      inputField.blur();
+    var closeButton = document.querySelector(".close-button");
+    if (closeButton) {
+        closeButton.addEventListener("click", function() {
+            toggleSearchSlidePanel();
+            inputField.blur();
+        });
+    }
+
+    var clearButtonObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === "hidden") {
+                closeButtonContainer.style.display = clearButton.hasAttribute("hidden") ? "block" : "none";
+            }
+        });
     });
-  }
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-  var clearButton = document.querySelector(".aa-ClearButton");
-  var closeButtonContainer = document.querySelector(".close-button-container");
-  if (clearButton) {
-    new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.attributeName === "hidden") {
-          closeButtonContainer.style.display = clearButton.hasAttribute("hidden") ? "block" : "none";
+    if (clearButton) {
+        clearButtonObserver.observe(clearButton, { attributes: true });
+    }
+
+    document.addEventListener("click", function(e) {
+        var autocomplete = document.querySelector('.aa-Autocomplete');
+        var panel = document.querySelector('.aa-Panel');
+        var isClickInsideAutocomplete = autocomplete ? autocomplete.contains(e.target) : false;
+        var isClickInsidePanel = panel ? panel.contains(e.target) : false;
+
+        if (!isClickInsideAutocomplete && !isClickInsidePanel && searchSlidePanel.classList.contains("show")) {
+            if (inputField.value) {
+                clearButton.click();
+            }
+            setTimeout(function() {
+                searchSlidePanel.classList.remove("show");
+                searchOverlay.classList.remove("show");
+                imageWrappers.forEach(function(wrapper) {
+                    wrapper.classList.remove("greyscale");
+                });
+                inputField.blur();
+            }, 500);
         }
-      });
-    }).observe(clearButton, { attributes: true });
-  }
-});
+    });
 
-document.addEventListener("click", function(e) {
-  var form = document.querySelector(".aa-Form");
-  var panel = document.querySelector(".aa-Panel");
-  var isClickInsideForm = form.contains(e.target);
-  var isClickInsidePanel = panel.contains(e.target);
-
-  if (!isClickInsideForm && !isClickInsidePanel && searchSlidePanel.classList.contains("show")) {
-    if (inputField.value) clearButton.click();
-    setTimeout(function() {
-      searchSlidePanel.classList.remove("show");
-      searchOverlay.classList.remove("show"); // Remove show from overlay
-      imageWrappers.forEach(function(e) {
-        e.classList.remove("greyscale");
-      });
-      inputField.blur();
-    }, 500);
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-  initializeSearchPanel();
+    initializeSearchPanel();
 });
 
 // custom caret
