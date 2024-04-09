@@ -33,7 +33,6 @@ window.addEventListener('load', (event) => {
     doSomething(window.pageYOffset);
 });
 
-
 // article topbar navigation: close button
 
 function checkScroll() {
@@ -92,20 +91,17 @@ $(document).ready(function () {
 
 let body = document.querySelector('body');
 let scrollPosition = 0;
-let searchButton = document.querySelector('#article-search-button');
-let algoliaPopup = null;
+let searchPanel = document.querySelector('#article-search-panel');
 
 function saveScrollPosition() {
     scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     localStorage.setItem('scrollPosition', scrollPosition);
 }
 
-searchButton.addEventListener('click', saveScrollPosition);
-
 let observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
-        algoliaPopup = document.querySelector('.aa-Panel');
-        if (algoliaPopup) {
+        if (searchPanel.classList.contains('show')) {
+            saveScrollPosition();
             body.style.overflowY = 'scroll';
             body.style.position = 'fixed';
             body.style.top = -scrollPosition + 'px';
@@ -116,7 +112,7 @@ let observer = new MutationObserver(function (mutations) {
         }
     });
 });
-observer.observe(body, { childList: true, subtree: true });
+observer.observe(searchPanel, { attributes: true });
 
 window.addEventListener('beforeunload', function () {
     localStorage.setItem('scrollPosition', window.pageYOffset || document.documentElement.scrollTop);
