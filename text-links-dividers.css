@@ -186,22 +186,6 @@ border-radius: 50%;
 position: relative;
 }
 
-/* link divider */
-
-.link-divider {
-font-size: 1px !important;
-}
-.breadcrumbs-divider {
-font-family: "Material Symbols Rounded (Google)", sans-serif;
-font-size: 15px;
-font-weight: 300;
-line-height: 1.6;
-letter-spacing: .2px;
-color: var(--black);
-position: relative;
-top: 3px;
-}
-
 /* section separator */
 
 .globe-grid-section-separator-grey-container {
