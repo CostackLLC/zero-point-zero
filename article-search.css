@@ -153,14 +153,7 @@
 }
 
 .aa-Panel {
-    position: fixed;
-    top: 108px !important;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    border-radius: 0;
     box-shadow: none;
-    z-index: 9999999;
 }
 
 .aa-Item {

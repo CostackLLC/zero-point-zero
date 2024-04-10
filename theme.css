@@ -214,6 +214,14 @@ body.dark-mode {
 .dark-mode .aa-Panel--scrollable {
     background-color: var(--black);
 }
+
+.aa-Panel {
+    background-color: var(--white);
+}
+.dark-mode .aa-Panel {
+    background-color: var(--black);
+}
+
 .no-results-record-container {
     background-color: var(--container-background-light-mode);
 }
