@@ -70,6 +70,7 @@ text-decoration: none;
 display: inline-block;
 position: relative;
 height: auto;
+white-space: nowrap;
 }
 .moon-grid-link-circle-underline {
 position: absolute;

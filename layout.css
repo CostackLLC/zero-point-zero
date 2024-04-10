@@ -186,19 +186,34 @@ body {
     justify-content: center;
 }
 
+.article-description-container,
+.article-paragraph-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
 .article-heading-wrapper,
 .article-summary-wrapper,
-.article-paragraph-wrapper
+.article-paragraph-wrapper,
+.published.w-embed,
+.updated.w-embed,
+.authors.w-embed,
+.tools.w-embed,
+.breadcrumbs.w-embed
  {
-    display: grid;
+    display: flex;
     width: 100%;
     max-width: var(--article-right-view-inner-max-width);
     padding: var(--article-right-view-inner-content-horizontal-padding);
     text-align: left;
 }
 
-.article-paragraph-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
+
+
+
+
+
