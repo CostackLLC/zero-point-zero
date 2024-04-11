@@ -55,7 +55,7 @@ function initializeSearchPanel() {
 
         document.addEventListener("keydown", function(e) {
             if ((e.key === "Escape" || e.keyCode === 27) && searchSlidePanel.classList.contains("show")) {
-                if (inputField.value) {
+                if (inputField.value) { 
                     clearButton.click();
                 }
                 setTimeout(function() {
@@ -74,6 +74,32 @@ function initializeSearchPanel() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    // MutationObserver to wait for the .aa-Form element
+    var observer = new MutationObserver(function(mutations, obs) {
+        var form = document.querySelector(".aa-Form");
+        if (form) {
+            form.appendChild(closeButtonContainer);
+            // Reattach the event listener to the close button
+            var closeButton = document.querySelector(".close-button");
+            if (closeButton) {
+                closeButton.removeEventListener("click", handleCloseButtonClick);
+                closeButton.addEventListener("click", handleCloseButtonClick);
+            }
+            obs.disconnect();
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    function handleCloseButtonClick() {
+        toggleSearchSlidePanel();
+        inputField.blur();
+        inputField.value = '';
+    }
+
     var closeButtonContainer = document.createElement("div");
     closeButtonContainer.setAttribute("class", "close-button-container");
     var closeButton = document.createElement("button");
@@ -82,23 +108,14 @@ document.addEventListener("DOMContentLoaded", function() {
     svg.setAttribute("viewBox", "0 0 24 24");
     svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
     var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"); // Complete this path with the actual SVG path data
+    path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
     svg.appendChild(path);
     closeButton.appendChild(svg);
     closeButtonContainer.appendChild(closeButton);
-    document.querySelector(".aa-Form").appendChild(closeButtonContainer);
 
     var clearButton = document.querySelector(".aa-ClearButton");
     if (clearButton) {
         clearButton.textContent = "CLEAR";
-    }
-
-    var closeButton = document.querySelector(".close-button");
-    if (closeButton) {
-        closeButton.addEventListener("click", function() {
-            toggleSearchSlidePanel();
-            inputField.blur();
-        });
     }
 
     var clearButtonObserver = new MutationObserver(function(mutations) {
@@ -136,6 +153,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     initializeSearchPanel();
 });
+
+
 
 // custom caret
 
