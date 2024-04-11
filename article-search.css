@@ -21,11 +21,6 @@
 }
 
 #article-search-overlay {
-    position: fixed;
-    width: 60%;
-    height: calc(100% - 108px);
-    top: 108px;
-    right: -60%;
     transition: right var(--side-panel-transition-out);
     will-change: right;
 }
@@ -187,7 +182,8 @@
 }
 
 .aa-Form {
-    border: none;
+    border: 0px;
+    border-radius: 0;
 }
 
 .aa-Form:hover {
