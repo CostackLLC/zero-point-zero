@@ -1,9 +1,11 @@
+body {
+    overflow-x: hidden;
+}
+
 :root {
     --article-topbar-navigation-height: 64px;
     --article-search-bar-height: 44px;
 }
-
-
 
 
 
@@ -93,7 +95,7 @@
 @media only screen and (min-width: 1280px) and (max-width: 1439px) {
  
     :root {
-
+        --article-right-view-width: 50%;
     }
 
     .article-left-view-container {
@@ -164,12 +166,6 @@
 
 
 
-/* common */
-
-body {
-    overflow-x: hidden;
-}
-
 /* topbar */
 
 .article-topbar-navigation-container {
@@ -185,6 +181,18 @@ body {
 /* search */
 
 /* form width */
+
+#article-search-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    position: fixed;
+    top: 64px;
+    right: -60%;
+    z-index: 99999999;
+    width: var(--article-right-view-width);
+}
 
 .aa-InputWrapper {
     margin-right: 58px;

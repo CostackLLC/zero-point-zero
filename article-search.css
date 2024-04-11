@@ -11,18 +11,8 @@
 }
 
 #article-search-panel {
-    position: fixed;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    top: 64px;
-    right: 0;
-    z-index: 99999999;
-    right: -60%;
     transition: right var(--side-panel-transition-out);
     will-change: right;
-    width: 50%;
 }
 
 #article-search-panel.show {

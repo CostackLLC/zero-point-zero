@@ -20,7 +20,7 @@
 .arrow_forward {
     width: 10px;
     height: 10px;
-    margin: 0 3px 0 3px;
+    margin: 0 3px 1px 3px;
 }
 
 .code {
@@ -30,39 +30,39 @@
 }
 
 .folder-open {
-    width: 21px;
-    height: 21px;
-    margin: 0 5px 2px 1px;
+    width: 22px;
+    height: 22px;
+    margin: 1px 5px 0 1px;
 }
 
 .inventory {
     width: 19px;
     height: 19px;
-    margin: 0 6px 2px 2px;
+    margin: 3px 6px 0 2px;
 }
 
 .attribution {
     width: 21px;
     height: 21px;
-    margin: 0 6px 2px 0;
+    margin: 2px 6px 0 0;
 }
 
 .update {
     width: 21px;
     height: 21px;
-    margin: 0 6px 2px 0;
+    margin: 2px 6px 0 0;
 }
 
 .newsmode {
     width: 20px;
     height: 19px;
-    margin: 0px 6px 2px 1px;
+    margin: 3px 6px 0 1px;
 }
 
 .filter-focus-center {
     width: 19px;
     height: 19px;
-    margin: 2px 7px 0 1px;
+    margin: 3px 7px 0 1px;
 }
 
 /* blockquote attribution icon */

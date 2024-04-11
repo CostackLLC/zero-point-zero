@@ -96,6 +96,11 @@
 
 /* article description */
 
+.article-description-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 figure {
     margin: 0;
 }
