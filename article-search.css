@@ -22,6 +22,7 @@
     right: -60%;
     transition: right var(--side-panel-transition-out);
     will-change: right;
+    width: 50%;
 }
 
 #article-search-panel.show {
@@ -222,11 +223,6 @@
     display: none;
 }
 
-
-
-
-
-
 .aa-ClearButton {
     font-family: "DM Sans", sans-serif;
     position: relative;
@@ -238,20 +234,6 @@
     bottom: 1px;
     transition: color 0.075s;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .aa-ClearButton:focus-visible {
     outline: none;
@@ -280,8 +262,7 @@
 @media only screen and (max-width: 680px) {
     .aa-DetachedSearchButton {
         background-color: var(--black);
-        border-color: rgb(255 255 255 / 60%);
-        border-width: 2px;
+        border-width: 0px;
     }
 
     .aa-SubmitIcon,
