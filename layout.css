@@ -238,9 +238,24 @@ body {
     width: var(--article-right-view-width);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* article topbar navigation buttons */
 
-/* article topbar navigation buttons - base styles */
+/* Base styles */
 .article-topbar-navigation-button-inner-hover-circle,
 .article-topbar-navigation-button-inner-tap-and-click-circle {
     will-change: transform;
@@ -248,7 +263,7 @@ body {
     transition: transform 0.15s;
 }
 
-/* article topbar navigation buttons - hover styles for non-touch devices */
+/* Hover styles for non-touch devices */
 @media (hover: hover) {
     .article-topbar-navigation-button:hover .article-topbar-navigation-button-inner-hover-circle,
     .article-topbar-navigation-close-button:hover .article-topbar-navigation-button-inner-hover-circle {
@@ -256,7 +271,7 @@ body {
     }
 }
 
-/* article topbar navigation buttons - active styles for touch and non-touch devices */
+/* Active styles for touch and non-touch devices */
 .article-topbar-navigation-button:active .article-topbar-navigation-button-inner-tap-and-click-circle,
 .article-topbar-navigation-close-button:active .article-topbar-navigation-button-inner-tap-and-click-circle,
 .article-topbar-navigation-button.active .article-topbar-navigation-button-inner-tap-and-click-circle,
@@ -264,16 +279,20 @@ body {
     transform: scale(1);
 }
 
-/* article topbar navigation buttons - reset scale after active/tap for touch devices */
+/* Reset scale after active/tap for touch devices */
 @media (hover: none) {
-    .article-topbar-navigation-button:active .article-topbar-navigation-button-inner-hover-circle,
-    .article-topbar-navigation-close-button:active .article-topbar-navigation-button-inner-hover-circle,
-    .article-topbar-navigation-button:not(:active) .article-topbar-navigation-button-inner-hover-circle,
-    .article-topbar-navigation-close-button:not(:active) .article-topbar-navigation-button-inner-hover-circle {
+    .article-topbar-navigation-button.hover .article-topbar-navigation-button-inner-hover-circle,
+    .article-topbar-navigation-close-button.hover .article-topbar-navigation-button-inner-hover-circle {
+        transform: scale(1);
+    }
+
+    .article-topbar-navigation-button:not(.hover) .article-topbar-navigation-button-inner-hover-circle,
+    .article-topbar-navigation-close-button:not(.hover) .article-topbar-navigation-button-inner-hover-circle {
         transform: scale(0);
         transition: transform 0.15s;
     }
 }
+
 
 
 
