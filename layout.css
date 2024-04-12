@@ -131,9 +131,15 @@ body {
     }
 
     .aa-Form {
-        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference));
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 70px);
         right: 2px;
+        padding: 0 35px;
     }    
+
+    .aa-PanelLayout,
+    .aa-Panel--scrollable {
+        width: calc(100% - 35px) ;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -155,8 +161,14 @@ body {
     }
 
     .aa-Form {
-        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference));
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 70px);
         right: 2px;
+        padding: 0 35px;
+    }    
+
+    .aa-PanelLayout,
+    .aa-Panel--scrollable {
+        width: calc(100% - 35px) ;
     }
     
     .illustrative-image-wrapper {
@@ -178,8 +190,14 @@ body {
     }
 
     .aa-Form {
-        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference));
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 70px);
         right: 2px;
+        padding: 0 35px;
+    }    
+
+    .aa-PanelLayout,
+    .aa-Panel--scrollable {
+        width: calc(100% - 35px) ;
     }
     
     .illustrative-image-wrapper {
@@ -201,8 +219,14 @@ body {
     }
 
     .aa-Form {
-        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference));
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 70px);
         right: 2px;
+        padding: 0 35px;
+    }    
+
+    .aa-PanelLayout,
+    .aa-Panel--scrollable {
+        width: calc(100% - 35px) ;
     }
     
     .illustrative-image-wrapper {
@@ -284,10 +308,7 @@ body {
 .aa-Panel--scrollable {
     height: calc(100vh - var(--article-topbar-navigation-height) - var(--article-search-bar-height)) !important;
     max-height: none;
-    max-width: calc(var(--article-right-view-inner-max-width) - 5px);
     padding: 15px 0;
-    margin: 0 3px;
-    left: 7px;
 }
 
 .aa-Panel {
