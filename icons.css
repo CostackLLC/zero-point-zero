@@ -1,20 +1,34 @@
 /* article topbar navigation buttons */
 
+.article-topbar-navigation-button,
+.article-topbar-navigation-close-button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    outline: none;
+}
 
+.article-topbar-navigation-button-inner-hover-circle,
+.article-topbar-navigation-button-inner-tap-and-click-circle {
+    will-change: transform;
+    transform: scale(0);
+    transition: transform 0.18s; /* ensure this duration matches the js */
+}
 
+@media (hover: hover) {
+    .article-topbar-navigation-button:hover .article-topbar-navigation-button-inner-hover-circle,
+    .article-topbar-navigation-close-button:hover .article-topbar-navigation-button-inner-hover-circle {
+        transform: scale(1);
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.article-topbar-navigation-button.active .article-topbar-navigation-button-inner-tap-and-click-circle,
+.article-topbar-navigation-close-button.active .article-topbar-navigation-button-inner-tap-and-click-circle {
+    transform: scale(1);
+}
 
 /* article topbar navigation: close button */
 
