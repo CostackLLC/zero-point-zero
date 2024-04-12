@@ -5,6 +5,16 @@
 
 /* article search bar pannel */
 
+.aa-Panel--scrollable::-webkit-scrollbar {
+    display: none !important;
+}
+
+.aa-Panel--scrollable {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow-y: scroll !important;
+}
+
 .aa-Autocomplete {
     display: flex;
     justify-content: center;
