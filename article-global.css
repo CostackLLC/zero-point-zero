@@ -7,25 +7,6 @@
     will-change: transform;
 }
 
-/* article topbar navigation buttons */
-
-.article-topbar-navigation-button-inner-hover-circle,
-.article-topbar-navigation-button-inner-tap-and-click-circle {
-    will-change: transform;
-    transform: scale(0);
-    transition: transform 0.15s;
-}
-
-.article-topbar-navigation-button:hover .article-topbar-navigation-button-inner-hover-circle,
-.article-topbar-navigation-close-button:hover .article-topbar-navigation-button-inner-hover-circle {
-    transform: scale(1);
-}
-
-.article-topbar-navigation-button:active .article-topbar-navigation-button-inner-tap-and-click-circle,
-.article-topbar-navigation-close-button:active .article-topbar-navigation-button-inner-tap-and-click-circle {
-    transform: scale(1);
-}
-
 /* article topbar navigation: close button */
 
 .scroll-progress-indicator-wrapper {
