@@ -1,3 +1,65 @@
+/* article topbar navigation buttons */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* article topbar navigation: close button */
+
+.scroll-progress-indicator-wrapper {
+    will-change: transform;
+    transform: scale(1);
+    transition: transform 0.15s;
+}
+
+#scroll-progress-indicator {
+    position: fixed;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-progress-indicator-circle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    margin: 3px;
+    background-color: var(--black);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.scroll-progress-indicator-circle.active {
+    opacity: 1;
+}
+
+.article-topbar-navigation-icon.close-article,
+.article-topbar-navigation-icon.finished-reading {
+    transition: transform 0.15s;
+}
+
+.article-topbar-navigation-icon.close-article {
+    transform: scale(1);
+}
+
+.article-topbar-navigation-icon.finished-reading {
+    transform: scale(0);
+}
+
 /* topbar svg icons */
 
 /* description svg icons */
