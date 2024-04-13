@@ -145,6 +145,24 @@ function createUnderlines() {
     });
 }
 
+function createCircles(selector, circleClass) {
+    // The createCircles function remains unchanged
+}
+
+createUnderlines();
+createCircles(".globe-grid-section-separator-grey-container", "globe-grid-section-separator-grey-circle");
+
+window.addEventListener("resize", throttle(function() {
+    if (window.innerWidth !== lastWindowWidth) {
+        lastWindowWidth = window.innerWidth;
+        requestAnimationFrame(function() {
+            createUnderlines();
+            createCircles(".globe-grid-section-separator-grey-container", "globe-grid-section-separator-grey-circle");
+        });
+    }
+}, 250));
+
+
 // separator
 
 function createCircles(selector, circleClass) {
