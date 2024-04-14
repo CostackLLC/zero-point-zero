@@ -162,7 +162,82 @@ window.addEventListener("resize", throttle(function() {
     }
 }, 250));
 
+// section separator
 
-// separator
+function createSectionSeparatorCircles(selector, circleClass) {
+    const containers = document.querySelectorAll(selector);
+    containers.forEach(container => {
+        const containerWidth = container.clientWidth;
+        const circleSize = 6;
+        const numCircles = Math.floor(containerWidth / circleSize);
+        container.innerHTML = '';
+        for (let i = 0; i < numCircles; i++) {
+            const circle = document.createElement('div');
+            circle.classList.add(circleClass);
+            container.appendChild(circle);
+        }        
+        if (container.lastChild) {
+            container.lastChild.style.marginRight = '0';
+        }
+    });
+}
 
-// topbar on scroll
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => (inThrottle = false), limit);
+        }
+    };
+}
+
+createSectionSeparatorCircles('.globe-grid-section-separator-grey-container', 'globe-grid-section-separator-grey-circle');
+
+window.addEventListener('resize', throttle(() => {
+    createSectionSeparatorCircles('.globe-grid-section-separator-grey-container', 'globe-grid-section-separator-grey-circle');
+}, 250));
+
+// separator and shadow for topbar on scroll
+
+window.addEventListener('load', () => {
+    const topbarSeparator = document.querySelector('#topbar-separator');
+    let circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
+
+    function handleTopbarScroll() {
+        const scrollPos = window.scrollY;
+        const circlesArray = Array.from(circles);
+        if (scrollPos > 0) {
+            circlesArray.forEach(circle => (circle.style.transform = 'scale(0)'));
+        } else {
+            circlesArray.forEach(circle => (circle.style.transform = 'scale(1)'));
+        }
+    }
+
+    function throttleScroll(func, limit) {
+        let ticking = false;
+        return function() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    func();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+    }
+
+    window.addEventListener('scroll', throttleScroll(handleTopbarScroll, 250));
+
+    window.addEventListener('resize', () => {
+        createSectionSeparatorCircles('#topbar-separator', 'globe-grid-section-separator-grey-circle');
+        circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
+        handleTopbarScroll();
+    });
+
+    handleTopbarScroll();
+});
+
