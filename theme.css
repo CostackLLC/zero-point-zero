@@ -2,7 +2,9 @@
 
 :root {
     --white: #ffffff;
+    --white-background: #fdfdfd;
     --black: #333333;
+    --black-background: #2d2d2d;
     --globe-grid-circles-grey-light-mode: #e0e0e0;
     --globe-grid-circles-grey-dark-mode: #535353;
     --search-bar-dark-mode: #636363;
@@ -19,17 +21,47 @@
     --topbar-box-shadow-scroll-position-zero-light-mode: 0 0 0px 0px rgba(0, 0, 0, 0.28);
     --topbar-box-shadow-scroll-position-zero-plus-light-mode: 0 0 5px 1px rgba(0, 0, 0, 0.28);
     --topbar-box-shadow-scroll-position-zero-dark-mode: 0 0 0px 0px rgba(0, 0, 0, 0.28);
-    --topbar-box-shadow-scroll-position-zero-plus-dark-mode: 0 0 8px 2px rgba(0, 0, 0, 0.32);
+    --topbar-box-shadow-scroll-position-zero-plus-dark-mode: 0 0 5px 1px rgba(0, 0, 0, 0.28);
+}
+
+/* topbar & body on scroll (classes added via js) */
+
+.article-topbar-navigation-container {
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-light-mode);
+    transition: box-shadow 0.15s linear;
+}
+.article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
+    transition: box-shadow 0.15s linear;
+}
+.dark-mode .article-topbar-navigation-container {
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-dark-mode);
+    transition: box-shadow 0.15s linear;
+}
+.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
+    transition: box-shadow 0.15s linear;
+}
+
+body {
+    background-color: var(--white);
+    transition: background-color 0.15s linear;
+}
+body.body-bg-color-on-scroll {
+    background-color: var(--white-background);
+    transition: background-color 0.15s linear;
+}
+.dark-mode body {
+    background-color: var(--black);
+    transition: background-color 0.15s linear;
+}
+.dark-mode body.body-bg-color-on-scroll {
+    background-color: var(--black-background);
+    transition: background-color 0.15s linear;
 }
 
 /* theme toggle elements */
 
-body {
-    background-color: var(--white);
-}
-body.dark-mode {
-    background-color: var(--black);
-}
 .blockquote-circle {
     background-color: var(--globe-grid-circles-grey-light-mode);
 }
@@ -80,35 +112,7 @@ body.dark-mode {
     background-color: var(--button-background-active-dark-mode);
 }
 
-
-
-
-
-/* topbar on scroll (shadow class added via js) */
-
-.article-topbar-navigation-container {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-light-mode);
-    transition: box-shadow 0.15s linear;
-}
-.article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
-    transition: box-shadow 0.15s linear;
-}
-.dark-mode .article-topbar-navigation-container {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-dark-mode);
-    transition: box-shadow 0.15s linear;
-}
-.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
-    transition: box-shadow 0.15s linear;
-}
-
-
-
-
-
-
-
+/* search */
 
 :root {
     --aa-scrollbar-track-background-color-rgb: 255, 255, 255;
@@ -152,7 +156,6 @@ body.dark-mode {
 .aa-ClearButton:focus-visible {
     color: var(--aa-form-symbol-light-mode-active);
 }
-
 
 .dark-mode .aa-ClearButton {
     color: var(--aa-form-symbol-dark-mode);
@@ -258,7 +261,9 @@ body.dark-mode {
 .dark-mode .aa-Item:active {
     background-color: var(--container-background-active-dark-mode);
 }
+
 /* custom search input caret */
+
 .letter {
     color: var(--aa-form-symbol-light-mode);
     background-color: transparent;
@@ -288,7 +293,9 @@ body.dark-mode {
     --aa-custom-caret-font-color: var(--search-bar-dark-mode);
     --aa-custom-caret-background-color: var(--aa-form-symbol-dark-mode);
 }
+
 /* hiding native search input caret */
+
 .aa-Input {
     color: transparent;
     caret-color: transparent;
