@@ -24,26 +24,26 @@
     --topbar-box-shadow-scroll-position-zero-plus-dark-mode: 0 0 5px 1px rgba(0, 0, 0, 0.28);
 }
 
-/* topbar on scroll (classes added via js) */
+/* article wrapper (classes added via js) */
 
-body {
+.article-wrapper {
     background-color: var(--white);
     transition: background-color 0.15s linear;
 }
-body.body-bg-color-on-scroll {
+.article-wrapper.article-wrapper-bg-color-on-scroll {
     background-color: var(--white-background);
     transition: background-color 0.15s linear;
 }
-body.dark-mode {
+.dark-mode .article-wrapper {
     background-color: var(--black);
     transition: background-color 0.15s linear;
 }
-body.dark-mode.body-bg-color-on-scroll {
+.dark-mode .article-wrapper.article-wrapper-bg-color-on-scroll {
     background-color: var(--black-background);
     transition: background-color 0.15s linear;
 }
 
-/* body on scroll (classes added via js) */
+/* topbar (classes added via js) */
 
 .article-topbar-navigation-container {
     background-color: var(--white);

@@ -201,7 +201,7 @@ window.addEventListener('resize', throttle(() => {
     createSectionSeparatorCircles('.globe-grid-section-separator-grey-container', 'globe-grid-section-separator-grey-circle');
 }, 250));
 
-// topbar separator + shadow & body on scroll | touch devices
+// topbar separator + shadow & article-wrapper on scroll | touch devices
 
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
@@ -209,18 +209,18 @@ if (isTouchDevice) {
     window.addEventListener('load', () => {
         const topbarSeparator = document.querySelector('#topbar-separator');
         const navbar = document.querySelector('.article-topbar-navigation-container');
-        const body = document.body;
+        const articleWrapper = document.querySelector('.article-wrapper');
 
         function handleTopbarScroll() {
             const scrollPos = window.scrollY;
             if (scrollPos > 0) {
                 topbarSeparator.style.visibility = 'hidden';
                 navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
-                body.classList.add("body-bg-color-on-scroll");
+                articleWrapper.classList.add("article-wrapper-bg-color-on-scroll");
             } else {
                 topbarSeparator.style.visibility = 'visible';
                 navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
-                body.classList.remove("body-bg-color-on-scroll");
+                articleWrapper.classList.remove("article-wrapper-bg-color-on-scroll");
             }
         }
 
@@ -248,12 +248,12 @@ if (isTouchDevice) {
     });
 } else {
 
-// topbar separator + shadow & body on scroll | non-touch devices
+// topbar separator + shadow & article-wrapper on scroll | non-touch devices
 
     window.addEventListener('load', () => {
         const topbarSeparator = document.querySelector('#topbar-separator');
         const navbar = document.querySelector('.article-topbar-navigation-container');
-        const body = document.body;
+        const articleWrapper = document.querySelector('.article-wrapper');
         let circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
 
         function handleTopbarScroll() {
@@ -262,11 +262,11 @@ if (isTouchDevice) {
             if (scrollPos > 0) {
                 circlesArray.forEach(circle => (circle.style.transform = 'scale(0)'));
                 navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
-                body.classList.add("body-bg-color-on-scroll");
+                articleWrapper.classList.add("article-wrapper-bg-color-on-scroll");
             } else {
                 circlesArray.forEach(circle => (circle.style.transform = 'scale(1)'));
                 navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
-                body.classList.remove("body-bg-color-on-scroll");
+                articleWrapper.classList.remove("article-wrapper-bg-color-on-scroll");
             }
         }
 
