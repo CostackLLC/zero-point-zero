@@ -206,34 +206,43 @@ window.addEventListener('resize', throttle(() => {
 window.addEventListener('load', () => {
     const topbarSeparator = document.querySelector('#topbar-separator');
     const navbar = document.querySelector('.article-topbar-navigation-container');
-    let circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
-    let isShadowApplied = false; // State to track if the shadow is applied
 
     function handleTopbarScroll() {
         const scrollPos = window.scrollY;
-        const shouldApplyShadow = scrollPos > 0;
-
-        if (shouldApplyShadow && !isShadowApplied) {
-            // Apply shadow and scale down circles only if not already done
+        if (scrollPos > 0) {
+            // Scrolling down, hide the topbar separator
+            topbarSeparator.style.visibility = 'hidden';
             navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
-            Array.from(circles).forEach(circle => (circle.style.transform = 'scale(0)'));
-            isShadowApplied = true;
-        } else if (!shouldApplyShadow && isShadowApplied) {
-            // Remove shadow and scale up circles only if shadow is currently applied
+        } else {
+            // At the top, show the topbar separator
+            topbarSeparator.style.visibility = 'visible';
             navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
-            Array.from(circles).forEach(circle => (circle.style.transform = 'scale(1)'));
-            isShadowApplied = false;
         }
     }
 
-    window.addEventListener('scroll', handleTopbarScroll, { passive: true });
+    function throttleScroll(func, limit) {
+        let ticking = false;
+        return function() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    func();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+    }
+
+    window.addEventListener('scroll', throttleScroll(handleTopbarScroll, 250));
 
     window.addEventListener('resize', () => {
+        // Assuming createSectionSeparatorCircles is a function you have defined elsewhere
         createSectionSeparatorCircles('#topbar-separator', 'globe-grid-section-separator-grey-circle');
-        circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
-        handleTopbarScroll(); // Recalculate the topbar state on resize
+        // Update the visibility based on the current scroll position
+        handleTopbarScroll();
     });
 
-    handleTopbarScroll(); // Initial call to set the topbar state on load
+    // Set the initial visibility based on the current scroll position
+    handleTopbarScroll();
 });
 
