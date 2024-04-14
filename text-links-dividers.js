@@ -207,41 +207,33 @@ window.addEventListener('load', () => {
     const topbarSeparator = document.querySelector('#topbar-separator');
     const navbar = document.querySelector('.article-topbar-navigation-container');
     let circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
+    let isShadowApplied = false; // State to track if the shadow is applied
 
     function handleTopbarScroll() {
         const scrollPos = window.scrollY;
-        const circlesArray = Array.from(circles);
-        if (scrollPos > 0) {
-            circlesArray.forEach(circle => (circle.style.transform = 'scale(0)'));
+        const shouldApplyShadow = scrollPos > 0;
+
+        if (shouldApplyShadow && !isShadowApplied) {
+            // Apply shadow and scale down circles only if not already done
             navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
-        } else {
-            circlesArray.forEach(circle => (circle.style.transform = 'scale(1)'));
+            Array.from(circles).forEach(circle => (circle.style.transform = 'scale(0)'));
+            isShadowApplied = true;
+        } else if (!shouldApplyShadow && isShadowApplied) {
+            // Remove shadow and scale up circles only if shadow is currently applied
             navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
+            Array.from(circles).forEach(circle => (circle.style.transform = 'scale(1)'));
+            isShadowApplied = false;
         }
     }
 
-    function throttleScroll(func, limit) {
-        let ticking = false;
-        return function() {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    func();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-    }
-
-    window.addEventListener('scroll', throttleScroll(handleTopbarScroll, 250));
+    window.addEventListener('scroll', handleTopbarScroll, { passive: true });
 
     window.addEventListener('resize', () => {
         createSectionSeparatorCircles('#topbar-separator', 'globe-grid-section-separator-grey-circle');
         circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
-        handleTopbarScroll();
+        handleTopbarScroll(); // Recalculate the topbar state on resize
     });
 
-    handleTopbarScroll();
+    handleTopbarScroll(); // Initial call to set the topbar state on load
 });
-
 
