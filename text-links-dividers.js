@@ -201,48 +201,90 @@ window.addEventListener('resize', throttle(() => {
     createSectionSeparatorCircles('.globe-grid-section-separator-grey-container', 'globe-grid-section-separator-grey-circle');
 }, 250));
 
-// separator and shadow for topbar on scroll
+// separator and shadow for topbar on scroll | touch devices
 
-window.addEventListener('load', () => {
-    const topbarSeparator = document.querySelector('#topbar-separator');
-    const navbar = document.querySelector('.article-topbar-navigation-container');
+// Check if the device is a touch device
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
-    function handleTopbarScroll() {
-        const scrollPos = window.scrollY;
-        if (scrollPos > 0) {
-            // Scrolling down, hide the topbar separator
-            topbarSeparator.style.visibility = 'hidden';
-            navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
-        } else {
-            // At the top, show the topbar separator
-            topbarSeparator.style.visibility = 'visible';
-            navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
-        }
-    }
+if (isTouchDevice) {
+    // Code for touch devices
+    window.addEventListener('load', () => {
+        const topbarSeparator = document.querySelector('#topbar-separator');
+        const navbar = document.querySelector('.article-topbar-navigation-container');
 
-    function throttleScroll(func, limit) {
-        let ticking = false;
-        return function() {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    func();
-                    ticking = false;
-                });
-                ticking = true;
+        function handleTopbarScroll() {
+            const scrollPos = window.scrollY;
+            if (scrollPos > 0) {
+                topbarSeparator.style.visibility = 'hidden';
+                navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
+            } else {
+                topbarSeparator.style.visibility = 'visible';
+                navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
             }
-        };
-    }
+        }
 
-    window.addEventListener('scroll', throttleScroll(handleTopbarScroll, 250));
+        function throttleScroll(func, limit) {
+            let ticking = false;
+            return function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        func();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            };
+        }
 
-    window.addEventListener('resize', () => {
-        // Assuming createSectionSeparatorCircles is a function you have defined elsewhere
-        createSectionSeparatorCircles('#topbar-separator', 'globe-grid-section-separator-grey-circle');
-        // Update the visibility based on the current scroll position
+        window.addEventListener('scroll', throttleScroll(handleTopbarScroll, 250));
+
+        window.addEventListener('resize', () => {
+            createSectionSeparatorCircles('#topbar-separator', 'globe-grid-section-separator-grey-circle');
+            handleTopbarScroll();
+        });
+
         handleTopbarScroll();
     });
+} else {
+    // Code for non-touch devices
+    window.addEventListener('load', () => {
+        const topbarSeparator = document.querySelector('#topbar-separator');
+        const navbar = document.querySelector('.article-topbar-navigation-container');
+        let circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
 
-    // Set the initial visibility based on the current scroll position
-    handleTopbarScroll();
-});
+        function handleTopbarScroll() {
+            const scrollPos = window.scrollY;
+            const circlesArray = Array.from(circles);
+            if (scrollPos > 0) {
+                circlesArray.forEach(circle => (circle.style.transform = 'scale(0)'));
+                navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
+            } else {
+                circlesArray.forEach(circle => (circle.style.transform = 'scale(1)'));
+                navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
+            }
+        }
 
+        function throttleScroll(func, limit) {
+            let ticking = false;
+            return function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        func();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            };
+        }
+
+        window.addEventListener('scroll', throttleScroll(handleTopbarScroll, 250));
+
+        window.addEventListener('resize', () => {
+            createSectionSeparatorCircles('#topbar-separator', 'globe-grid-section-separator-grey-circle');
+            circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
+            handleTopbarScroll();
+        });
+
+        handleTopbarScroll();
+    });
+}
