@@ -205,6 +205,7 @@ window.addEventListener('resize', throttle(() => {
 
 window.addEventListener('load', () => {
     const topbarSeparator = document.querySelector('#topbar-separator');
+    const navbar = document.querySelector('.article-topbar-navigation-container');
     let circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
 
     function handleTopbarScroll() {
@@ -212,8 +213,10 @@ window.addEventListener('load', () => {
         const circlesArray = Array.from(circles);
         if (scrollPos > 0) {
             circlesArray.forEach(circle => (circle.style.transform = 'scale(0)'));
+            navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
         } else {
             circlesArray.forEach(circle => (circle.style.transform = 'scale(1)'));
+            navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
         }
     }
 
@@ -240,4 +243,5 @@ window.addEventListener('load', () => {
 
     handleTopbarScroll();
 });
+
 
