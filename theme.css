@@ -28,15 +28,19 @@
 
 body {
     background-color: var(--white);
+    transition: background-color 0.15s linear;
 }
 body.body-bg-color-on-scroll {
     background-color: var(--white-background);
+    transition: background-color 0.15s linear;
 }
 body.dark-mode {
     background-color: var(--black);
+    transition: background-color 0.15s linear;
 }
 body.dark-mode.body-bg-color-on-scroll {
     background-color: var(--black-background);
+    transition: background-color 0.15s linear;
 }
 
 /* body on scroll (classes added via js) */
@@ -47,7 +51,7 @@ body.dark-mode.body-bg-color-on-scroll {
     transition: background-color, box-shadow 0.15s linear;
 }
 .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
-    background-color: var(--white-background);
+    background-color: var(--white);
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
     transition: background-color, box-shadow 0.15s linear;
 }
@@ -57,7 +61,7 @@ body.dark-mode.body-bg-color-on-scroll {
     transition: background-color, box-shadow 0.15s linear;
 }
 .dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
-    background-color: var(--black-background);
+    background-color: var(--black);
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
     transition: background-color, box-shadow 0.15s linear;
 }
