@@ -24,23 +24,22 @@
     --topbar-box-shadow-scroll-position-zero-plus-dark-mode: 0 0 5px 1px rgba(0, 0, 0, 0.28);
 }
 
-/* article wrapper (classes added via js) */
+/* body (classes added via js) */
 
-.article-wrapper {
+body {
     background-color: var(--white);
+}
+body.bg-transition {
     transition: background-color 0.15s linear;
 }
-.article-wrapper.article-wrapper-bg-color-on-scroll {
+body.body-bg-color-on-scroll {
     background-color: var(--white-background);
-    transition: background-color 0.15s linear;
 }
-.dark-mode .article-wrapper {
+body.dark-mode {
     background-color: var(--black);
-    transition: background-color 0.15s linear;
 }
-.dark-mode .article-wrapper.article-wrapper-bg-color-on-scroll {
+body.dark-mode.body-bg-color-on-scroll {
     background-color: var(--black-background);
-    transition: background-color 0.15s linear;
 }
 
 /* topbar (classes added via js) */
@@ -55,12 +54,12 @@
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
     transition: background-color, box-shadow 0.15s linear;
 }
-.dark-mode .article-topbar-navigation-container {
+body.dark-mode .article-topbar-navigation-container {
     background-color: var(--black);
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-dark-mode);
     transition: background-color, box-shadow 0.15s linear;
 }
-.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
+body.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
     background-color: var(--black);
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
     transition: background-color, box-shadow 0.15s linear;
