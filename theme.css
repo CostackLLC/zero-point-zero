@@ -51,11 +51,11 @@ body.body-bg-color-on-scroll {
     background-color: var(--white-background);
     transition: background-color 0.15s linear;
 }
-.dark-mode body {
+body.dark-mode {
     background-color: var(--black);
     transition: background-color 0.15s linear;
 }
-.dark-mode body.body-bg-color-on-scroll {
+body.dark-mode.body-bg-color-on-scroll {
     background-color: var(--black-background);
     transition: background-color 0.15s linear;
 }
