@@ -16,11 +16,6 @@ function isThemeSelected() {
     return hasDarkCookie ? true : hasLightCookie ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-// Function to set the theme from cookie
-function setThemeFromCookie() {
-    document.body.className = isThemeSelected() ? 'dark-mode' : '';
-}
-
 // Function to update the display of icons
 function updateIconsDisplay(isDarkMode) {
     // Define the icon pairs for light and dark themes
@@ -42,11 +37,15 @@ function updateIconsDisplay(isDarkMode) {
     }
 }
 
+// Function to set the theme from cookie and update icons
+function setThemeFromCookie() {
+    const isDarkMode = isThemeSelected();
+    document.body.classList.toggle('dark-mode', isDarkMode);
+    updateIconsDisplay(isDarkMode); // Update icons right after setting the theme
+}
+
 // Function to toggle the theme
 function toggleTheme() {
-    document.body.classList.remove('bg-transition');
-
-    // Toggle the theme
     const isDarkMode = !document.body.classList.contains('dark-mode');
     document.body.classList.toggle('dark-mode');
     document.cookie = 'theme=' + (isDarkMode ? 'dark' : 'light');
