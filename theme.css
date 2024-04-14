@@ -24,40 +24,57 @@
     --topbar-box-shadow-scroll-position-zero-plus-dark-mode: 0 0 5px 1px rgba(0, 0, 0, 0.28);
 }
 
-/* topbar & body on scroll (classes added via js) */
-
-.article-topbar-navigation-container {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-light-mode);
-    transition: box-shadow 0.15s linear;
-}
-.article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
-    transition: box-shadow 0.15s linear;
-}
-.dark-mode .article-topbar-navigation-container {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-dark-mode);
-    transition: box-shadow 0.15s linear;
-}
-.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
-    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
-    transition: box-shadow 0.15s linear;
-}
+/* topbar on scroll (classes added via js) */
 
 body {
     background-color: var(--white);
-    transition: background-color 0.15s linear;
 }
 body.body-bg-color-on-scroll {
     background-color: var(--white-background);
-    transition: background-color 0.15s linear;
 }
 body.dark-mode {
     background-color: var(--black);
-    transition: background-color 0.15s linear;
 }
 body.dark-mode.body-bg-color-on-scroll {
     background-color: var(--black-background);
-    transition: background-color 0.15s linear;
+}
+
+/* body on scroll (classes added via js) */
+
+.article-topbar-navigation-container {
+    background-color: var(--white);
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-light-mode);
+    transition: background-color, box-shadow 0.15s linear;
+}
+.article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
+    background-color: var(--white-background);
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
+    transition: background-color, box-shadow 0.15s linear;
+}
+.dark-mode .article-topbar-navigation-container {
+    background-color: var(--black);
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-dark-mode);
+    transition: background-color, box-shadow 0.15s linear;
+}
+.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
+    background-color: var(--black-background);
+    box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
+    transition: background-color, box-shadow 0.15s linear;
+}
+
+/* topbar navigation buttons */
+
+.article-topbar-navigation-button-inner-hover-circle {
+    background-color: var(--button-background-hover-light-mode);
+}
+.article-topbar-navigation-button-inner-tap-and-click-circle {
+    background-color: var(--button-background-active-light-mode);
+}
+.dark-mode .article-topbar-navigation-button-inner-hover-circle {
+    background-color: var(--button-background-hover-dark-mode);
+}
+.dark-mode .article-topbar-navigation-button-inner-tap-and-click-circle {
+    background-color: var(--button-background-active-dark-mode);
 }
 
 /* theme toggle elements */
@@ -91,25 +108,6 @@ body.dark-mode.body-bg-color-on-scroll {
 }
 .dark-mode .globe-grid-section-separator-grey-circle {
     background-color: var(--globe-grid-circles-grey-dark-mode);
-}
-
-.article-topbar-navigation-container {
-    background-color: var(--white);
-}
-.dark-mode .article-topbar-navigation-container {
-    background-color: var(--black);
-}
-.article-topbar-navigation-button-inner-hover-circle {
-    background-color: var(--button-background-hover-light-mode);
-}
-.article-topbar-navigation-button-inner-tap-and-click-circle {
-    background-color: var(--button-background-active-light-mode);
-}
-.dark-mode .article-topbar-navigation-button-inner-hover-circle {
-    background-color: var(--button-background-hover-dark-mode);
-}
-.dark-mode .article-topbar-navigation-button-inner-tap-and-click-circle {
-    background-color: var(--button-background-active-dark-mode);
 }
 
 /* search */

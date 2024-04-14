@@ -1,11 +1,12 @@
 // theme toggle
+
 function setThemeFromCookie() {
     document.body.className = isThemeSelected() ? 'dark-mode' : '';
 }
 
 function setThemeSwitchState() {
     const isDarkMode = isThemeSelected();
-    updateIconsDisplay(isDarkMode); // Set the initial display state of all icons
+    updateIconsDisplay(isDarkMode);
 }
 
 function isThemeSelected() {
@@ -18,7 +19,7 @@ function toggleTheme() {
     const isDarkMode = !document.body.classList.contains('dark-mode');
     document.body.classList.toggle('dark-mode');
     document.cookie = 'theme=' + (isDarkMode ? 'dark' : 'light');
-    updateIconsDisplay(isDarkMode); // Update the display state of all icons when the theme is toggled
+    updateIconsDisplay(isDarkMode);
 }
 
 function updateIconsDisplay(isDarkMode) {
@@ -31,7 +32,6 @@ function updateIconsDisplay(isDarkMode) {
         'theme-toggle': ['topbar-button-icon-light-theme-theme-toggle', 'topbar-button-icon-dark-theme-theme-toggle']
     };
 
-    // Iterate over each icon pair and update their display based on the current theme
     for (const [iconType, ids] of Object.entries(iconPairs)) {
         const lightIcon = document.getElementById(ids[0]);
         const darkIcon = document.getElementById(ids[1]);
@@ -45,6 +45,5 @@ function updateIconsDisplay(isDarkMode) {
 (function () {
     setThemeFromCookie();
     setThemeSwitchState();
-    // Attach the toggleTheme function to the theme toggle button
     document.querySelector('.article-topbar-navigation-button.toggle-theme').onclick = toggleTheme;
 })();
