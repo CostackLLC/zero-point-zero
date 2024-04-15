@@ -24,36 +24,26 @@
     --topbar-box-shadow-scroll-position-zero-plus-dark-mode: 0 0 5px 1px rgba(0, 0, 0, 0.28);
 }
 
-
-
-
-
-
-
-
-/* body (classes added via js) */
+/* topbar on scroll (classes added via js) */
 
 body {
     background-color: var(--white);
-}
-body.bg-transition {
     transition: background-color 0.15s linear;
 }
 body.body-bg-color-on-scroll {
     background-color: var(--white-background);
+    transition: background-color 0.15s linear;
 }
 body.dark-mode {
     background-color: var(--black);
+    transition: background-color 0.15s linear;
 }
 body.dark-mode.body-bg-color-on-scroll {
     background-color: var(--black-background);
+    transition: background-color 0.15s linear;
 }
 
-
-
-
-
-/* topbar (classes added via js) */
+/* body on scroll (classes added via js) */
 
 .article-topbar-navigation-container {
     background-color: var(--white);
@@ -65,21 +55,16 @@ body.dark-mode.body-bg-color-on-scroll {
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-light-mode);
     transition: background-color, box-shadow 0.15s linear;
 }
-body.dark-mode .article-topbar-navigation-container {
+.dark-mode .article-topbar-navigation-container {
     background-color: var(--black);
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-dark-mode);
     transition: background-color, box-shadow 0.15s linear;
 }
-body.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
+.dark-mode .article-topbar-navigation-container.article-topbar-navigation-shadow-on-scroll {
     background-color: var(--black);
     box-shadow: var(--topbar-box-shadow-scroll-position-zero-plus-dark-mode);
     transition: background-color, box-shadow 0.15s linear;
 }
-
-
-
-
-
 
 /* topbar navigation buttons */
 
@@ -95,10 +80,6 @@ body.dark-mode .article-topbar-navigation-container.article-topbar-navigation-sh
 .dark-mode .article-topbar-navigation-button-inner-tap-and-click-circle {
     background-color: var(--button-background-active-dark-mode);
 }
-
-
-
-
 
 /* theme toggle elements */
 
@@ -132,13 +113,6 @@ body.dark-mode .article-topbar-navigation-container.article-topbar-navigation-sh
 .dark-mode .globe-grid-section-separator-grey-circle {
     background-color: var(--globe-grid-circles-grey-dark-mode);
 }
-
-
-
-
-
-
-
 
 /* search */
 
@@ -332,6 +306,12 @@ body.dark-mode .article-topbar-navigation-container.article-topbar-navigation-sh
     background: grey;
     color: grey;
 }
+
+
+
+
+
+
 
 
 

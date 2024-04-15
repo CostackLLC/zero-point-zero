@@ -1,22 +1,27 @@
 // theme toggle
 
-// Function to add or remove the transition class based on scroll position
-function handleScroll() {
-    if (window.scrollY > 0) {
-        document.body.classList.add('bg-transition');
-    } else {
-        document.body.classList.remove('bg-transition');
-    }
+function setThemeFromCookie() {
+    document.body.className = isThemeSelected() ? 'dark-mode' : '';
 }
 
-// Function to check if the dark theme is selected
+function setThemeSwitchState() {
+    const isDarkMode = isThemeSelected();
+    updateIconsDisplay(isDarkMode);
+}
+
 function isThemeSelected() {
     const hasDarkCookie = document.cookie.match(/theme=dark/i) != null;
     const hasLightCookie = document.cookie.match(/theme=light/i) != null;
     return hasDarkCookie ? true : hasLightCookie ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-// Function to update the display of icons
+function toggleTheme() {
+    const isDarkMode = !document.body.classList.contains('dark-mode');
+    document.body.classList.toggle('dark-mode');
+    document.cookie = 'theme=' + (isDarkMode ? 'dark' : 'light');
+    updateIconsDisplay(isDarkMode);
+}
+
 function updateIconsDisplay(isDarkMode) {
     // Define the icon pairs for light and dark themes
     const iconPairs = {
@@ -37,32 +42,11 @@ function updateIconsDisplay(isDarkMode) {
     }
 }
 
-// Function to set the theme from cookie and update icons
-function setThemeFromCookie() {
-    const isDarkMode = isThemeSelected();
-    document.body.classList.toggle('dark-mode', isDarkMode);
-    updateIconsDisplay(isDarkMode); // Update icons right after setting the theme
-}
-
-// Function to toggle the theme
-function toggleTheme() {
-    const isDarkMode = !document.body.classList.contains('dark-mode');
-    document.body.classList.toggle('dark-mode');
-    document.cookie = 'theme=' + (isDarkMode ? 'dark' : 'light');
-    updateIconsDisplay(isDarkMode);
-}
-
-// Initialize theme from cookie and set up event listeners
 (function () {
     setThemeFromCookie();
+    setThemeSwitchState();
     document.querySelector('.article-topbar-navigation-button.toggle-theme').onclick = toggleTheme;
-    window.addEventListener('scroll', handleScroll);
 })();
-
-
-
-
-
 
 
 
@@ -79,17 +63,18 @@ if (isTouchDevice) {
     window.addEventListener('load', () => {
         const topbarSeparator = document.querySelector('#topbar-separator');
         const navbar = document.querySelector('.article-topbar-navigation-container');
+        const body = document.body;
 
         function handleTopbarScroll() {
             const scrollPos = window.scrollY;
             if (scrollPos > 0) {
                 topbarSeparator.style.visibility = 'hidden';
                 navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
-                document.body.classList.add("body-bg-color-on-scroll");
+                body.classList.add("body-bg-color-on-scroll");
             } else {
                 topbarSeparator.style.visibility = 'visible';
                 navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
-                document.body.classList.remove("body-bg-color-on-scroll");
+                body.classList.remove("body-bg-color-on-scroll");
             }
         }
 
@@ -122,6 +107,7 @@ if (isTouchDevice) {
     window.addEventListener('load', () => {
         const topbarSeparator = document.querySelector('#topbar-separator');
         const navbar = document.querySelector('.article-topbar-navigation-container');
+        const body = document.body;
         let circles = topbarSeparator.getElementsByClassName('globe-grid-section-separator-grey-circle');
 
         function handleTopbarScroll() {
@@ -130,11 +116,11 @@ if (isTouchDevice) {
             if (scrollPos > 0) {
                 circlesArray.forEach(circle => (circle.style.transform = 'scale(0)'));
                 navbar.classList.add("article-topbar-navigation-shadow-on-scroll");
-                document.body.classList.add("body-bg-color-on-scroll");
+                body.classList.add("body-bg-color-on-scroll");
             } else {
                 circlesArray.forEach(circle => (circle.style.transform = 'scale(1)'));
                 navbar.classList.remove("article-topbar-navigation-shadow-on-scroll");
-                document.body.classList.remove("body-bg-color-on-scroll");
+                body.classList.remove("body-bg-color-on-scroll");
             }
         }
 
@@ -162,17 +148,6 @@ if (isTouchDevice) {
         handleTopbarScroll();
     });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -221,6 +196,17 @@ createSectionSeparatorCircles('.globe-grid-section-separator-grey-container', 'g
 window.addEventListener('resize', throttle(() => {
     createSectionSeparatorCircles('.globe-grid-section-separator-grey-container', 'globe-grid-section-separator-grey-circle');
 }, 250));
+
+
+
+
+
+
+
+
+
+
+
 
 // description link
 
@@ -385,3 +371,4 @@ window.addEventListener("resize", throttle(function() {
         });
     }
 }, 250));
+
