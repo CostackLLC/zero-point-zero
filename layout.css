@@ -9,7 +9,7 @@ body {
     --article-topbar-navigation-width-difference: 13px;
     --aa-form-width-difference: 9px;
     --article-topbar-navigation-wrapper-horizontal-padding: 0 10px 0 17px;
-    --illustrative-image-radius: 8px;
+    --illustrative-image-radius: 0px;
 }
 
 
@@ -33,11 +33,6 @@ body {
         padding: var(--article-topbar-navigation-wrapper-horizontal-padding);
     }
 
-    .aa-Form {
-        padding: 0 25px 0 24px;
-        left: 1px;
-    } 
-
     .article-topbar-navigation-button-wrapper {
         grid-column-gap: 2px;
     }
@@ -49,6 +44,15 @@ body {
     .article-topbar-navigation-button-container.center {
         position: relative;
     }    
+
+    .aa-Form {
+        padding: 0 25px 0 24px;
+        left: 1px;
+    } 
+
+    .aa-Item {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing));
@@ -76,6 +80,10 @@ body {
         padding: 0 25px 0 24px;
         left: 1px;
     } 
+
+    .aa-Item {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -103,6 +111,10 @@ body {
         padding: 0 25px 0 24px;
         left: 1px;
     } 
+
+    .aa-Item {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -126,6 +138,10 @@ body {
         padding: 0 25px 0 24px;
         left: 1px;
     } 
+
+    .aa-Item {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -149,7 +165,11 @@ body {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 30px);
         padding: 0 15px;
         right: 2px;
-    }    
+    }
+
+    .aa-Item {
+        padding: 15px;
+    }
    
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -174,7 +194,11 @@ body {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 30px);
         padding: 0 15px;
         right: 2px;
-    }    
+    }
+
+    .aa-Item {
+        padding: 15px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -199,6 +223,10 @@ body {
         padding: 0 15px;
         right: 2px;
     }    
+
+    .aa-Item {
+        padding: 15px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -222,7 +250,11 @@ body {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 30px);
         padding: 0 15px;
         right: 2px;
-    }    
+    }   
+
+    .aa-Item {
+        padding: 15px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -327,8 +359,7 @@ body {
 }
 
 .aa-Item {
-    padding: 15px;
-    border-radius: 12px;
+    border-radius: 0px;
 }
 
 /* rigtht view topbar divider */ 

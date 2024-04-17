@@ -1,158 +1,78 @@
 // article search bar panel
 
-var toggleSearchSlidePanel, inputField, searchSlidePanel, searchOverlay, imageWrappers, clearButton;
+var toggleSearchSlidePanel, inputField, searchSlidePanel, searchOverlay, clearButton;
 
 function initializeSearchPanel() {
-    searchSlidePanel = document.getElementById("article-search-panel");
-    searchOverlay = document.getElementById("article-search-overlay");
-    imageWrappers = document.querySelectorAll(".article-left-view-image-wrapper");
-    clearButton = document.querySelector(".aa-Autocomplete .aa-ClearButton");
-    inputField = document.querySelector("#autocomplete input");
-
-    if (searchSlidePanel && searchOverlay && clearButton && inputField) {
-        toggleSearchSlidePanel = function () {
-            requestAnimationFrame(function () {
-                if (searchSlidePanel.classList.contains("show")) {
-                    if (inputField.value) {
-                        clearButton.click();
-                    }
-                    setTimeout(function () {
-                        searchSlidePanel.classList.remove("show");
-                        searchOverlay.classList.remove("show");
-                        imageWrappers.forEach(function (e) {
-                            e.classList.remove("greyscale");
-                        });
-                        inputField.blur();
-                    }, 500);
-                } else {
-                    searchSlidePanel.classList.add("show");
-                    searchOverlay.classList.add("show");
-                    imageWrappers.forEach(function (e) {
-                        e.classList.add("greyscale");
-                    });
-                }
-            });
-        };
-
-        searchSlidePanel.addEventListener("transitionend", function () {
-            if (searchSlidePanel.classList.contains("show")) {
-                inputField.focus();
-            }
-        });
-
-        document.getElementById("article-search-button").addEventListener("click", toggleSearchSlidePanel);
-
-        clearButton.addEventListener("click", function () {
-            setTimeout(function () {
-                searchSlidePanel.classList.remove("show");
-                searchOverlay.classList.remove("show");
-                imageWrappers.forEach(function (e) {
-                    e.classList.remove("greyscale");
-                });
-                inputField.blur();
-            }, 500);
-        });
-
-        document.addEventListener("keydown", function (e) {
-            if ((e.key === "Escape" || e.keyCode === 27) && searchSlidePanel.classList.contains("show")) {
-                if (inputField.value) {
-                    clearButton.click();
-                }
-                setTimeout(function () {
-                    searchSlidePanel.classList.remove("show");
-                    searchOverlay.classList.remove("show");
-                    imageWrappers.forEach(function (e) {
-                        e.classList.remove("greyscale");
-                    });
-                    inputField.blur();
-                }, 500);
-            }
-        });
-    } else {
-        console.error("One or more elements could not be found in the DOM.");
-    }
+    searchSlidePanel = document.getElementById("article-search-panel"),
+    searchOverlay = document.getElementById("article-search-overlay"),
+    clearButton = document.querySelector(".aa-Autocomplete .aa-ClearButton"),
+    inputField = document.querySelector("#autocomplete input"),
+    searchSlidePanel && searchOverlay && clearButton && inputField ? (toggleSearchSlidePanel = function() {
+        requestAnimationFrame((function() {
+            searchSlidePanel.classList.contains("show") ? (inputField.value && clearButton.click(), setTimeout((function() {
+                searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
+            }), 500)) : (searchSlidePanel.classList.add("show"), searchOverlay.classList.add("show"))
+        }))
+    }, searchSlidePanel.addEventListener("transitionend", (function() {
+        searchSlidePanel.classList.contains("show") && inputField.focus()
+    })), document.getElementById("article-search-button").addEventListener("click", toggleSearchSlidePanel), clearButton.addEventListener("click", (function() {
+        setTimeout((function() {
+            searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
+        }), 500)
+    })), document.addEventListener("keydown", (function(e) {
+        "Escape" !== e.key && 27 !== e.keyCode || !searchSlidePanel.classList.contains("show") || (inputField.value && clearButton.click(), setTimeout((function() {
+            searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
+        }), 500))
+    }))) : console.error("One or more elements could not be found in the DOM.")
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    // MutationObserver to wait for the .aa-Form element
-    var observer = new MutationObserver(function (mutations, obs) {
-        var form = document.querySelector(".aa-Form");
-        if (form) {
-            form.appendChild(closeButtonContainer);
-            // Reattach the event listener to the close button
-            var closeButton = document.querySelector(".close-button");
-            if (closeButton) {
-                closeButton.removeEventListener("click", handleCloseButtonClick);
-                closeButton.addEventListener("click", handleCloseButtonClick);
-            }
-            obs.disconnect();
+document.addEventListener("DOMContentLoaded", (function() {
+    var e = new MutationObserver((function(e, n) {
+        var c = document.querySelector(".aa-Form");
+        if (c) {
+            c.appendChild(a);
+            var r = document.querySelector(".close-button");
+            r && (r.removeEventListener("click", t), r.addEventListener("click", t)), n.disconnect()
         }
-    });
+    }));
 
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-
-    function handleCloseButtonClick() {
-        toggleSearchSlidePanel();
-        inputField.blur();
-        inputField.value = '';
+    function t() {
+        toggleSearchSlidePanel(), inputField.blur(), inputField.value = ""
     }
-
-    var closeButtonContainer = document.createElement("div");
-    closeButtonContainer.setAttribute("class", "close-button-container");
-    var closeButton = document.createElement("button");
-    closeButton.setAttribute("class", "close-button");
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 24 24");
-    svg.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
-    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z");
-    svg.appendChild(path);
-    closeButton.appendChild(svg);
-    closeButtonContainer.appendChild(closeButton);
-
-    var clearButton = document.querySelector(".aa-ClearButton");
-    if (clearButton) {
-        clearButton.textContent = "CLEAR";
-    }
-
-    var clearButtonObserver = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-            if (mutation.attributeName === "hidden") {
-                closeButtonContainer.style.display = clearButton.hasAttribute("hidden") ? "block" : "none";
-            }
-        });
+    e.observe(document.body, {
+        childList: !0,
+        subtree: !0
     });
+    var a = document.createElement("div");
+    a.setAttribute("class", "close-button-container");
+    var n = document.createElement("button");
+    n.setAttribute("class", "close-button");
+    var c = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    c.setAttribute("viewBox", "0 0 24 24"), c.setAttribute("fill", "rgba(255, 255, 255, 0.45)");
+    var r = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    r.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"), c.appendChild(r), n.appendChild(c), a.appendChild(n);
+    var l = document.querySelector(".aa-ClearButton");
+    l && (l.textContent = "CLEAR");
+    var i = new MutationObserver((function(e) {
+        e.forEach((function(e) {
+            "hidden" === e.attributeName && (a.style.display = l.hasAttribute("hidden") ? "block" : "none")
+        }))
+    }));
+    l && i.observe(l, {
+        attributes: !0
+    }), document.addEventListener("click", (function(e) {
+        var t = document.querySelector(".aa-Autocomplete"),
+            a = document.querySelector(".aa-Panel"),
+            n = !!t && t.contains(e.target),
+            c = !!a && a.contains(e.target),
+            r = e.target.closest('.article-topbar-navigation-button.toggle-theme');
+        n || c || r || !searchSlidePanel.classList.contains("show") || (inputField.value && l.click(), setTimeout((function() {
+            searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
+        }), 500))
+    })), initializeSearchPanel()
+}));
 
-    if (clearButton) {
-        clearButtonObserver.observe(clearButton, { attributes: true });
-    }
 
-    document.addEventListener("click", function (e) {
-        var autocomplete = document.querySelector('.aa-Autocomplete');
-        var panel = document.querySelector('.aa-Panel');
-        var isClickInsideAutocomplete = autocomplete ? autocomplete.contains(e.target) : false;
-        var isClickInsidePanel = panel ? panel.contains(e.target) : false;
-
-        if (!isClickInsideAutocomplete && !isClickInsidePanel && searchSlidePanel.classList.contains("show")) {
-            if (inputField.value) {
-                clearButton.click();
-            }
-            setTimeout(function () {
-                searchSlidePanel.classList.remove("show");
-                searchOverlay.classList.remove("show");
-                imageWrappers.forEach(function (wrapper) {
-                    wrapper.classList.remove("greyscale");
-                });
-                inputField.blur();
-            }, 500);
-        }
-    });
-
-    initializeSearchPanel();
-});
 
 
 
