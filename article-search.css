@@ -98,7 +98,7 @@
 }
 
 .autocomplete-item-topic {
-    display: inline;
+    display: block !important;
     position: relative;
     font-family: "DM Sans", sans-serif;
     color: var(--black);
@@ -106,7 +106,7 @@
     letter-spacing: .3px;
     font-size: 15px;
     font-weight: 600;
-    line-height: 1.9;
+    line-height: 1.8;
 }
 
 .autocomplete-item-topic-badge {
