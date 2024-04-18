@@ -177,23 +177,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const displayConnectionMessage = () => {
         const connectionMessage = `
-
-        <div class="autocomplete-record-details connection-issue">
-            <div class="connection-issue-wrapper">        
-                <p class="autocomplete-item-title connection-issue">Explore Relevant Articles</p>
-                <p class="autocomplete-item-subtitle connection-issue">We are committed to growing our article base to meet your needs. While some searches may yield limited results now, your curiosity is shaping our future content. Each query is a building block for our expanding database.</p>
-                <div class="autocomplete-item-topic-badge connection-issue">
-                <p class="autocomplete-item-topic connection-issue">Start Typing to Explore</p>
+            <div class="autocomplete-record-details connection-issue">
+                <div class="connection-issue-wrapper">        
+                    <p class="autocomplete-item-title connection-issue">Explore Relevant Articles</p>
+                    <p class="autocomplete-item-subtitle connection-issue">We are committed to growing our article base to meet your needs. While some searches may yield limited results now, your curiosity is shaping our future content. Each query is a building block for our expanding database.</p>
+                    <div class="autocomplete-item-topic-badge connection-issue">
+                    <p class="autocomplete-item-topic connection-issue">Start Typing to Explore</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
         `;
         statusContainer.innerHTML = connectionMessage;
-        // Show the .aa-Panel element if it was previously hidden
         const aaPanel = document.querySelector('.aa-Panel');
         if (aaPanel) {
             aaPanel.style.display = 'block';
+        }
+    };
+
+    const displayOfflineMessage = () => {
+        const offlineMessage = `
+            <div class="autocomplete-record-details connection-issue">
+                <div class="connection-issue-wrapper">        
+                    <p class="autocomplete-item-title connection-issue">Connection Issue Detected</p>
+                    <p class="autocomplete-item-subtitle connection-issue">It appears you're currently offline or experiencing connectivity issues. Please check your internet connection. We'll automatically reconnect as soon as you're back online.</p>
+                    <div class="autocomplete-item-topic-badge connection-issue">
+                    <p class="autocomplete-item-topic connection-issue">Thank you for your patience.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        statusContainer.innerHTML = offlineMessage;
+        const aaPanel = document.querySelector('.aa-Panel');
+        if (aaPanel) {
+            aaPanel.style.display = 'none';
         }
     };
 
@@ -211,44 +227,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const displayOfflineMessage = () => {
-        const offlineMessage = `
-
-        <div class="autocomplete-record-details connection-issue">
-            <div class="connection-issue-wrapper">        
-                <p class="autocomplete-item-title connection-issue">Connection Issue Detected</p>
-                <p class="autocomplete-item-subtitle connection-issue">It appears you're currently offline or experiencing connectivity issues. Please check your internet connection. We'll automatically reconnect as soon as you're back online.</p>
-                <div class="autocomplete-item-topic-badge connection-issue">
-                <p class="autocomplete-item-topic connection-issue">Thank you for your patience.</p>
-                </div>
-            </div>
-        </div>
-
-`;
-        statusContainer.innerHTML = offlineMessage;
-        // Hide the .aa-Panel element
-        const aaPanel = document.querySelector('.aa-Panel');
-        if (aaPanel) {
-            aaPanel.style.display = 'none';
+    const handleClassChange = (mutationsList) => {
+        for (let mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const hasShowClass = statusContainer.classList.contains('show');
+                if (hasShowClass && !intervalId) {
+                    checkInternetConnection(); // Initial check
+                    intervalId = setInterval(checkInternetConnection, 5000);
+                } else if (!hasShowClass && intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+            }
         }
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Start checking when the div is in the viewport
-                if (!intervalId) {
-                    checkInternetConnection(); // Initial check
-                    intervalId = setInterval(checkInternetConnection, 5000);
-                }
-            } else {
-                // Stop checking when the div is not in the viewport
-                clearInterval(intervalId);
-                intervalId = null;
-            }
-        });
-    });
+    const observer = new MutationObserver(handleClassChange);
+    observer.observe(statusContainer, { attributes: true });
 
-    // Observe the status container
-    observer.observe(statusContainer);
 });
