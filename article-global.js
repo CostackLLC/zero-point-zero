@@ -58,14 +58,16 @@ let body = document.querySelector('body');
 let scrollPosition = 0;
 let searchPanel = document.querySelector('#article-search-panel');
 
+// Function to save the current scroll position
 function saveScrollPosition() {
     scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     localStorage.setItem('scrollPosition', scrollPosition);
 }
 
+// Mutation observer to detect changes in the search panel's attributes
 let observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
-        if (searchPanel.classList.contains('show')) {
+        if (searchPanel && searchPanel.classList.contains('show')) {
             saveScrollPosition();
             body.style.overflowY = 'scroll';
             body.style.position = 'fixed';
@@ -77,12 +79,15 @@ let observer = new MutationObserver(function (mutations) {
         }
     });
 });
-observer.observe(searchPanel, { attributes: true });
 
-window.addEventListener('beforeunload', function () {
-    localStorage.setItem('scrollPosition', window.pageYOffset || document.documentElement.scrollTop);
-});
+if (searchPanel) {
+    observer.observe(searchPanel, { attributes: true });
+}
 
+// Event listener to save the scroll position before the page unloads
+window.addEventListener('beforeunload', saveScrollPosition);
+
+// Event listener to restore the scroll position once the DOM content is loaded
 document.addEventListener('DOMContentLoaded', function () {
     if (localStorage.getItem('scrollPosition')) {
         window.scrollTo(0, localStorage.getItem('scrollPosition'));

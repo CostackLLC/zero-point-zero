@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Prevent specific scripts from loading (add with comma)
         var scriptsToPrevent = [
-            'https://cdn.jsdelivr.net/gh/costackllc/zero-point-zero@v0.0.79/article-left-view.js'
+            'https://cdn.jsdelivr.net/gh/costackllc/zero-point-zero@v0.0.80/article-left-view.js'
         ];
         scriptsToPrevent.forEach(function(src) {
             var scripts = document.querySelectorAll('script[src="' + src + '"]');

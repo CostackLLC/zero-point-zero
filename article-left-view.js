@@ -1,5 +1,6 @@
 // Section Visibility Detection and Dynamic Image Container Positioning
 
+// Debounce function to limit the frequency of execution
 function debounce(func, wait) {
     var timeout;
     return function () {
@@ -11,6 +12,7 @@ function debounce(func, wait) {
     };
 }
 
+// Function to get the currently visible section
 function getVisibleSection() {
     var sections = document.querySelectorAll('.article-section');
     var offset = 64; // Offset value for visibility detection
@@ -30,19 +32,28 @@ function getVisibleSection() {
     return { pastFirstSection: pastFirstSection };
 }
 
+// Function to update the image container position based on the visible section
 function updateImageContainerPosition() {
     var visibleSectionInfo = getVisibleSection();
     var imageContainer = document.querySelector('.article-left-view-image-container');
-    var translateYValue = -100 * visibleSectionInfo.index;
-    var currentTranslateY = parseFloat(getComputedStyle(imageContainer).transform.split(',')[5]) || 0;
-    var distanceToTravel = Math.abs(currentTranslateY - translateYValue);
-    var animationDuration = Math.min(0.2 + (distanceToTravel / 100), 1.0);
+    if (imageContainer) {
+        var translateYValue = -100 * visibleSectionInfo.index;
+        var currentTranslateY = parseFloat(getComputedStyle(imageContainer).transform.split(',')[5]) || 0;
+        var distanceToTravel = Math.abs(currentTranslateY - translateYValue);
+        var animationDuration = Math.min(0.2 + (distanceToTravel / 100), 1.0);
 
-    requestAnimationFrame(() => {
-        imageContainer.style.transition = `transform ${animationDuration}s ease-in-out`;
-        imageContainer.style.transform = `translateY(${translateYValue}vh)`;
-    });
+        requestAnimationFrame(() => {
+            imageContainer.style.transition = `transform ${animationDuration}s ease-in-out`;
+            imageContainer.style.transform = `translateY(${translateYValue}vh)`;
+        });
+    }
 }
 
+// Modified event listener for scroll event with debounced update function
 var debouncedUpdateImageContainerPosition = debounce(updateImageContainerPosition, 10);
 window.addEventListener('scroll', debouncedUpdateImageContainerPosition);
+
+// Invoke updateImageContainerPosition on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateImageContainerPosition();
+});
