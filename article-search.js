@@ -4,30 +4,30 @@ var toggleSearchSlidePanel, inputField, searchSlidePanel, searchOverlay, clearBu
 
 function initializeSearchPanel() {
     searchSlidePanel = document.getElementById("article-search-panel"),
-    searchOverlay = document.getElementById("article-search-overlay"),
-    clearButton = document.querySelector(".aa-Autocomplete .aa-ClearButton"),
-    inputField = document.querySelector("#autocomplete input"),
-    searchSlidePanel && searchOverlay && clearButton && inputField ? (toggleSearchSlidePanel = function() {
-        requestAnimationFrame((function() {
-            searchSlidePanel.classList.contains("show") ? (inputField.value && clearButton.click(), setTimeout((function() {
+        searchOverlay = document.getElementById("article-search-overlay"),
+        clearButton = document.querySelector(".aa-Autocomplete .aa-ClearButton"),
+        inputField = document.querySelector("#autocomplete input"),
+        searchSlidePanel && searchOverlay && clearButton && inputField ? (toggleSearchSlidePanel = function () {
+            requestAnimationFrame((function () {
+                searchSlidePanel.classList.contains("show") ? (inputField.value && clearButton.click(), setTimeout((function () {
+                    searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
+                }), 500)) : (searchSlidePanel.classList.add("show"), searchOverlay.classList.add("show"))
+            }))
+        }, searchSlidePanel.addEventListener("transitionend", (function () {
+            searchSlidePanel.classList.contains("show") && inputField.focus()
+        })), document.getElementById("article-search-button").addEventListener("click", toggleSearchSlidePanel), clearButton.addEventListener("click", (function () {
+            setTimeout((function () {
                 searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
-            }), 500)) : (searchSlidePanel.classList.add("show"), searchOverlay.classList.add("show"))
-        }))
-    }, searchSlidePanel.addEventListener("transitionend", (function() {
-        searchSlidePanel.classList.contains("show") && inputField.focus()
-    })), document.getElementById("article-search-button").addEventListener("click", toggleSearchSlidePanel), clearButton.addEventListener("click", (function() {
-        setTimeout((function() {
-            searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
-        }), 500)
-    })), document.addEventListener("keydown", (function(e) {
-        "Escape" !== e.key && 27 !== e.keyCode || !searchSlidePanel.classList.contains("show") || (inputField.value && clearButton.click(), setTimeout((function() {
-            searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
-        }), 500))
-    }))) : console.error("One or more elements could not be found in the DOM.")
+            }), 500)
+        })), document.addEventListener("keydown", (function (e) {
+            "Escape" !== e.key && 27 !== e.keyCode || !searchSlidePanel.classList.contains("show") || (inputField.value && clearButton.click(), setTimeout((function () {
+                searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
+            }), 500))
+        }))) : console.error("One or more elements could not be found in the DOM.")
 }
 
-document.addEventListener("DOMContentLoaded", (function() {
-    var e = new MutationObserver((function(e, n) {
+document.addEventListener("DOMContentLoaded", (function () {
+    var e = new MutationObserver((function (e, n) {
         var c = document.querySelector(".aa-Form");
         if (c) {
             c.appendChild(a);
@@ -53,28 +53,24 @@ document.addEventListener("DOMContentLoaded", (function() {
     r.setAttribute("d", "M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"), c.appendChild(r), n.appendChild(c), a.appendChild(n);
     var l = document.querySelector(".aa-ClearButton");
     l && (l.textContent = "CLEAR");
-    var i = new MutationObserver((function(e) {
-        e.forEach((function(e) {
+    var i = new MutationObserver((function (e) {
+        e.forEach((function (e) {
             "hidden" === e.attributeName && (a.style.display = l.hasAttribute("hidden") ? "block" : "none")
         }))
     }));
     l && i.observe(l, {
         attributes: !0
-    }), document.addEventListener("click", (function(e) {
+    }), document.addEventListener("click", (function (e) {
         var t = document.querySelector(".aa-Autocomplete"),
             a = document.querySelector(".aa-Panel"),
             n = !!t && t.contains(e.target),
             c = !!a && a.contains(e.target),
             r = e.target.closest('.article-topbar-navigation-button.toggle-theme');
-        n || c || r || !searchSlidePanel.classList.contains("show") || (inputField.value && l.click(), setTimeout((function() {
+        n || c || r || !searchSlidePanel.classList.contains("show") || (inputField.value && l.click(), setTimeout((function () {
             searchSlidePanel.classList.remove("show"), searchOverlay.classList.remove("show"), inputField.blur()
         }), 500))
     })), initializeSearchPanel()
 }));
-
-
-
-
 
 // custom caret
 
@@ -112,7 +108,6 @@ function updateContent() {
     newDiv.innerHTML = contentHtml;
     newDiv.scrollLeft = newDiv.scrollWidth;
 }
-
 
 inputField.addEventListener('input', updateContent);
 inputField.addEventListener('keydown', function (event) {
@@ -165,3 +160,79 @@ function scrollDiv(e) {
     }
 }
 document.addEventListener('wheel', scrollDiv);
+
+// connection issue detected
+
+document.addEventListener('DOMContentLoaded', function () {
+    const statusContainer = document.getElementById('article-search-overlay');
+    let intervalId = null;
+
+    const checkInternetConnection = () => {
+        // First, check if the browser believes it has an internet connection
+        if (navigator.onLine) {
+            // Attempt to fetch a small resource from your homepage
+            fetch('https://uploads-ssl.webflow.com/65a65d78528ae0b98e38a942/661150242e87885e52b68254_noise-var-black.gif', { method: 'HEAD', cache: 'no-cache' })
+                .then(() => {
+                    // Internet is available, clear any offline message
+                    statusContainer.innerHTML = '';
+                    // Show the .aa-Panel element if it was previously hidden
+                    const aaPanel = document.querySelector('.aa-Panel');
+                    if (aaPanel) {
+                        aaPanel.style.display = 'block'; // Set to 'block' or the default display style for .aa-Panel
+                    }
+                })
+                .catch(() => {
+                    // Fetch failed, likely no internet connection
+                    displayOfflineMessage();
+                });
+        } else {
+            // navigator.onLine is false, definitely no internet connection
+            displayOfflineMessage();
+        }
+    };
+
+    const displayOfflineMessage = () => {
+        const offlineMessage = `
+
+        <div class="autocomplete-record-details connection-issue">
+            <div class="connection-issue-wrapper">        
+                <p class="autocomplete-item-title connection-issue">Connection Issue Detected</p>
+                <p class="autocomplete-item-subtitle connection-issue">It appears you're currently offline or experiencing connectivity issues. Please check your internet connection. We'll automatically reconnect as soon as you're back online.</p>
+                <div class="autocomplete-item-topic-badge connection-issue">
+                <p class="autocomplete-item-topic connection-issue">Thank you for your patience.</p>
+                </div>
+            </div>
+        </div>
+
+`;
+        statusContainer.innerHTML = offlineMessage;
+        // Hide the .aa-Panel element
+        const aaPanel = document.querySelector('.aa-Panel');
+        if (aaPanel) {
+            aaPanel.style.display = 'none';
+        }
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Start checking when the div is in the viewport
+                if (!intervalId) {
+                    checkInternetConnection(); // Initial check
+                    intervalId = setInterval(checkInternetConnection, 5000);
+                }
+            } else {
+                // Stop checking when the div is not in the viewport
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+        });
+    });
+
+    // Observe the status container
+    observer.observe(statusContainer);
+});
+
+
+
+

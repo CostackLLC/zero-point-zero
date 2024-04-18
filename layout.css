@@ -50,10 +50,16 @@ body {
     padding: 35px 0;
     }
 
-    .aa-Form {
+    .aa-Form,
+    .connection-issue-wrapper {
         padding: 0 25px 0 24px;
         left: 1px;
     } 
+
+    .aa-Item,
+    .no-results-record-container {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing));
@@ -79,13 +85,19 @@ body {
 
     .aa-PanelLayout,
     .aa-Panel--scrollable {
-        padding: 35px 25px;
+        padding: 35px 0px;
     }
     
-    .aa-Form {
+    .aa-Form,
+    .connection-issue-wrapper {
         padding: 0 25px 0 24px;
         left: 1px;
     } 
+    
+    .aa-Item,
+    .no-results-record-container {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -111,13 +123,19 @@ body {
 
     .aa-PanelLayout,
     .aa-Panel--scrollable {
-        padding: 35px 35px;
+        padding: 35px 0px;
     }
     
-    .aa-Form {
+    .aa-Form,
+    .connection-issue-wrapper {
         padding: 0 25px 0 24px;
         left: 1px;
     } 
+
+    .aa-Item,
+    .no-results-record-container {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -139,13 +157,19 @@ body {
 
     .aa-PanelLayout,
     .aa-Panel--scrollable {
-        padding: 35px 35px;
+        padding: 35px 0px;
     }
 
-    .aa-Form {
+    .aa-Form,
+    .connection-issue-wrapper {
         padding: 0 25px 0 24px;
         left: 1px;
     } 
+
+    .aa-Item,
+    .no-results-record-container {
+        padding: 25px;
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -174,6 +198,15 @@ body {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 30px);
         padding: 0 15px;
         right: 2px;
+    }
+
+    .aa-Item,
+    .no-results-record-container {
+        padding: 15px;
+    }
+
+    .connection-issue-wrapper {
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing));
     }
    
     .illustrative-image-wrapper {
@@ -205,6 +238,15 @@ body {
         padding: 0 15px;
         right: 2px;
     }
+
+    .aa-Item,
+    .no-results-record-container {
+        padding: 15px;
+    }
+
+    .connection-issue-wrapper {
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing));
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -234,6 +276,15 @@ body {
         padding: 0 15px;
         right: 2px;
     }    
+
+    .aa-Item,
+    .no-results-record-container {
+        padding: 15px;
+    }
+    
+    .connection-issue-wrapper {
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing));
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -262,7 +313,16 @@ body {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 30px);
         padding: 0 15px;
         right: 2px;
-    }   
+    }
+
+    .aa-Item,
+    .no-results-record-container {
+        padding: 15px;
+    }
+    
+    .connection-issue-wrapper {
+        width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing));
+    }
     
     .illustrative-image-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) / 2);
@@ -277,35 +337,6 @@ body {
 .article-wrapper {
     width: var(--article-right-view-width);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* search */
 
@@ -365,12 +396,13 @@ body {
     z-index: 9999999;
 }
 
-.aa-Item {
+.aa-Item,
+.no-results-record-container {
     border-radius: 0px;
-    padding: 25px;
 }
 
-.aa-Item:not(:last-child) {
+.aa-Item:not(:last-child),
+.no-results-record-container:not(:last-child) {
     margin-bottom: 15px;
 }
 
