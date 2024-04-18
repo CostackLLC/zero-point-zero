@@ -45,11 +45,6 @@ body {
         position: relative;
     }  
 
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-    padding: 35px 0;
-    }
-
     .aa-Form,
     .connection-issue-wrapper {
         padding: 0 25px 0 24px;
@@ -90,11 +85,6 @@ body {
 
     .article-topbar-navigation-wrapper {
         padding: var(--article-topbar-navigation-wrapper-horizontal-padding);
-    }
-
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-        padding: 35px 0px;
     }
     
     .aa-Form,
@@ -138,11 +128,6 @@ body {
     .article-topbar-navigation-wrapper {
         padding: var(--article-topbar-navigation-wrapper-horizontal-padding);
     }
-
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-        padding: 35px 0px;
-    }
     
     .aa-Form,
     .connection-issue-wrapper {
@@ -182,11 +167,6 @@ body {
         padding: var(--article-topbar-navigation-wrapper-horizontal-padding);
     }
 
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-        padding: 35px 0px;
-    }
-
     .aa-Form,
     .connection-issue-wrapper {
         padding: 0 25px 0 24px;
@@ -223,11 +203,6 @@ body {
 
     .article-topbar-navigation-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) + var(--article-topbar-navigation-width-difference));
-    }
-
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-        padding: 35px 0;
     }
     
     .aa-Form {
@@ -272,11 +247,6 @@ body {
     .article-topbar-navigation-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) + var(--article-topbar-navigation-width-difference));
     }
-
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-        padding: 35px 0;
-    }
     
     .aa-Form {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 30px);
@@ -320,11 +290,6 @@ body {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) + var(--article-topbar-navigation-width-difference));
     }
 
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-        padding: 35px 0;
-    }
-
     .aa-Form {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) - var(--aa-form-width-difference) + 30px);
         padding: 0 15px;
@@ -365,11 +330,6 @@ body {
 
     .article-topbar-navigation-wrapper {
         width: calc(var(--full-width) - var(--article-right-view-horizontal-spacing) + var(--article-topbar-navigation-width-difference));
-    }
-
-    .aa-PanelLayout,
-    .aa-Panel--scrollable {
-        padding: 35px 0;
     }
     
     .aa-Form {
@@ -432,6 +392,12 @@ body {
     height: calc(100dvh - var(--article-topbar-navigation-height) - var(--article-search-bar-height));
     top: calc(var(--article-topbar-navigation-height) + var(--article-search-bar-height));
     right: calc(var(--article-right-view-width) * -1);
+}
+
+.aa-PanelLayout,
+.aa-Panel--scrollable,
+#article-search-overlay {
+    padding: 35px 0;
 }
 
 .aa-InputWrapper {

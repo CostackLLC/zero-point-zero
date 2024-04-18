@@ -161,32 +161,52 @@ function scrollDiv(e) {
 }
 document.addEventListener('wheel', scrollDiv);
 
+
+
+
+
+
+
+
+
 // connection issue detected
 
 document.addEventListener('DOMContentLoaded', function () {
     const statusContainer = document.getElementById('article-search-overlay');
     let intervalId = null;
 
+    const displayConnectionMessage = () => {
+        const connectionMessage = `
+
+        <div class="autocomplete-record-details connection-issue">
+            <div class="connection-issue-wrapper">        
+                <p class="autocomplete-item-title connection-issue">Explore Relevant Articles</p>
+                <p class="autocomplete-item-subtitle connection-issue">We are committed to growing our article base to meet your needs. While some searches may yield limited results now, your curiosity is shaping our future content. Each query is a building block for our expanding database.</p>
+                <div class="autocomplete-item-topic-badge connection-issue">
+                <p class="autocomplete-item-topic connection-issue">Start Typing to Explore</p>
+                </div>
+            </div>
+        </div>
+
+        `;
+        statusContainer.innerHTML = connectionMessage;
+        // Show the .aa-Panel element if it was previously hidden
+        const aaPanel = document.querySelector('.aa-Panel');
+        if (aaPanel) {
+            aaPanel.style.display = 'block';
+        }
+    };
+
     const checkInternetConnection = () => {
-        // First, check if the browser believes it has an internet connection
         if (navigator.onLine) {
-            // Attempt to fetch a small resource from your homepage
             fetch('https://uploads-ssl.webflow.com/65a65d78528ae0b98e38a942/661150242e87885e52b68254_noise-var-black.gif', { method: 'HEAD', cache: 'no-cache' })
                 .then(() => {
-                    // Internet is available, clear any offline message
-                    statusContainer.innerHTML = '';
-                    // Show the .aa-Panel element if it was previously hidden
-                    const aaPanel = document.querySelector('.aa-Panel');
-                    if (aaPanel) {
-                        aaPanel.style.display = 'block'; // Set to 'block' or the default display style for .aa-Panel
-                    }
+                    displayConnectionMessage();
                 })
                 .catch(() => {
-                    // Fetch failed, likely no internet connection
                     displayOfflineMessage();
                 });
         } else {
-            // navigator.onLine is false, definitely no internet connection
             displayOfflineMessage();
         }
     };
@@ -232,7 +252,3 @@ document.addEventListener('DOMContentLoaded', function () {
     // Observe the status container
     observer.observe(statusContainer);
 });
-
-
-
-

@@ -294,13 +294,8 @@
     display: block;
 }
 
-.autocomplete-item-topic-badge.connection-issue {
-    padding-top: 10px;
-}
-
 .autocomplete-item-topic.connection-issue {
     content: none;
-    line-height: 1.55;
     text-align: center;
 }
 
