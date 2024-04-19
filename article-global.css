@@ -22,13 +22,7 @@
 }
 
 .current-breadcrumbs-link {
-    font-family: "DM Sans", sans-serif;
     color: var(--black);
-    text-align: left;
-    letter-spacing: .3px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.6;
 }
 
 /* article description */
@@ -48,13 +42,7 @@ figcaption {
 
 .description-label-text {
     display: inline;
-    font-family: "DM Sans", sans-serif;
     color: var(--black);
-    text-align: left;
-    letter-spacing: .3px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.6;
 }
 
 .description-label-text-colon {
@@ -63,28 +51,16 @@ figcaption {
 
 .description-link {
     color: var(--alt-text);
-    text-align: left;
-    letter-spacing: .2px;
-    font-family: "DM Sans", sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
 }
 
 .description-text {
-    font-family: "DM Sans", sans-serif;
     color: var(--alt-text);
-    text-align: left;
-    letter-spacing: .2px;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
 }
 
 /* drop cap */
 
 .paragraph.drop-cap::first-letter {
-    font-family: "Costack Globe Grid", "DM Serif Display", sans-serif;
+    font-family: "Costack Globe Grid", sans-serif;
     color: #cccccc;
     font-size: 130px;
     font-weight: 400;
@@ -98,33 +74,16 @@ figcaption {
 /* blockquote */
 
 blockquote p {
-    font-family: "DM Sans", sans-serif !important;
     color: var(--black);
-    font-size: 22px;
-    line-height: 1.4;
-    font-weight: 600;
-    bottom: 3px;
     position: relative;
 }
 
 .quote-author {
-    font-family: "DM Sans", sans-serif;
     color: var(--black);
-    text-align: left;
-    letter-spacing: .3px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.6;
 }
 
 .quote-author-position {
     color: var(--alt-text);
-    text-align: left;
-    letter-spacing: .2px;
-    font-family: "DM Sans", sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
 }
 
 blockquote.paragraph {

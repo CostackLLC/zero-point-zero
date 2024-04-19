@@ -76,46 +76,17 @@
 }
 
 .autocomplete-item-title {
-    font-family: 'DM Serif Display Regular';
-    font-size: 25px;
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: 0.8px;
-    text-align: center;
+
 }
 
 .autocomplete-item-subtitle {
-    font-family: "DM Sans", sans-serif;
-    color: var(--alt-text);
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.46;
-    letter-spacing: .2px;
+
 }
 
 .autocomplete-item-topic {
     display: block !important;
     position: relative;
-    font-family: "DM Sans", sans-serif;
     color: var(--black);
-    text-align: left;
-    letter-spacing: .3px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.8;
-}
-
-.autocomplete-item-topic::before {
-    content: "chevron_right";
-    font-family: "Material Symbols Rounded (Google)", sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
-    letter-spacing: .2px;
-    color: var(--black);
-    position: relative;
-    top: 3px;
-    left: -3px;
 }
 
 .autocomplete-item-thumbnail-container {
@@ -210,8 +181,6 @@
 
 .aa-Input {
     position: relative;
-    bottom: 1px;
-    font-family: monospace, sans-serif;
 }
 
 .aa-GradientBottom {
@@ -219,14 +188,9 @@
 }
 
 .aa-ClearButton {
-    font-family: "DM Sans", sans-serif;
     position: relative;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 0.7px;
     padding: 0;
     max-height: 20px;
-    bottom: 1px;
     transition: color 0.075s;
 }
 
@@ -242,7 +206,6 @@
     min-height: 23px;
     align-content: center;
     flex-wrap: wrap;
-    font-family: monospace, sans-serif;
 }
 
 .caret {

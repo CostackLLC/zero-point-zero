@@ -376,54 +376,10 @@ body.dark-mode.body-bg-color-on-scroll {
 
 /* links */
 
-.author-link {
-    color: var(--alt-text);
-    text-align: left;
-    letter-spacing: .2px;
-    font-family: DM Sans, sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
-}
-
 .paragraph-link,
 .paragraph {
     margin-bottom: 0;
-    font-family: DM Sans, sans-serif;
     color: var(--black);
-    font-size: 20px;
-    line-height: 1.51;
-    font-weight: 300;
-}
-
-.breadcrumbs-link {
-    color: var(--alt-text);
-    text-align: left;
-    letter-spacing: .2px;
-    font-family: DM Sans, sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
-}
-
-.breadcrumbs-current-link {
-    color: var(--black);
-    margin-right: 4px;
-    text-align: left;
-    letter-spacing: .3px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.6;
-}
-
-.image-description-link {
-    color: var(--alt-text);
-    text-align: left;
-    letter-spacing: .2px;
-    font-family: DM Sans, sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
 }
 
 .footer-container {
@@ -439,11 +395,6 @@ body.dark-mode.body-bg-color-on-scroll {
 .footer-link {
     color: var(--alt-text);
     text-align: left;
-    letter-spacing: .2px;
-    font-family: DM Sans, sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
 }
 
 /* description link */
@@ -530,31 +481,13 @@ body.dark-mode.body-bg-color-on-scroll {
 
 /* text and labels */
 
-.bold-paragraph-text {
-    font-family: DM Sans, sans-serif;
-    color: var(--black);
-    font-size: 20px;
-    line-height: 1.51;
-    font-weight: 600;
-}
-
 .description-label {
     color: var(--black);
-    margin-right: 4px;
     text-align: left;
-    letter-spacing: .3px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.6;
 }
 
 .description-text {
-    color: var(--alt-text);
     text-align: left;
-    letter-spacing: .2px;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
 }
 
 /* text selection */
