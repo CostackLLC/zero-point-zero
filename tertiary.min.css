@@ -1,0 +1,269 @@
+:root {
+    --side-panel-transition-in: 0.35s ease-out;
+    --side-panel-transition-out: 0.28s ease-in;
+}
+
+/* article search bar pannel */
+
+.aa-Panel--scrollable::-webkit-scrollbar {
+    display: none !important;
+}
+
+.aa-Panel--scrollable {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+    overflow-y: scroll !important;
+}
+
+.aa-Autocomplete {
+    display: flex;
+    justify-content: center;
+}
+
+#article-search-panel {
+    transition: right var(--side-panel-transition-out);
+    will-change: right;
+}
+
+#article-search-panel.show {
+    right: 0;
+    transition: right var(--side-panel-transition-in);
+}
+
+#article-search-overlay {
+    transition: right var(--side-panel-transition-out);
+    will-change: right;
+}
+
+#article-search-overlay.show {
+    right: 0;
+    transition: right var(--side-panel-transition-in);
+}
+
+.article-left-view-image-wrapper {
+    transition: filter 0.45s;
+}
+
+.article-left-view-image-wrapper.greyscale {
+    filter: grayscale(100%);
+}
+
+.aa-ClearIcon {
+    display: none;
+}
+
+.close-button {
+    background-color: transparent;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
+
+.close-button svg {
+    transition: fill 0.075s;
+}
+
+.autocomplete-record-container {
+    text-decoration: none;
+    display: flex;
+}
+
+.autocomplete-record-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.autocomplete-item-title {
+
+}
+
+.autocomplete-item-subtitle {
+
+}
+
+.autocomplete-item-topic {
+    display: block !important;
+    position: relative;
+    color: var(--black);
+}
+
+.autocomplete-item-thumbnail-container {
+    width: 100px;
+    height: 130px;
+    min-width: 100px;
+    min-height: 130px;
+    margin: 0;
+}
+
+.autocomplete-item-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.aa-SourceNoResults {
+    padding: 0;
+}
+
+.aa-Panel {
+    box-shadow: none;
+    display: none;
+}
+
+.aa-Item,
+.no-results-record-container {
+    transition: background-color .1s;
+}
+
+.autocomplete-item-subtitle.no-results {
+        -webkit-box-orient: normal;
+    -webkit-line-clamp: none;
+    overflow: visible;
+    display: block;
+}
+
+.aa-InputWrapperPrefix {
+    position: relative;
+    order: 2;
+}
+
+.aa-SubmitButton {
+    display: none;
+}
+
+.aa-Label svg {
+    color: var(--black);
+}
+
+.aa-LoadingIndicator {
+    position: relative;
+    right: 1px;
+}
+
+.aa-InputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    order: 1;
+}
+
+.aa-InputWrapperSuffix {
+    position: relative;
+    order: 3;
+}
+
+.close-button-container {
+    position: relative;
+    order: 3;
+}
+
+.aa-Form {
+    border: 0px;
+    border-radius: 0;
+}
+
+.aa-Form:hover {
+    border: none;
+}
+
+.aa-Form:focus-visible {
+    border: none;
+}
+
+.aa-Form:focus-within {
+    border: none;
+    box-shadow: none;
+}
+
+.aa-Input {
+    position: relative;
+}
+
+.aa-GradientBottom {
+    display: none;
+}
+
+.aa-ClearButton {
+    position: relative;
+    padding: 0;
+    max-height: 20px;
+    transition: color 0.075s;
+}
+
+.aa-ClearButton:focus-visible {
+    outline: none;
+}
+
+/* custom search input caret */
+
+.letter {
+    display: flex;
+    justify-content: center;
+    min-height: 23px;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.caret {
+    display: flex;
+    justify-content: center;
+    min-height: 23px;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+/* mobile */
+@media only screen and (max-width: 680px) {
+    .aa-DetachedSearchButton {
+        background-color: var(--black);
+        border-width: 0px;
+    }
+
+    .aa-SubmitIcon,
+    .aa-DetachedCancelButton {
+        color: var(--white);
+    }
+
+    .aa-DetachedSearchButtonPlaceholder {
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    .aa-DetachedContainer {
+        background-color: var(--black);
+    }
+}
+
+/* connection issue detected */
+
+.autocomplete-record-details.connection-issue {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}  
+
+.autocomplete-item-title.connection-issue {
+    text-align: center;
+}
+
+.autocomplete-item-subtitle.connection-issue {
+    -webkit-box-orient: normal;
+    -webkit-line-clamp: none;
+    overflow: visible;
+    display: block;
+}
+
+.autocomplete-item-topic.connection-issue {
+    content: none;
+    text-align: center;
+}
+
+.autocomplete-item-topic.connection-issue::before {
+    content: none;
+    line-height: 0;
+}
+
